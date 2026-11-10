@@ -57,18 +57,31 @@ export const IMAGES = {
   chiropractorHead: "/images/chiropractor_assessing_head.jpg",
   chiropractorShoulder: "/images/chiropractor_assessing_shoulder.jpg",
   chiropractorHelping: "/images/chiropractor_helping_patient.jpg",
+  chiropractorAid: "/images/chiropractor-provides-aid-patient.jpg",
+  chiropractorYankrukov: "/images/chiropractor-yankrukov.jpg",
+  osteopathAdjustingBack: "/images/osteopath-adjusting-back-patient.jpg",
+  osteopathyTreatment1: "/images/osteopathy-treatment-1.jpg",
+  osteopathyTreatment2: "/images/osteopathy-treatment-2.jpg",
+  osteopathyTreatment3: "/images/osteopathy-treatment-3.jpg",
+  physiotherapistShoulderMassage: "/images/physiotherapist-shoulder-massage.jpg",
 
   // Dental
   dentalLandscape: "/images/dental_landscape.jpg",
   dentalVertical: "/images/dental_vertical.jpg",
   dentalXrays: "/images/dental_xrays.jpg",
   dentistExplaining: "/images/dentist_explaining_teethbrushing.jpg",
+  dentistReviewingXrays: "/images/dentist_reviewing_teeth_xrays.jpg",
+  dentistViewingTeeth: "/images/dentist_viewing_teeth.jpg",
 
   // Physical therapy
   physicalTherapist: "/images/physical_therapist.jpg",
   physicalTherapistExplanation: "/images/physical_therapist_explanation.jpg",
   ptHelping: "/images/medium-shot-physiotherapist-helping-patient.jpg",
   ptPatient: "/images/medium-shot-patient-physiotherapy.jpg",
+  ptPatient2: "/images/medium-shot-patient-physiotherapy2.jpg",
+  ptManHelping: "/images/medium-shot-man-helping-patient-physiotherapy.jpg",
+  ptHandFlex: "/images/female_physical_therapist_hand_flex.jpg",
+  ptGymnastics: "/images/woman-doing-gymnastics-with-help-his-young-physical-therapist.jpg",
 
   // Osteopathic
   osteopathyTreatment: "/images/osteopathy-patient-getting-treatment-massage.jpg",
@@ -80,7 +93,16 @@ export const IMAGES = {
   vetUltrasound: "/images/veteranarian_ultrasound.jpg",
   dogTreatment: "/images/dog_getting_vet_treatment.jpg",
 
+  // Respiratory
+  respiratoryStethoscope: "/images/doctor-stethoscope-patient-closeup.jpg",
+
+  // Doctor (new)
+  doctorDiscussingWithNurses: "/images/doctor-discussing-with-nurses-work.jpg",
+
   // Lab / Radiology
+  xrayReviewDoctor: "/images/female_doctor_xray_review.jpg",
+  xrayReviewTeam: "/images/female_medical_professionals_xray_review.jpg",
+  xrayMriReview: "/images/doctor_reviewing_xrays.jpg",
   labTech: "/images/lab_technician_looking_through_microscope.jpg",
   labTechLandscape: "/images/lab_technician_looking_through_microscope_landscape.jpg",
   labTesting: "/images/laboratory_testing.jpg",

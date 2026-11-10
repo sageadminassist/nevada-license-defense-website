@@ -34,11 +34,11 @@ function BoardPage() {
 
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <img src={IMAGES.osteopathyTreatment} alt="Osteopathic physician treating a patient" className="w-full rounded-lg object-cover shadow-md max-h-96" />
+          <img src={IMAGES.doctorDiscussingWithNurses} alt="Osteopathic physician consulting with medical staff" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
             <p className="text-lg">Osteopathic physicians (DOs) facing disciplinary actions, investigations, or license revocation before the Nevada State Board of Osteopathic Medicine.</p>
-            <p className="text-sm text-gray-500">Governed by <strong>NRS Chapter 633</strong>. All disciplinary proceedings conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).</p>
+            <p className="text-gray-700">Osteopathic physician licenses in Nevada are governed by <strong>NRS Chapter 633</strong> (Nevada State Board of Osteopathic Medicine). All disciplinary proceedings are conducted under <strong>NRS 233B</strong>, the Nevada Administrative Procedure Act. DOs facing complaints, emergency suspensions, or formal hearings before the Board should retain experienced legal counsel before responding to any Board inquiry.</p>
             <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           </div>
         </div>
@@ -46,7 +46,7 @@ function BoardPage() {
 
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {[
             ["Board Investigations", "Representation from the moment you receive a notice — before you respond to the board."],
             ["Disciplinary Hearings", "Defense at formal and informal hearings before your licensing board."],

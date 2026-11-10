@@ -66,9 +66,9 @@ export function ServiceCard({
   imageAlt?: string;
 }) {
   return (
-    <div className="bg-white rounded-lg shadow-lg p-8 hover-lift flex flex-col">
+    <div className="group bg-white rounded-lg shadow-lg p-8 hover-lift flex flex-col">
       {icon && (
-        <div className="mb-4 flex justify-center group">{icon}</div>
+        <div className="mb-4 flex justify-center">{icon}</div>
       )}
       <h3 className="text-xl font-bold text-dark-blue mb-4">{title}</h3>
       <p className="text-gray-600 mb-6 flex-1">{children}</p>

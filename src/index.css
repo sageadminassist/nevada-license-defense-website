@@ -200,6 +200,7 @@
     to { opacity: 1; }
   }
 
+
   /* Heartbeat icon */
   .heartbeat-line {
     stroke-dasharray: none;

@@ -33,18 +33,18 @@ function BoardPage() {
       </section>
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <img src={IMAGES.chiropractorAssessing} alt="Chiropractor assessing a patient" className="w-full rounded-lg object-cover shadow-md max-h-96" />
+          <img src={IMAGES.chiropractorAid} alt="Chiropractor providing aid to patient" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
             <p className="text-lg">Chiropractic physicians facing complaints, investigations, or disciplinary proceedings before the Nevada Chiropractic Physicians Board.</p>
-            <p className="text-sm text-gray-500">Governed by <strong>NRS Chapter 634</strong>. All disciplinary proceedings conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).</p>
+            <p className="text-gray-700">Chiropractic physician licenses in Nevada are governed by <strong>NRS Chapter 634</strong> (Nevada Chiropractic Physicians Board). All disciplinary proceedings are conducted under <strong>NRS 233B</strong>, the Nevada Administrative Procedure Act. Chiropractors facing complaints, scope-of-practice allegations, or license suspension before the Board should consult an experienced license defense attorney before responding to any Board communication.</p>
             <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           </div>
         </div>
       </Section>
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {[["Board Investigations","Representation from the moment you receive a notice — before you respond to the board."],["Disciplinary Hearings","Defense at formal and informal hearings before your licensing board."],["License Reinstatement","Guidance reinstating a suspended or revoked license."],["Probation & Monitoring","Negotiating monitoring agreements and defending probation violations."],["Criminal Matters","Defense when criminal charges impact your professional license."],["License Renewal Issues","Resolving continuing-education, disclosure, or renewal problems."]].map(([title, blurb]) => (
             <div key={title} className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
               <h3 className="mb-2 font-bold text-dark-blue">{title}</h3>

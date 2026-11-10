@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
+import { Bone, Brain, Dumbbell, FlaskConical, HeartHandshake, PawPrint, Scan, SmilePlus, Stethoscope, Users } from "lucide-react";
 
 import {
   Section,
@@ -7,7 +8,20 @@ import {
   ServiceGrid,
 } from "@/components/marketing/sections";
 import { IMAGES } from "@/lib/images";
-import { SITE } from "@/lib/site";
+import { MORE_BOARDS, SITE } from "@/lib/site";
+
+const MORE_BOARDS_ICONS = [
+  { ...MORE_BOARDS[0], icon: Bone,          anim: "anim-wobble"  },  // osteopathic
+  { ...MORE_BOARDS[1], icon: PawPrint,      anim: "anim-bounce"  },  // veterinary
+  { ...MORE_BOARDS[2], icon: Users,         anim: "anim-rise"    },  // social-work
+  { ...MORE_BOARDS[3], icon: Scan,          anim: "anim-scan"    },  // radiology
+  { ...MORE_BOARDS[4], icon: Dumbbell,      anim: "anim-lift"    },  // physical-therapy
+  { ...MORE_BOARDS[5], icon: SmilePlus,     anim: "anim-shimmy"  },  // dental
+  { ...MORE_BOARDS[6], icon: Brain,         anim: "anim-pulse"   },  // psychology
+  { ...MORE_BOARDS[7], icon: Stethoscope,   anim: "anim-swing"   },  // chiropractic
+  { ...MORE_BOARDS[8], icon: FlaskConical,  anim: "anim-swirl"   },  // respiratory
+  { ...MORE_BOARDS[9], icon: HeartHandshake,anim: "anim-beat"    },  // MFT
+];
 
 export const Route = createFileRoute("/_marketing/")({
   head: () => ({
@@ -192,6 +206,30 @@ function HomePage() {
         </ServiceGrid>
       </Section>
 
+      {/* More Boards section */}
+      <Section variant="muted">
+        <SectionTitle>We Also Defend Before These Boards</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {MORE_BOARDS_ICONS.map((board, i) => {
+            const Icon = board.icon;
+            return (
+              <Link
+                key={board.to}
+                to={board.to}
+                className="group flex flex-col items-center text-center rounded-xl border border-gray-200 bg-white p-5 hover:shadow-lg hover:-translate-y-1 hover:border-gold/40 transition-all duration-300"
+              >
+                <div className="mb-3 flex items-center justify-center w-16 h-16 rounded-full bg-dark-blue/5 group-hover:bg-gold/10 transition-colors duration-300">
+                  <Icon className="w-9 h-9 text-dark-blue" />
+                </div>
+                <span className="text-xs font-bold text-gold uppercase tracking-wide mb-1">{board.nrs}</span>
+                <span className="text-sm font-bold text-dark-blue leading-snug flex-1">{board.label}</span>
+                <span className="mt-3 text-xs font-semibold text-gold opacity-0 group-hover:opacity-100 transition-opacity duration-200">Learn More →</span>
+              </Link>
+            );
+          })}
+        </div>
+      </Section>
+
       {/* About section */}
       <Section>
         <SectionTitle>
@@ -200,20 +238,22 @@ function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="prose prose-lg max-w-none">
             <p className="text-lg text-gray-700 mb-6 animate-slide-up" style={{ animationDelay: "100ms" }}>
-              Are you a nurse feeling overwhelmed by the possibility of losing your license
-              due to a letter of inquiry from the NSBN?
+              Are you a physician, pharmacist, or other licensed medical professional facing
+              an investigation or complaint before a Nevada state licensing board?
             </p>
             <p className="text-xl font-bold mb-6 animate-slide-up" style={{ color: "#b27e4f", animationDelay: "200ms" }}>
-              Don't worry, we can help!
+              Don't face it alone — we can help.
             </p>
             <p className="text-lg text-gray-700 animate-slide-up" style={{ animationDelay: "300ms" }}>
-              Our law firm specializes in protecting nurses' licenses and responding to
-              inquiries, investigations, and complaints from the NSBN. We understand the pain
-              and stress that comes with these situations, and we're here to offer solutions.
+              Our law firm specializes in defending the professional licenses of physicians,
+              pharmacists, nurses, and allied health professionals before Nevada state licensing
+              boards. We understand the stress and uncertainty these proceedings bring, and
+              we're here to protect your livelihood.
             </p>
             <p className="text-lg text-gray-700 mt-4">
-              We also defend physicians, pharmacists, radiologic technologists, and other
-              licensed professionals before all Nevada state licensing boards.
+              Craig K. Perry has defended professionals before the Board of Medical Examiners,
+              Board of Pharmacy, Board of Nursing, Board of Veterinary Medical Examiners,
+              and the American Registry of Radiologic Technologists (ARRT).
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a href={SITE.phoneHref} className="btn-primary text-center">
@@ -226,7 +266,7 @@ function HomePage() {
           </div>
           <div className="animate-slide-in-right overflow-hidden rounded-lg shadow-lg">
             <img
-              src={IMAGES.nursesDiscussion}
+              src={IMAGES.nurseDiscussion}
               alt="Healthcare professionals collaborating"
               className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
               loading="lazy"

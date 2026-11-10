@@ -36,16 +36,33 @@ export const Route = createFileRoute("/_marketing/medical")({
 });
 
 const NRS_630_VIOLATIONS = [
+  "Disciplinary action taken by another jurisdiction",
+  "Surrender of a previous license while under investigation",
   "Malpractice or gross malpractice",
-  "Fraud in obtaining a license",
-  "Improper prescribing or administering of drugs",
-  "Fee-splitting arrangements",
+  "Engaging in sexual activity with a patient",
+  "Disruptive behavior",
+  "Violating or exploiting the trust of a patient for financial or personal gain",
+  "Failure to offer appropriate care with intent to influence financial well-being",
+  "Engaging in disreputable conduct",
+  "Sexual contact with surrogate of patient or relatives of patient",
+  "Obtaining license by bribery, fraud, or misrepresentation",
+  "False advertising or practicing under another name",
+  "Signing blank prescription forms",
+  "Discouraging a patient from seeking a second opinion",
+  "Terminating care without adequate notice",
+  "Accepting compensation to influence evaluation or treatment",
+  "Inappropriate division of fees or referral arrangements",
   "Charging for services not rendered",
-  "Professional conduct unbecoming a physician",
+  "Aiding the practice of an unlicensed person",
+  "Failing to disclose a conflict of interest",
+  "Improper prescribing or administering of controlled substances",
   "Inability to practice medicine with reasonable skill and safety",
   "Violation of any law relating to controlled substances",
-  "Engaging in disruptive behavior",
-  "Failure to maintain proper records",
+  "Filing of false reports or failure to report required information",
+  "Failure to maintain proper medical records",
+  "Altering or destroying medical records",
+  "Failure to supervise a medical assistant",
+  "Unauthorized injection of dermal fillers or botulinum toxin",
 ] as const;
 
 const SERVICES = [
@@ -76,9 +93,27 @@ function MedicalHero() {
   );
 }
 
+const medicalLd = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  name: "Nevada Medical License Defense | Craig K. Perry & Associates",
+  url: "https://nevadalicensedefense.com/medical",
+  telephone: "+1-702-893-4777",
+  areaServed: { "@type": "State", name: "Nevada" },
+  serviceType: "Medical License Defense",
+  provider: {
+    "@type": "Attorney",
+    name: "Craig K. Perry",
+    jobTitle: "Attorney",
+    worksFor: { "@type": "LegalService", name: "Craig K. Perry & Associates", url: "https://craigperry.com" },
+    knowsAbout: ["NRS Chapter 630", "Nevada Board of Medical Examiners", "Medical License Defense", "Administrative Law"],
+  },
+};
+
 function MedicalRoute() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalLd) }} />
       <MedicalHero />
       <Section>
         <div className="mb-8 flex justify-center">

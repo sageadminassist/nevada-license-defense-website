@@ -20,7 +20,7 @@ export const NLD_LD = {
   url: "https://nevadalicensedefense.com",
   telephone: "+1-702-893-4777",
   email: SITE.email,
-  areaServed: "Nevada",
+  areaServed: { "@type": "State", name: "Nevada" },
   parentOrganization: {
     "@type": "LegalService",
     name: "Craig K. Perry & Associates",
@@ -57,6 +57,7 @@ export const NLD_LD = {
   ],
   sameAs: [
     "https://craigperry.com",
+    "https://lvnurseattorney.com",
     "https://maps.google.com/?cid=235096524719636307",
   ],
 } as const;

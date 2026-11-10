@@ -33,18 +33,18 @@ function BoardPage() {
       </section>
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <img src={IMAGES.physicalTherapist} alt="Physical therapist helping a patient" className="w-full rounded-lg object-cover shadow-md max-h-96" />
+          <img src={IMAGES.ptManHelping} alt="Physical therapist helping a patient with posture and mobility" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
             <p className="text-lg">Physical therapists (PTs) and physical therapist assistants (PTAs) facing complaints, investigations, or disciplinary proceedings before the Nevada Physical Therapy Board.</p>
-            <p className="text-sm text-gray-500">Governed by <strong>NRS Chapter 640</strong>. All disciplinary proceedings conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).</p>
+            <p className="text-gray-700">Physical therapist and physical therapist assistant licenses in Nevada are governed by <strong>NRS Chapter 640</strong> (Nevada Physical Therapy Board). All disciplinary proceedings are conducted under <strong>NRS 233B</strong>, the Nevada Administrative Procedure Act. PTs and PTAs facing complaints regarding unprofessional conduct, supervision violations, or standard-of-care issues should retain legal counsel before any Board response.</p>
             <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           </div>
         </div>
       </Section>
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {[["Board Investigations","Representation from the moment you receive a notice — before you respond to the board."],["Disciplinary Hearings","Defense at formal and informal hearings before your licensing board."],["License Reinstatement","Guidance reinstating a suspended or revoked license."],["Probation & Monitoring","Negotiating monitoring agreements and defending probation violations."],["Criminal Matters","Defense when criminal charges impact your professional license."],["License Renewal Issues","Resolving continuing-education, disclosure, or renewal problems."]].map(([title, blurb]) => (
             <div key={title} className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
               <h3 className="mb-2 font-bold text-dark-blue">{title}</h3>

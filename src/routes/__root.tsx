@@ -71,7 +71,7 @@ export const Route = createRootRoute({
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600;700&display=swap",
       },
-      { rel: "icon", type: "image/svg+xml", href: "/images/NEVADA LICENSE DEFENSE LOGO-SVG.svg" },
+      { rel: "icon", type: "image/svg+xml", href: "/images/nld-icon.svg" },
       { rel: "canonical", href: "https://nevadalicensedefense.com" },
     ],
   }),

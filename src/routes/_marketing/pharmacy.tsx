@@ -61,9 +61,27 @@ function PharmacyHero() {
   );
 }
 
+const pharmacyLd = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  name: "Nevada Pharmacy License Defense | Craig K. Perry & Associates",
+  url: "https://nevadalicensedefense.com/pharmacy",
+  telephone: "+1-702-893-4777",
+  areaServed: { "@type": "State", name: "Nevada" },
+  serviceType: "Pharmacy License Defense",
+  provider: {
+    "@type": "Attorney",
+    name: "Craig K. Perry",
+    jobTitle: "Attorney",
+    worksFor: { "@type": "LegalService", name: "Craig K. Perry & Associates", url: "https://craigperry.com" },
+    knowsAbout: ["NRS Chapter 639", "Nevada Board of Pharmacy", "Pharmacy License Defense", "Administrative Law"],
+  },
+};
+
 function PharmacyRoute() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pharmacyLd) }} />
       <PharmacyHero />
       <Section>
         <div className="mb-8 flex justify-center">
@@ -97,13 +115,25 @@ function PharmacyRoute() {
         </div>
       </Section>
 
+      {/* Real case types from live site */}
       <Section variant="muted">
-        <SectionTitle>How We Help Pharmacy Professionals</SectionTitle>
-        <ServiceGrid>
-          {SERVICES.map(([title, body]) => (
-            <ServiceCard key={title} title={title}>{body}</ServiceCard>
+        <SectionTitle>Cases We Handle Before the Board of Pharmacy</SectionTitle>
+        <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">With increasing frequency, attorney Craig Perry represents clients alleged to have violated laws enforced by the BOP. Recent examples include:</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+          {[
+            ["Failure to Pull PMP Report", "Creating a PMP (Prescription Monitoring Program) report and checking a patient's drug history before prescribing is an essential duty. Failure to pull a PMP report before prescribing or dispensing medications for each patient is one of the most common BOP violations."],
+            ["Failure to Apply for Prescribing", "Unlike other states, Nevada has strict requirements to apply for certification before prescribing. Failure of APRNs to obtain Nevada-specific licenses to prescribe medications is a Nevada requirement that differs from many other states."],
+            ["Failure to Apply for Dispensing", "Unlike other states, Nevada has strict requirements to apply for certification before dispensing. This catches many out-of-state practitioners who are unaware of Nevada's unique rules."],
+            ["Improperly Signing Off on Billing", "Signing off on billing under the name of another provider who did not see the patient — or logging in under another person's name to produce billing — creates serious legal problems."],
+            ["Using Unlawful Dangerous Drugs", "Med spas that buy or use expired or unlawful dangerous drugs not approved for sale in the United States face BOP action. You cannot purchase dangerous drugs from unauthorized sources, even if they appear available."],
+            ["Medical Director Supervision Failures", "Many medical professionals are recruited into medical director positions without fully understanding the supervision responsibilities required. Medical directors who fail to properly oversee their clinic face BOP and NSBME action."],
+          ].map(([title, body]) => (
+            <div key={title} className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+              <h3 className="font-bold text-dark-blue mb-2">{title}</h3>
+              <p className="text-sm text-gray-600">{body}</p>
+            </div>
           ))}
-        </ServiceGrid>
+        </div>
       </Section>
 
       <Section>
@@ -121,14 +151,10 @@ function PharmacyRoute() {
               Nevada Has Unique Pharmacy Requirements
             </h2>
             <p>
-              Nevada differs from many other states in its pharmacy regulations — particularly
-              around APRN prescribing and dispensing licenses. These differences catch many
-              out-of-state practitioners off guard.
+              Nevada differs from many other states in its pharmacy regulations — particularly around APRN prescribing and dispensing licenses. These differences catch many out-of-state practitioners off guard.
             </p>
             <p>
-              If you've received notice of an investigation or complaint from the Nevada State
-              Board of Pharmacy, contact us immediately. The earlier you act, the more options
-              you have.
+              The BOP directly affects Doctors, PAs, and APRNs who administer medications in Nevada. If you've received notice of an investigation or complaint, contact us immediately. The earlier you act, the more options you have.
             </p>
             <a href={SITE.phoneHref} className="btn-primary inline-block">Call {SITE.phoneDisplay}</a>
           </div>
