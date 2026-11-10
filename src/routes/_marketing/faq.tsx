@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/marketing/site-header";
 import { FaqList, Section, SectionTitle } from "@/components/marketing/sections";
-import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/_marketing/faq")({
@@ -58,22 +57,29 @@ function FaqRoute() {
       <SiteHeader />
       <Section>
         <SectionTitle as="h1">Frequently Asked Questions</SectionTitle>
-        <p className="mb-10 max-w-3xl text-lg text-navy/80">
+        <p className="mb-10 max-w-3xl mx-auto text-lg text-gray-600 text-center">
           Common questions about Nevada professional license defense and working with Craig K.
           Perry &amp; Associates.
         </p>
-        <FaqList items={FAQS} />
+        <div className="max-w-3xl mx-auto">
+          <FaqList items={FAQS} />
+        </div>
       </Section>
 
-      <Section variant="muted">
+      <Section variant="dark">
         <div className="flex flex-col items-center gap-4 text-center">
-          <SectionTitle>Still have questions?</SectionTitle>
-          <p className="max-w-xl text-lg text-navy/80">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">Still have questions?</h2>
+          <p className="max-w-xl text-lg text-white/80">
             Every situation is different. Call Craig K. Perry for a free 30–45 minute
             consultation.
           </p>
-          <p className="text-2xl font-bold text-navy">{SITE.phoneDisplay}</p>
-          <Button render={<a href={SITE.phoneHref} />}>Call Now — Free Consultation</Button>
+          <a
+            href={SITE.phoneHref}
+            className="text-3xl font-bold text-gold hover:text-white transition-colors duration-300 transform hover:scale-110"
+          >
+            {SITE.phoneDisplay}
+          </a>
+          <a href={SITE.phoneHref} className="btn-gold mt-2">Call Now — Free Consultation</a>
         </div>
       </Section>
     </>

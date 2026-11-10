@@ -7,7 +7,6 @@ import {
   ServiceCard,
   ServiceGrid,
 } from "@/components/marketing/sections";
-import { Button } from "@/components/ui/button";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -67,13 +66,13 @@ function MedicalRoute() {
       <SiteHeader />
 
       <Section>
+        <div className="mb-8 flex justify-center">
+          <img src={IMAGES.boardMedical} alt="Nevada Board of Medical Examiners" className="w-auto h-36 md:h-44 object-contain" />
+        </div>
         <SectionTitle as="h1">Nevada Board of Medical Examiners</SectionTitle>
-        <div className="max-w-3xl space-y-4 text-navy">
-          <p className="text-3xl font-bold">{SITE.phoneDisplay}</p>
-          <p className="text-lg">Serving Nevada Citizens &bull; {SITE.location}</p>
-          <p className="text-lg font-semibold">
-            Defending physicians, PAs, and allied health professionals.
-          </p>
+        <div className="max-w-3xl mx-auto space-y-4 text-gray-700">
+          <p className="text-3xl font-bold text-dark-blue text-center">{SITE.phoneDisplay}</p>
+          <p className="text-lg text-center">Serving Nevada Citizens &bull; {SITE.location}</p>
           <p className="text-lg">
             The Nevada State Board of Medical Examiners (NSBME) has broad authority to
             investigate, discipline, and revoke medical licenses. Even allegations that seem minor
@@ -85,30 +84,30 @@ function MedicalRoute() {
             procedures, requirements, and the importance of protecting your professional
             reputation.
           </p>
-          <p className="text-sm text-navy/70">
+          <p className="text-sm text-gray-500">
             Nevada medical licenses are governed by{" "}
             <strong>NRS Chapter 630</strong> (Board of Medical Examiners — MDs, PAs) and{" "}
             <strong>NRS Chapter 633</strong> (Osteopathic Medicine). All disciplinary proceedings
             are conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).
           </p>
-          <p className="font-semibold">{SITE.consultation}</p>
+          <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
         </div>
-        <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-          <Button render={<a href={SITE.phoneHref} />}>Call {SITE.phoneDisplay}</Button>
-          <Button variant="outline" render={<a href="/contact" />}>Free Consultation</Button>
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
+          <a href={SITE.phoneHref} className="btn-primary text-center">Call {SITE.phoneDisplay}</a>
+          <a href="/contact" className="btn-secondary text-center">Free Consultation</a>
         </div>
       </Section>
 
       <Section variant="muted">
         <SectionTitle>Examples of Actions Under NRS 630.301</SectionTitle>
-        <p className="mb-8 max-w-3xl text-navy">
+        <p className="mb-8 max-w-3xl mx-auto text-gray-700 text-center">
           The following are examples of physician conduct that could result in disciplinary action
           by the Nevada Board of Medical Examiners:
         </p>
-        <ul className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 max-w-3xl mx-auto">
           {NRS_630_VIOLATIONS.map((item) => (
-            <li key={item} className="flex items-start gap-3 text-navy">
-              <span className="mt-1 text-gold">◆</span>
+            <li key={item} className="flex items-start gap-3 text-gray-700">
+              <span className="mt-1 text-gold-dark">◆</span>
               {item}
             </li>
           ))}
@@ -126,16 +125,16 @@ function MedicalRoute() {
 
       <Section variant="muted">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <img
-            src={IMAGES.boardMedical}
-            alt="Nevada State Board of Medical Examiners seal"
-            width={400}
-            height={400}
-            loading="lazy"
-            className="mx-auto w-full max-w-sm rounded-lg object-contain"
-          />
-          <div className="space-y-6 text-navy">
-            <h2 className="font-heading text-3xl font-bold">
+          <div className="overflow-hidden rounded-lg shadow-lg">
+            <img
+              src={IMAGES.doctorStethoscope}
+              alt="Doctor with stethoscope"
+              loading="lazy"
+              className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+          <div className="space-y-6 text-gray-700">
+            <h2 className="text-3xl font-bold text-dark-blue">
               Protecting Your Medical Career
             </h2>
             <p>
@@ -146,7 +145,7 @@ function MedicalRoute() {
               If you've received notice of an investigation or disciplinary action, don't wait.
               Contact us immediately to protect your license and your career.
             </p>
-            <Button render={<a href={SITE.phoneHref} />}>Call {SITE.phoneDisplay}</Button>
+            <a href={SITE.phoneHref} className="btn-primary inline-block">Call {SITE.phoneDisplay}</a>
           </div>
         </div>
       </Section>

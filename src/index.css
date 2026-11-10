@@ -1,25 +1,27 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap');
+
 :root {
   --background: #ffffff;
-  --foreground: #1a2332;
+  --foreground: #111827;
   --card: #ffffff;
-  --card-foreground: #1a2332;
-  --muted: #f8f9fa;
-  --muted-foreground: #666666;
+  --card-foreground: #111827;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
   --border: #e5e7eb;
-  --input: #dddddd;
-  --ring: #d69b4c;
+  --input: #d1d5db;
+  --ring: #f0c563;
 
-  --gold: #d69b4c;
-  --gold-dark: #b8853a;
-  --navy: #1a2332;
-  --navy-light: #2a3441;
-  --navy-deep: #161938;
+  --gold: #f0c563;
+  --gold-dark: #b27e4f;
+  --dark-blue: #12203b;
+  --dark-blue-light: #1a2d4f;
 
-  --primary: #d69b4c;
-  --primary-foreground: #ffffff;
+  --primary: #f0c563;
+  --primary-foreground: #12203b;
 
   --radius: 0.5rem;
 }
@@ -40,12 +42,11 @@
 
   --color-gold: var(--gold);
   --color-gold-dark: var(--gold-dark);
-  --color-navy: var(--navy);
-  --color-navy-light: var(--navy-light);
-  --color-navy-deep: var(--navy-deep);
+  --color-dark-blue: var(--dark-blue);
+  --color-dark-blue-light: var(--dark-blue-light);
 
-  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
@@ -59,14 +60,175 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
   }
 
-  h1,
-  h2,
-  h3 {
-    @apply font-heading;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .btn-primary {
+    @apply bg-dark-blue text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 shadow-md cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-dark-blue px-6 py-3 rounded-lg font-bold border-2 border-dark-blue hover:bg-gold hover:border-gold transition-all duration-300 cursor-pointer;
+  }
+
+  .btn-gold {
+    @apply bg-gold text-dark-blue px-6 py-3 rounded-lg font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:bg-gold-dark cursor-pointer;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  /* Mountain layer animations */
+  .animate-mountain-rise-mid {
+    animation: mountainRiseMid 1.5s ease-out forwards;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .animate-mountain-rise-fore {
+    animation: mountainRiseFore 1.8s ease-out 0.3s forwards;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  @keyframes mountainRiseMid {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes mountainRiseFore {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  /* Slide up / scale in / fade in for hero content */
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out both;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out both;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Heartbeat icon */
+  .heartbeat-line {
+    stroke-dasharray: none;
+  }
+
+  .group:hover .heartbeat-line {
+    stroke-dasharray: 50 150;
+    animation: heartbeatDraw 3s linear infinite;
+  }
+
+  @keyframes heartbeatDraw {
+    0% { stroke-dashoffset: 200; }
+    100% { stroke-dashoffset: 0; }
+  }
+
+  /* Pharmacy bottle shake */
+  .bottle-group {
+    transform-origin: 50px 50px;
+  }
+
+  .group:hover .bottle-group {
+    animation: bottleShake 1.2s ease-in-out infinite;
+  }
+
+  @keyframes bottleShake {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(-4deg); }
+    50% { transform: translateY(8px) rotate(4deg); }
+    75% { transform: translateY(-8px) rotate(-4deg); }
+  }
+
+  /* Stethoscope earpiece */
+  .earpiece-left-group { transform-origin: 184.17849px 67.791413px; }
+  .group:hover .earpiece-left-group { animation: earpieceWiggleLeft 1.5s ease-in-out infinite; }
+  .earpiece-right-group { transform-origin: 184.17849px 67.791413px; }
+  .group:hover .earpiece-right-group { animation: earpieceWiggleRight 1.5s ease-in-out infinite; }
+  .stethoscope-bottom-group { transform-origin: 184.18091px 68.479665px; }
+  .group:hover .stethoscope-bottom-group { animation: stethoscopeBottomSwing 1.5s ease-in-out infinite; }
+
+  @keyframes earpieceWiggleLeft {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    50% { transform: translateX(-3px) rotate(-8deg); }
+  }
+
+  @keyframes earpieceWiggleRight {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    50% { transform: translateX(3px) rotate(8deg); }
+  }
+
+  @keyframes stethoscopeBottomSwing {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(8deg); }
+  }
+
+  /* Pill animations */
+  .group:hover .pill-1 { animation: pillJumpLeft 1.2s ease-in-out infinite; animation-delay: 0.05s; }
+  .group:hover .pill-2 { animation: pillJumpCenter 1.2s ease-in-out infinite; animation-delay: 0.05s; }
+  .group:hover .pill-3 { animation: pillJumpRight 1.2s ease-in-out infinite; animation-delay: 0.05s; }
+
+  @keyframes pillJumpLeft {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(2px) translateY(-5px); }
+    50% { transform: translateX(0) translateY(0); }
+    75% { transform: translateX(2px) translateY(-5px); }
+  }
+
+  @keyframes pillJumpCenter {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(0) translateY(-5px); }
+    50% { transform: translateX(0) translateY(0); }
+    75% { transform: translateX(0) translateY(-5px); }
+  }
+
+  @keyframes pillJumpRight {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-2px) translateY(-5px); }
+    50% { transform: translateX(0) translateY(0); }
+    75% { transform: translateX(-2px) translateY(-5px); }
   }
 }

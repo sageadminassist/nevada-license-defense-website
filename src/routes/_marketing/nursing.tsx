@@ -8,7 +8,6 @@ import {
   ServiceCard,
   ServiceGrid,
 } from "@/components/marketing/sections";
-import { Button } from "@/components/ui/button";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -63,13 +62,13 @@ function NursingRoute() {
       <SiteHeader />
 
       <Section>
+        <div className="mb-8 flex justify-center">
+          <img src={IMAGES.boardNursing} alt="Nevada State Board of Nursing" className="w-auto h-36 md:h-44 object-contain" />
+        </div>
         <SectionTitle as="h1">Nevada State Board of Nursing</SectionTitle>
-        <div className="max-w-3xl space-y-4 text-navy">
-          <p className="text-3xl font-bold">{SITE.phoneDisplay}</p>
-          <p className="text-lg">Serving Nevada Citizens &bull; {SITE.location}</p>
-          <p className="text-lg font-semibold">
-            Representing RNs, LPNs, NPs, APRNs, and CNAs before the NSBN.
-          </p>
+        <div className="max-w-3xl mx-auto space-y-4 text-gray-700">
+          <p className="text-3xl font-bold text-dark-blue text-center">{SITE.phoneDisplay}</p>
+          <p className="text-lg text-center">Serving Nevada Citizens &bull; {SITE.location}</p>
           <p className="text-lg">
             For 100 years, the Nevada State Board of Nursing (NSBN) has regulated nursing to
             ensure safe practices and public safety. The NSBN regulates more than 70,000 nurses
@@ -80,18 +79,18 @@ function NursingRoute() {
             Craig K. Perry has defended nurses before the NSBN for over 16 years — from initial
             investigations through formal hearings and reinstatement proceedings.
           </p>
-          <p className="text-sm text-navy/70">
+          <p className="text-sm text-gray-500">
             Nevada nursing licenses are governed by the{" "}
             <strong>Nevada Nurse Practice Act (NRS Chapter 632)</strong> and administrative
             regulations under <strong>NAC Chapter 632</strong>. The NSBN operates under{" "}
             <strong>NRS 233B</strong> (Nevada Administrative Procedure Act) for all disciplinary
             hearings and appeals.
           </p>
-          <p className="font-semibold">{SITE.consultation}</p>
+          <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
         </div>
-        <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-          <Button render={<a href={SITE.phoneHref} />}>Call {SITE.phoneDisplay}</Button>
-          <Button variant="outline" render={<a href="/contact" />}>Free Consultation</Button>
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
+          <a href={SITE.phoneHref} className="btn-primary text-center">Call {SITE.phoneDisplay}</a>
+          <a href="/contact" className="btn-secondary text-center">Free Consultation</a>
         </div>
       </Section>
 
@@ -105,13 +104,13 @@ function NursingRoute() {
       </Section>
 
       <Section>
-        <div className="rounded-lg border-l-4 border-gold bg-muted p-8">
-          <p className="font-heading text-2xl text-navy">
+        <div className="rounded-lg border-l-4 border-gold bg-gray-50 p-8">
+          <p className="text-2xl font-bold text-dark-blue">
             The Nevada State Board of Nursing opened{" "}
-            <span className="text-gold">605 investigations</span> in 2022–2023 — up 21% over the
+            <span className="text-gold-dark">605 investigations</span> in 2022–2023 — up 21% over the
             prior year.
           </p>
-          <p className="mt-3 text-muted-foreground">
+          <p className="mt-3 text-gray-600">
             That included 377 complaints against RNs and LPNs and 153 against APRNs (a 57% jump).
             If you've been contacted by the NSBN, don't face it alone.
           </p>
@@ -121,7 +120,7 @@ function NursingRoute() {
       <Section variant="muted">
         <SectionTitle>Why You Need Experienced Representation</SectionTitle>
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <div className="space-y-6 text-navy">
+          <div className="space-y-6 text-gray-700">
             <p>
               Facing a nursing license investigation can be overwhelming. The NSBN has the
               authority to suspend, revoke, or place conditions on your license — which can end
@@ -137,20 +136,22 @@ function NursingRoute() {
               or disciplinary action.
             </p>
           </div>
-          <img
-            src={IMAGES.boardNursing}
-            alt="Nevada State Board of Nursing seal"
-            width={400}
-            height={400}
-            loading="lazy"
-            className="mx-auto w-full max-w-sm rounded-lg object-contain"
-          />
+          <div className="overflow-hidden rounded-lg shadow-lg">
+            <img
+              src={IMAGES.nurseCloseup}
+              alt="Professional nurse"
+              loading="lazy"
+              className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
+            />
+          </div>
         </div>
       </Section>
 
       <Section>
         <SectionTitle>Frequently Asked Questions</SectionTitle>
-        <FaqList items={FAQS} />
+        <div className="max-w-3xl mx-auto">
+          <FaqList items={FAQS} />
+        </div>
       </Section>
     </>
   );

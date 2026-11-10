@@ -84,22 +84,16 @@ function NotFound() {
     <>
       <SiteHeader />
       <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">
-        <p className="mb-2 font-heading text-6xl font-bold text-gold">404</p>
-        <h1 className="mb-4 font-heading text-3xl font-bold text-navy">Page Not Found</h1>
-        <p className="mb-8 max-w-md text-navy/70">
+        <p className="mb-2 text-6xl font-bold text-gold">404</p>
+        <h1 className="mb-4 text-3xl font-bold text-dark-blue">Page Not Found</h1>
+        <p className="mb-8 max-w-md text-gray-600">
           The page you're looking for doesn't exist. If you need legal help, call us directly.
         </p>
         <div className="flex flex-col items-center gap-3 sm:flex-row">
-          <a
-            href={SITE.phoneHref}
-            className="rounded-md bg-gold px-6 py-3 font-semibold text-white hover:bg-gold/90"
-          >
+          <a href={SITE.phoneHref} className="btn-gold">
             {SITE.phoneDisplay}
           </a>
-          <Link
-            to="/"
-            className="rounded-md border-2 border-navy px-6 py-3 font-semibold text-navy hover:bg-navy hover:text-white"
-          >
+          <Link to="/" className="btn-secondary">
             Go Home
           </Link>
         </div>
