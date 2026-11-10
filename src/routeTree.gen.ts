@@ -11,11 +11,21 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MarketingRouteImport } from './routes/_marketing'
 import { Route as MarketingIndexRouteImport } from './routes/_marketing/index'
+import { Route as MarketingChiropracticRouteImport } from './routes/_marketing/chiropractic'
 import { Route as MarketingContactRouteImport } from './routes/_marketing/contact'
+import { Route as MarketingDentalRouteImport } from './routes/_marketing/dental'
 import { Route as MarketingFaqRouteImport } from './routes/_marketing/faq'
+import { Route as MarketingMarriageFamilyTherapyRouteImport } from './routes/_marketing/marriage-family-therapy'
 import { Route as MarketingMedicalRouteImport } from './routes/_marketing/medical'
 import { Route as MarketingNursingRouteImport } from './routes/_marketing/nursing'
+import { Route as MarketingOsteopathicRouteImport } from './routes/_marketing/osteopathic'
 import { Route as MarketingPharmacyRouteImport } from './routes/_marketing/pharmacy'
+import { Route as MarketingPhysicalTherapyRouteImport } from './routes/_marketing/physical-therapy'
+import { Route as MarketingPsychologyRouteImport } from './routes/_marketing/psychology'
+import { Route as MarketingRadiologyRouteImport } from './routes/_marketing/radiology'
+import { Route as MarketingRespiratoryRouteImport } from './routes/_marketing/respiratory'
+import { Route as MarketingSocialWorkRouteImport } from './routes/_marketing/social-work'
+import { Route as MarketingVeterinaryRouteImport } from './routes/_marketing/veterinary'
 
 const MarketingRoute = MarketingRouteImport.update({
   id: '/_marketing',
@@ -26,9 +36,19 @@ const MarketingIndexRoute = MarketingIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingChiropracticRoute = MarketingChiropracticRouteImport.update({
+  id: '/chiropractic',
+  path: '/chiropractic',
+  getParentRoute: () => MarketingRoute,
+} as any)
 const MarketingContactRoute = MarketingContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingDentalRoute = MarketingDentalRouteImport.update({
+  id: '/dental',
+  path: '/dental',
   getParentRoute: () => MarketingRoute,
 } as any)
 const MarketingFaqRoute = MarketingFaqRouteImport.update({
@@ -36,6 +56,12 @@ const MarketingFaqRoute = MarketingFaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingMarriageFamilyTherapyRoute =
+  MarketingMarriageFamilyTherapyRouteImport.update({
+    id: '/marriage-family-therapy',
+    path: '/marriage-family-therapy',
+    getParentRoute: () => MarketingRoute,
+  } as any)
 const MarketingMedicalRoute = MarketingMedicalRouteImport.update({
   id: '/medical',
   path: '/medical',
@@ -46,51 +72,159 @@ const MarketingNursingRoute = MarketingNursingRouteImport.update({
   path: '/nursing',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingOsteopathicRoute = MarketingOsteopathicRouteImport.update({
+  id: '/osteopathic',
+  path: '/osteopathic',
+  getParentRoute: () => MarketingRoute,
+} as any)
 const MarketingPharmacyRoute = MarketingPharmacyRouteImport.update({
   id: '/pharmacy',
   path: '/pharmacy',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingPhysicalTherapyRoute =
+  MarketingPhysicalTherapyRouteImport.update({
+    id: '/physical-therapy',
+    path: '/physical-therapy',
+    getParentRoute: () => MarketingRoute,
+  } as any)
+const MarketingPsychologyRoute = MarketingPsychologyRouteImport.update({
+  id: '/psychology',
+  path: '/psychology',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingRadiologyRoute = MarketingRadiologyRouteImport.update({
+  id: '/radiology',
+  path: '/radiology',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingRespiratoryRoute = MarketingRespiratoryRouteImport.update({
+  id: '/respiratory',
+  path: '/respiratory',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingSocialWorkRoute = MarketingSocialWorkRouteImport.update({
+  id: '/social-work',
+  path: '/social-work',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingVeterinaryRoute = MarketingVeterinaryRouteImport.update({
+  id: '/veterinary',
+  path: '/veterinary',
+  getParentRoute: () => MarketingRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MarketingIndexRoute
+  '/chiropractic': typeof MarketingChiropracticRoute
   '/contact': typeof MarketingContactRoute
+  '/dental': typeof MarketingDentalRoute
   '/faq': typeof MarketingFaqRoute
+  '/marriage-family-therapy': typeof MarketingMarriageFamilyTherapyRoute
   '/medical': typeof MarketingMedicalRoute
   '/nursing': typeof MarketingNursingRoute
+  '/osteopathic': typeof MarketingOsteopathicRoute
   '/pharmacy': typeof MarketingPharmacyRoute
+  '/physical-therapy': typeof MarketingPhysicalTherapyRoute
+  '/psychology': typeof MarketingPsychologyRoute
+  '/radiology': typeof MarketingRadiologyRoute
+  '/respiratory': typeof MarketingRespiratoryRoute
+  '/social-work': typeof MarketingSocialWorkRoute
+  '/veterinary': typeof MarketingVeterinaryRoute
 }
 export interface FileRoutesByTo {
+  '/chiropractic': typeof MarketingChiropracticRoute
   '/contact': typeof MarketingContactRoute
+  '/dental': typeof MarketingDentalRoute
   '/faq': typeof MarketingFaqRoute
+  '/marriage-family-therapy': typeof MarketingMarriageFamilyTherapyRoute
   '/medical': typeof MarketingMedicalRoute
   '/nursing': typeof MarketingNursingRoute
+  '/osteopathic': typeof MarketingOsteopathicRoute
   '/pharmacy': typeof MarketingPharmacyRoute
+  '/physical-therapy': typeof MarketingPhysicalTherapyRoute
+  '/psychology': typeof MarketingPsychologyRoute
+  '/radiology': typeof MarketingRadiologyRoute
+  '/respiratory': typeof MarketingRespiratoryRoute
+  '/social-work': typeof MarketingSocialWorkRoute
+  '/veterinary': typeof MarketingVeterinaryRoute
   '/': typeof MarketingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_marketing': typeof MarketingRouteWithChildren
+  '/_marketing/chiropractic': typeof MarketingChiropracticRoute
   '/_marketing/contact': typeof MarketingContactRoute
+  '/_marketing/dental': typeof MarketingDentalRoute
   '/_marketing/faq': typeof MarketingFaqRoute
+  '/_marketing/marriage-family-therapy': typeof MarketingMarriageFamilyTherapyRoute
   '/_marketing/medical': typeof MarketingMedicalRoute
   '/_marketing/nursing': typeof MarketingNursingRoute
+  '/_marketing/osteopathic': typeof MarketingOsteopathicRoute
   '/_marketing/pharmacy': typeof MarketingPharmacyRoute
+  '/_marketing/physical-therapy': typeof MarketingPhysicalTherapyRoute
+  '/_marketing/psychology': typeof MarketingPsychologyRoute
+  '/_marketing/radiology': typeof MarketingRadiologyRoute
+  '/_marketing/respiratory': typeof MarketingRespiratoryRoute
+  '/_marketing/social-work': typeof MarketingSocialWorkRoute
+  '/_marketing/veterinary': typeof MarketingVeterinaryRoute
   '/_marketing/': typeof MarketingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/faq' | '/medical' | '/nursing' | '/pharmacy'
+  fullPaths:
+    | '/'
+    | '/chiropractic'
+    | '/contact'
+    | '/dental'
+    | '/faq'
+    | '/marriage-family-therapy'
+    | '/medical'
+    | '/nursing'
+    | '/osteopathic'
+    | '/pharmacy'
+    | '/physical-therapy'
+    | '/psychology'
+    | '/radiology'
+    | '/respiratory'
+    | '/social-work'
+    | '/veterinary'
   fileRoutesByTo: FileRoutesByTo
-  to: '/contact' | '/faq' | '/medical' | '/nursing' | '/pharmacy' | '/'
+  to:
+    | '/chiropractic'
+    | '/contact'
+    | '/dental'
+    | '/faq'
+    | '/marriage-family-therapy'
+    | '/medical'
+    | '/nursing'
+    | '/osteopathic'
+    | '/pharmacy'
+    | '/physical-therapy'
+    | '/psychology'
+    | '/radiology'
+    | '/respiratory'
+    | '/social-work'
+    | '/veterinary'
+    | '/'
   id:
     | '__root__'
     | '/_marketing'
+    | '/_marketing/chiropractic'
     | '/_marketing/contact'
+    | '/_marketing/dental'
     | '/_marketing/faq'
+    | '/_marketing/marriage-family-therapy'
     | '/_marketing/medical'
     | '/_marketing/nursing'
+    | '/_marketing/osteopathic'
     | '/_marketing/pharmacy'
+    | '/_marketing/physical-therapy'
+    | '/_marketing/psychology'
+    | '/_marketing/radiology'
+    | '/_marketing/respiratory'
+    | '/_marketing/social-work'
+    | '/_marketing/veterinary'
     | '/_marketing/'
   fileRoutesById: FileRoutesById
 }
@@ -114,6 +248,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingIndexRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/chiropractic': {
+      id: '/_marketing/chiropractic'
+      path: '/chiropractic'
+      fullPath: '/chiropractic'
+      preLoaderRoute: typeof MarketingChiropracticRouteImport
+      parentRoute: typeof MarketingRoute
+    }
     '/_marketing/contact': {
       id: '/_marketing/contact'
       path: '/contact'
@@ -121,11 +262,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingContactRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/dental': {
+      id: '/_marketing/dental'
+      path: '/dental'
+      fullPath: '/dental'
+      preLoaderRoute: typeof MarketingDentalRouteImport
+      parentRoute: typeof MarketingRoute
+    }
     '/_marketing/faq': {
       id: '/_marketing/faq'
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof MarketingFaqRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/_marketing/marriage-family-therapy': {
+      id: '/_marketing/marriage-family-therapy'
+      path: '/marriage-family-therapy'
+      fullPath: '/marriage-family-therapy'
+      preLoaderRoute: typeof MarketingMarriageFamilyTherapyRouteImport
       parentRoute: typeof MarketingRoute
     }
     '/_marketing/medical': {
@@ -142,6 +297,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingNursingRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/osteopathic': {
+      id: '/_marketing/osteopathic'
+      path: '/osteopathic'
+      fullPath: '/osteopathic'
+      preLoaderRoute: typeof MarketingOsteopathicRouteImport
+      parentRoute: typeof MarketingRoute
+    }
     '/_marketing/pharmacy': {
       id: '/_marketing/pharmacy'
       path: '/pharmacy'
@@ -149,24 +311,86 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingPharmacyRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/physical-therapy': {
+      id: '/_marketing/physical-therapy'
+      path: '/physical-therapy'
+      fullPath: '/physical-therapy'
+      preLoaderRoute: typeof MarketingPhysicalTherapyRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/_marketing/psychology': {
+      id: '/_marketing/psychology'
+      path: '/psychology'
+      fullPath: '/psychology'
+      preLoaderRoute: typeof MarketingPsychologyRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/_marketing/radiology': {
+      id: '/_marketing/radiology'
+      path: '/radiology'
+      fullPath: '/radiology'
+      preLoaderRoute: typeof MarketingRadiologyRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/_marketing/respiratory': {
+      id: '/_marketing/respiratory'
+      path: '/respiratory'
+      fullPath: '/respiratory'
+      preLoaderRoute: typeof MarketingRespiratoryRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/_marketing/social-work': {
+      id: '/_marketing/social-work'
+      path: '/social-work'
+      fullPath: '/social-work'
+      preLoaderRoute: typeof MarketingSocialWorkRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/_marketing/veterinary': {
+      id: '/_marketing/veterinary'
+      path: '/veterinary'
+      fullPath: '/veterinary'
+      preLoaderRoute: typeof MarketingVeterinaryRouteImport
+      parentRoute: typeof MarketingRoute
+    }
   }
 }
 
 interface MarketingRouteChildren {
+  MarketingChiropracticRoute: typeof MarketingChiropracticRoute
   MarketingContactRoute: typeof MarketingContactRoute
+  MarketingDentalRoute: typeof MarketingDentalRoute
   MarketingFaqRoute: typeof MarketingFaqRoute
+  MarketingMarriageFamilyTherapyRoute: typeof MarketingMarriageFamilyTherapyRoute
   MarketingMedicalRoute: typeof MarketingMedicalRoute
   MarketingNursingRoute: typeof MarketingNursingRoute
+  MarketingOsteopathicRoute: typeof MarketingOsteopathicRoute
   MarketingPharmacyRoute: typeof MarketingPharmacyRoute
+  MarketingPhysicalTherapyRoute: typeof MarketingPhysicalTherapyRoute
+  MarketingPsychologyRoute: typeof MarketingPsychologyRoute
+  MarketingRadiologyRoute: typeof MarketingRadiologyRoute
+  MarketingRespiratoryRoute: typeof MarketingRespiratoryRoute
+  MarketingSocialWorkRoute: typeof MarketingSocialWorkRoute
+  MarketingVeterinaryRoute: typeof MarketingVeterinaryRoute
   MarketingIndexRoute: typeof MarketingIndexRoute
 }
 
 const MarketingRouteChildren: MarketingRouteChildren = {
+  MarketingChiropracticRoute: MarketingChiropracticRoute,
   MarketingContactRoute: MarketingContactRoute,
+  MarketingDentalRoute: MarketingDentalRoute,
   MarketingFaqRoute: MarketingFaqRoute,
+  MarketingMarriageFamilyTherapyRoute: MarketingMarriageFamilyTherapyRoute,
   MarketingMedicalRoute: MarketingMedicalRoute,
   MarketingNursingRoute: MarketingNursingRoute,
+  MarketingOsteopathicRoute: MarketingOsteopathicRoute,
   MarketingPharmacyRoute: MarketingPharmacyRoute,
+  MarketingPhysicalTherapyRoute: MarketingPhysicalTherapyRoute,
+  MarketingPsychologyRoute: MarketingPsychologyRoute,
+  MarketingRadiologyRoute: MarketingRadiologyRoute,
+  MarketingRespiratoryRoute: MarketingRespiratoryRoute,
+  MarketingSocialWorkRoute: MarketingSocialWorkRoute,
+  MarketingVeterinaryRoute: MarketingVeterinaryRoute,
   MarketingIndexRoute: MarketingIndexRoute,
 }
 

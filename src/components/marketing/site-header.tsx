@@ -5,7 +5,7 @@ import { Menu, X, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { IMAGES } from "@/lib/images";
-import { NAV_ITEMS, SITE } from "@/lib/site";
+import { MORE_BOARDS, NAV_ITEMS, SITE } from "@/lib/site";
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -76,6 +76,32 @@ export function SiteHeader() {
                   </Link>
                 </div>
               ))}
+              {/* More Boards mobile accordion */}
+              <div>
+                <button
+                  onClick={() => setActiveSubmenu(activeSubmenu === "more-boards" ? null : "more-boards")}
+                  className="w-full py-3 text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 text-center uppercase text-sm flex items-center justify-center gap-1"
+                >
+                  More Boards
+                  <svg className={`w-3 h-3 transition-transform duration-200 ${activeSubmenu === "more-boards" ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {activeSubmenu === "more-boards" && (
+                  <div className="pb-2">
+                    {MORE_BOARDS.map((board) => (
+                      <Link
+                        key={board.to}
+                        to={board.to}
+                        onClick={() => setMobileOpen(false)}
+                        className="block py-2 text-gray-600 hover:text-dark-blue font-semibold text-sm text-center transition-colors duration-200"
+                      >
+                        {board.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
               <div className="mt-3 flex justify-center">
                 <a
                   href={SITE.mycaseUrl}
@@ -96,7 +122,7 @@ export function SiteHeader() {
       <div className="hidden lg:block bg-white border-t border-gray-200 sticky top-0 z-[99] shadow-sm">
         <div className="section-container">
           <div className="flex items-center justify-center flex-nowrap gap-x-4 xl:gap-x-6 py-4">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.filter(i => i.to !== "/contact").map((item) => (
               <div
                 key={item.to}
                 className="relative flex-shrink-0"
@@ -111,6 +137,51 @@ export function SiteHeader() {
                 </Link>
               </div>
             ))}
+
+            {/* More Boards dropdown */}
+            <div
+              className="relative flex-shrink-0"
+              ref={(el) => { dropdownRefs.current["more-boards"] = el; }}
+            >
+              <button
+                onClick={() => setActiveSubmenu(activeSubmenu === "more-boards" ? null : "more-boards")}
+                className="flex items-center gap-1 text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 uppercase text-sm whitespace-nowrap"
+              >
+                More Boards
+                <svg
+                  className={`w-3 h-3 transition-transform duration-200 ${activeSubmenu === "more-boards" ? "rotate-180" : ""}`}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {activeSubmenu === "more-boards" && (
+                <div className="absolute left-0 top-full mt-2 w-72 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50 animate-scale-in">
+                  {MORE_BOARDS.map((board) => (
+                    <Link
+                      key={board.to}
+                      to={board.to}
+                      onClick={() => setActiveSubmenu(null)}
+                      className="flex items-center justify-between px-4 py-2.5 text-gray-700 hover:bg-gold/10 hover:text-dark-blue transition-colors duration-200 font-semibold text-sm"
+                    >
+                      <span>{board.label}</span>
+                      <span className="text-xs text-gray-400 ml-2 shrink-0">{board.nrs}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Contact */}
+            <div className="relative flex-shrink-0">
+              <Link
+                to="/contact"
+                className="text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 relative group uppercase text-sm whitespace-nowrap"
+              >
+                Contact
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300" />
+              </Link>
+            </div>
 
             {/* Phone CTA */}
             <a

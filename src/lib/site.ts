@@ -67,3 +67,16 @@ export const NAV_ITEMS = [
   { to: "/medical", label: "Board of Medical Examiners" },
   { to: "/contact", label: "Contact" },
 ] as const;
+
+export const MORE_BOARDS = [
+  { to: "/osteopathic", label: "Board of Osteopathic Medicine", nrs: "NRS 633" },
+  { to: "/veterinary", label: "Board of Veterinary Medical Examiners", nrs: "NRS 638" },
+  { to: "/social-work", label: "Board of Social Workers", nrs: "NRS 641" },
+  { to: "/radiology", label: "Radiologic Technologists (ARRT)", nrs: "ARRT" },
+  { to: "/physical-therapy", label: "Physical Therapy Board", nrs: "NRS 640" },
+  { to: "/dental", label: "Board of Dental Examiners", nrs: "NRS 631" },
+  { to: "/psychology", label: "Board of Psychological Examiners", nrs: "NRS 641A" },
+  { to: "/chiropractic", label: "Chiropractic Physicians Board", nrs: "NRS 634" },
+  { to: "/respiratory", label: "Respiratory Care Board", nrs: "NRS 630A" },
+  { to: "/marriage-family-therapy", label: "Marriage & Family Therapy Board", nrs: "NRS 641C" },
+] as const;
