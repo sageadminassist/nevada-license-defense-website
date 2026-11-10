@@ -36,6 +36,23 @@ export const Route = createFileRoute("/_marketing/nursing")({
   component: NursingRoute,
 });
 
+function NursingHero() {
+  return (
+    <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
+      <img src={IMAGES.mountainClouds} alt="Nevada mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
+      <div className="absolute inset-0 bg-dark-blue/70" />
+      <div className="relative z-10 max-w-3xl px-6 space-y-3">
+        <h1 className="text-4xl md:text-5xl font-bold text-white">Nevada Board of Nursing Defense</h1>
+        <p className="text-lg text-white/80">Defending RNs, LPNs, NPs, and APRNs before the Nevada State Board of Nursing.</p>
+        <div className="flex justify-center gap-4 pt-2">
+          <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
+          <a href="/contact" className="btn-secondary">Free Consultation</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const SERVICES = [
   ["Investigations & Complaints", "Representation during NSBN investigations and complaints, including responding to Letters of Inquiry and negotiating settlements."],
   ["Unprofessional Conduct", "Defense against allegations such as HIPAA violations, scope-of-practice violations, patient boundary issues, and neglect claims."],
@@ -58,7 +75,7 @@ const FAQS = [
 function NursingRoute() {
   return (
     <>
-
+      <NursingHero />
       <Section>
         <div className="mb-8 flex justify-center">
           <img src={IMAGES.boardNursing} alt="Nevada State Board of Nursing" className="w-auto h-36 md:h-44 object-contain" />

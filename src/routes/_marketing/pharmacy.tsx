@@ -44,10 +44,27 @@ const SERVICES = [
   ["Criminal & DUI Matters", "Defense when criminal charges or DUI convictions threaten your pharmacy license."],
 ] as const;
 
+function PharmacyHero() {
+  return (
+    <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
+      <img src={IMAGES.mountainSunset} alt="Nevada sunset mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
+      <div className="absolute inset-0 bg-dark-blue/70" />
+      <div className="relative z-10 max-w-3xl px-6 space-y-3">
+        <h1 className="text-4xl md:text-5xl font-bold text-white">Nevada Board of Pharmacy Defense</h1>
+        <p className="text-lg text-white/80">Defending pharmacists, APRNs, and pharmacy professionals before the Nevada State Board of Pharmacy.</p>
+        <div className="flex justify-center gap-4 pt-2">
+          <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
+          <a href="/contact" className="btn-secondary">Free Consultation</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PharmacyRoute() {
   return (
     <>
-
+      <PharmacyHero />
       <Section>
         <div className="mb-8 flex justify-center">
           <img src={IMAGES.boardPharmacy} alt="Nevada Board of Pharmacy" className="w-auto h-36 md:h-44 object-contain" />

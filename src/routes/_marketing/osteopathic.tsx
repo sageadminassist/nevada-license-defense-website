@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
+import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/_marketing/osteopathic")({
   head: () => ({
     meta: [
       { title: "Nevada Board of Osteopathic Medicine Defense | 702.893.4777" },
-      { name: "description", content: "Craig K. Perry defends Board of Osteopathic Medicine professionals before Nevada licensing boards. 31+ years experience. Free consultation — 702.893.4777." },
+      { name: "description", content: "Craig K. Perry defends osteopathic physicians (DOs) before the Nevada State Board of Osteopathic Medicine. 31+ years experience. Free consultation — 702.893.4777." },
       { property: "og:title", content: "Nevada Board of Osteopathic Medicine Defense | Craig K. Perry & Associates" },
       { property: "og:url", content: "https://nevadalicensedefense.com/osteopathic" },
     ],
@@ -18,22 +19,31 @@ export const Route = createFileRoute("/_marketing/osteopathic")({
 function BoardPage() {
   return (
     <>
-      <Section>
-        <SectionTitle as="h1">Board of Osteopathic Medicine Defense</SectionTitle>
-        <div className="max-w-3xl space-y-4 text-gray-700">
-          <p className="text-2xl font-bold text-dark-blue">{SITE.phoneDisplay}</p>
-          <p className="text-lg">{SITE.serviceArea}</p>
-          <p className="text-lg">Osteopathic physicians (DOs) facing disciplinary actions, investigations, or license revocation before the Nevada State Board of Osteopathic Medicine.</p>
-          <p className="text-sm text-gray-500">
-            Governed by <strong>NRS Chapter 633</strong>. All disciplinary proceedings conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).
-          </p>
-          <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
-          <div className="pt-4 flex flex-wrap gap-4">
-            <a href={SITE.phoneHref} className="btn-primary">Call {SITE.phoneDisplay}</a>
+      <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
+        <img src={IMAGES.mountainValley} alt="Nevada mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-dark-blue/70" />
+        <div className="relative z-10 max-w-3xl px-6 space-y-3">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">Board of Osteopathic Medicine Defense</h1>
+          <p className="text-lg text-white/80">Defending DOs and osteopathic physicians before the Nevada State Board of Osteopathic Medicine.</p>
+          <div className="flex justify-center gap-4 pt-2">
+            <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Free Consultation</a>
           </div>
         </div>
+      </section>
+
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <img src={IMAGES.osteopathyTreatment} alt="Osteopathic physician treating a patient" className="w-full rounded-lg object-cover shadow-md max-h-96" />
+          <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
+            <p className="text-lg">Osteopathic physicians (DOs) facing disciplinary actions, investigations, or license revocation before the Nevada State Board of Osteopathic Medicine.</p>
+            <p className="text-sm text-gray-500">Governed by <strong>NRS Chapter 633</strong>. All disciplinary proceedings conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).</p>
+            <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
+          </div>
+        </div>
       </Section>
+
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl">
@@ -52,6 +62,7 @@ function BoardPage() {
           ))}
         </div>
       </Section>
+
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>

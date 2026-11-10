@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
+import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/_marketing/chiropractic")({
   head: () => ({
     meta: [
       { title: "Nevada Chiropractic Physicians Board Defense | 702.893.4777" },
-      { name: "description", content: "Craig K. Perry defends Chiropractic Physicians Board professionals before Nevada licensing boards. 31+ years experience. Free consultation — 702.893.4777." },
-      { property: "og:title", content: "Nevada Chiropractic Physicians Board Defense | Craig K. Perry & Associates" },
+      { name: "description", content: "Craig K. Perry defends chiropractic physicians before the Nevada Chiropractic Physicians Board. Free consultation — 702.893.4777." },
+      { property: "og:title", content: "Nevada Chiropractic License Defense | Craig K. Perry & Associates" },
       { property: "og:url", content: "https://nevadalicensedefense.com/chiropractic" },
     ],
     links: [{ rel: "canonical", href: "https://nevadalicensedefense.com/chiropractic" }],
@@ -18,33 +19,33 @@ export const Route = createFileRoute("/_marketing/chiropractic")({
 function BoardPage() {
   return (
     <>
-      <Section>
-        <SectionTitle as="h1">Chiropractic Physicians Board Defense</SectionTitle>
-        <div className="max-w-3xl space-y-4 text-gray-700">
-          <p className="text-2xl font-bold text-dark-blue">{SITE.phoneDisplay}</p>
-          <p className="text-lg">{SITE.serviceArea}</p>
-          <p className="text-lg">Chiropractic physicians facing complaints, investigations, or disciplinary proceedings before the Nevada Chiropractic Physicians Board.</p>
-          <p className="text-sm text-gray-500">
-            Governed by <strong>NRS Chapter 634</strong>. All disciplinary proceedings conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).
-          </p>
-          <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
-          <div className="pt-4 flex flex-wrap gap-4">
-            <a href={SITE.phoneHref} className="btn-primary">Call {SITE.phoneDisplay}</a>
+      <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
+        <img src={IMAGES.mountainValley} alt="Nevada valley mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-dark-blue/70" />
+        <div className="relative z-10 max-w-3xl px-6 space-y-3">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">Chiropractic Physicians Board Defense</h1>
+          <p className="text-lg text-white/80">Defending chiropractic physicians before the Nevada Chiropractic Physicians Board.</p>
+          <div className="flex justify-center gap-4 pt-2">
+            <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Free Consultation</a>
+          </div>
+        </div>
+      </section>
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <img src={IMAGES.chiropractorAssessing} alt="Chiropractor assessing a patient" className="w-full rounded-lg object-cover shadow-md max-h-96" />
+          <div className="space-y-4 text-gray-700">
+            <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
+            <p className="text-lg">Chiropractic physicians facing complaints, investigations, or disciplinary proceedings before the Nevada Chiropractic Physicians Board.</p>
+            <p className="text-sm text-gray-500">Governed by <strong>NRS Chapter 634</strong>. All disciplinary proceedings conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).</p>
+            <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           </div>
         </div>
       </Section>
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl">
-          {[
-            ["Board Investigations", "Representation from the moment you receive a notice — before you respond to the board."],
-            ["Disciplinary Hearings", "Defense at formal and informal hearings before your licensing board."],
-            ["License Reinstatement", "Guidance reinstating a suspended or revoked license."],
-            ["Probation & Monitoring", "Negotiating monitoring agreements and defending probation violations."],
-            ["Criminal Matters", "Defense when criminal charges impact your professional license."],
-            ["License Renewal Issues", "Resolving continuing-education, disclosure, or renewal problems."],
-          ].map(([title, blurb]) => (
+          {[["Board Investigations","Representation from the moment you receive a notice — before you respond to the board."],["Disciplinary Hearings","Defense at formal and informal hearings before your licensing board."],["License Reinstatement","Guidance reinstating a suspended or revoked license."],["Probation & Monitoring","Negotiating monitoring agreements and defending probation violations."],["Criminal Matters","Defense when criminal charges impact your professional license."],["License Renewal Issues","Resolving continuing-education, disclosure, or renewal problems."]].map(([title, blurb]) => (
             <div key={title} className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
               <h3 className="mb-2 font-bold text-dark-blue">{title}</h3>
               <p className="text-sm text-gray-600">{blurb}</p>
@@ -55,7 +56,7 @@ function BoardPage() {
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>
-          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has defended Nevada licensed professionals for over 31 years — call today for a free consultation.</p>
+          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has defended Nevada licensed professionals for over 31 years.</p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Schedule a Consultation</a>
