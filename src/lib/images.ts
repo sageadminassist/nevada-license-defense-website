@@ -1,0 +1,15 @@
+export const IMAGES = {
+  logoWhite: "/images/NEVADA LICENSE DEFENSE LOGO-WHITE.png",
+  logoDark: "/images/NEVADA LICENSE DEFENSE LOGO.png",
+  logoWhiteSvg: "/images/NEVADA LICENSE DEFENSE LOGO-WHITE-SVG.svg",
+  logoDarkSvg: "/images/NEVADA LICENSE DEFENSE LOGO-SVG.svg",
+  heroBackground: "/images/mountain_background.png",
+  heroMidground: "/images/mountain_midground.png",
+  heroForeground: "/images/mountain_foreground.png",
+  craig: "/images/craig_blue_arms_crossed.jpg",
+  craigCall: "/images/craig_video_call_1.png",
+  boardNursing: "/images/nv_state_board_nursing.png",
+  boardNursingAlt: "/images/nvboardofnursing.avif",
+  boardPharmacy: "/images/nvboardofpharmacy.avif",
+  boardMedical: "/images/nvboardofmedicalexaminers.avif",
+} as const;
