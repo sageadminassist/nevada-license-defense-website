@@ -1,8 +1,56 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap');
+/* Tw Cen MT Std — self-hosted */
+@font-face {
+  font-family: "Tw Cen MT";
+  src: url("/fonts/tw-cen-mt/TwCenMTStd.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tw Cen MT";
+  src: url("/fonts/tw-cen-mt/TwCenMTStdItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tw Cen MT";
+  src: url("/fonts/tw-cen-mt/TwCenMTStdLight.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tw Cen MT";
+  src: url("/fonts/tw-cen-mt/TwCenMTStdLightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tw Cen MT";
+  src: url("/fonts/tw-cen-mt/TwCenMTStdSemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tw Cen MT";
+  src: url("/fonts/tw-cen-mt/TwCenMTStdBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tw Cen MT";
+  src: url("/fonts/tw-cen-mt/TwCenMTStdExtraBold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --background: #ffffff;
@@ -45,8 +93,8 @@
   --color-dark-blue: var(--dark-blue);
   --color-dark-blue-light: var(--dark-blue-light);
 
-  --font-sans: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Tw Cen MT", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Tw Cen MT", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
@@ -61,13 +109,13 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Tw Cen MT", ui-sans-serif, system-ui, sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
+    font-family: "Tw Cen MT", ui-sans-serif, system-ui, sans-serif;
     font-weight: 700;
   }
 }
