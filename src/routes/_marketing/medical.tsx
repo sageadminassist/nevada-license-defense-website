@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { SiteHeader } from "@/components/marketing/site-header";
 import {
   Section,
   SectionTitle,
@@ -63,7 +62,6 @@ const SERVICES = [
 function MedicalRoute() {
   return (
     <>
-      <SiteHeader />
 
       <Section>
         <div className="mb-8 flex justify-center">

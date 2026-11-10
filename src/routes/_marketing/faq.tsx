@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { SiteHeader } from "@/components/marketing/site-header";
 import { FaqList, Section, SectionTitle } from "@/components/marketing/sections";
 import { SITE } from "@/lib/site";
 
@@ -54,7 +53,6 @@ function FaqRoute() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
-      <SiteHeader />
       <Section>
         <SectionTitle as="h1">Frequently Asked Questions</SectionTitle>
         <p className="mb-10 max-w-3xl mx-auto text-lg text-gray-600 text-center">

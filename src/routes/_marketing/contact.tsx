@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { SiteHeader } from "@/components/marketing/site-header";
 import { Section, SectionTitle } from "@/components/marketing/sections";
 import { SITE } from "@/lib/site";
 
@@ -29,7 +28,6 @@ export const Route = createFileRoute("/_marketing/contact")({
 function ContactRoute() {
   return (
     <>
-      <SiteHeader />
       <Section>
         <SectionTitle as="h1">Contact Us</SectionTitle>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">

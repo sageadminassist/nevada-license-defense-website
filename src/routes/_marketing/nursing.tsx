@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { SiteHeader } from "@/components/marketing/site-header";
 import {
   FaqList,
   Section,
@@ -59,7 +58,6 @@ const FAQS = [
 function NursingRoute() {
   return (
     <>
-      <SiteHeader />
 
       <Section>
         <div className="mb-8 flex justify-center">
