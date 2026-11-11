@@ -33,7 +33,7 @@ function BoardPage() {
       </section>
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <img src={IMAGES.familyTherapy} alt="Psychology counseling session" className="w-full rounded-lg object-cover shadow-md max-h-96" />
+          <img src={IMAGES.comfortingPatient} alt="Clinician reassuring a worried patient" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
             <p className="text-lg">Licensed psychologists and psychological assistants facing disciplinary proceedings before the Nevada Board of Psychological Examiners.</p>

@@ -24,6 +24,7 @@ export const IMAGES = {
   mountainIkona: "/images/mountains/ikona-art-HEj3tE9ME_I-unsplash.jpg",
   mountainJasmeet: "/images/mountains/jasmeet-singh-M8mZ_0UHG5Q-unsplash.jpg",
   mountainRoss2: "/images/mountains/ross-joyner-a5ylyBkA7d8-unsplash.jpg",
+  mountainRedRockCanyon: "/images/mountains/red-rock-canyon.jpg",
 
   // Craig
   craig: "/images/craig_blue_arms_crossed.jpg",
