@@ -1,0 +1,57 @@
+{
+  "pages": [
+    {
+      "path": "/"
+    },
+    {
+      "path": "/nursing"
+    },
+    {
+      "path": "/pharmacy"
+    },
+    {
+      "path": "/medical"
+    },
+    {
+      "path": "/contact"
+    },
+    {
+      "path": "/faq"
+    },
+    {
+      "path": "/osteopathic"
+    },
+    {
+      "path": "/veterinary"
+    },
+    {
+      "path": "/social-work"
+    },
+    {
+      "path": "/radiology"
+    },
+    {
+      "path": "/physical-therapy"
+    },
+    {
+      "path": "/dental"
+    },
+    {
+      "path": "/psychology"
+    },
+    {
+      "path": "/chiropractic"
+    },
+    {
+      "path": "/respiratory"
+    },
+    {
+      "path": "/marriage-family-therapy"
+    },
+    {
+      "path": "/occupational-therapy"
+    }
+  ],
+  "host": "https://nevadalicensedefense.com",
+  "lastBuilt": "2026-11-11T21:14:34.767Z"
+}
