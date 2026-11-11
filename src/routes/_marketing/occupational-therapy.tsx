@@ -39,7 +39,7 @@ function BoardPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(otLd) }} />
       <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
-        <img src={IMAGES.mountainValley} alt="Nevada mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <img src={IMAGES.mountainJasmeet} alt="Nevada mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-dark-blue/50" />
         <div className="relative z-10 max-w-3xl px-6 space-y-3">
           <h1 className="text-4xl md:text-5xl font-bold text-white">Occupational Therapy Board Defense</h1>

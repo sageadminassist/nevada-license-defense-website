@@ -16,6 +16,14 @@ export const IMAGES = {
   mountainRedRock: "/images/mountains/valley-fire-nevada-from-entrance-car-parking-lot-bright-red-aztec-sandstone-outcrops-nestled-gray-tan-limestone.jpg",
   mountainNevada: "/images/mountains/nevada-8338929.jpg",
   mountainJeremy: "/images/mountains/jeremy-bishop-dR_q93lfaTw-unsplash.jpg",
+  mountainAnkit: "/images/mountains/ankit-malhotra-b8m7FOKl2pU-unsplash.jpg",
+  mountainAnna: "/images/mountains/anna-goncharova-8Bu0TwQ2CHU-unsplash.jpg",
+  mountainBrian: "/images/mountains/brian-cornelius-KN9_23EjbjA-unsplash.jpg",
+  mountainCaleb2: "/images/mountains/caleb-jack-is067CjUb5k-unsplash.jpg",
+  mountainCamEras: "/images/mountains/cam-eras-xkfoulddiaQ-unsplash.jpg",
+  mountainIkona: "/images/mountains/ikona-art-HEj3tE9ME_I-unsplash.jpg",
+  mountainJasmeet: "/images/mountains/jasmeet-singh-M8mZ_0UHG5Q-unsplash.jpg",
+  mountainRoss2: "/images/mountains/ross-joyner-a5ylyBkA7d8-unsplash.jpg",
 
   // Craig
   craig: "/images/craig_blue_arms_crossed.jpg",
