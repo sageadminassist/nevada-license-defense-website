@@ -267,9 +267,9 @@ function HomePage() {
           </div>
           <div className="animate-slide-in-right overflow-hidden rounded-lg shadow-lg">
             <img
-              src={IMAGES.craigCall}
-              alt="Craig K. Perry meeting with a medical professional over a video consultation"
-              className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
+              src={IMAGES.craigOffice}
+              alt="Craig K. Perry, Nevada professional license defense attorney"
+              className="w-full h-[520px] object-cover object-[50%_20%] transition-transform duration-500 hover:scale-105"
               loading="lazy"
             />
           </div>
