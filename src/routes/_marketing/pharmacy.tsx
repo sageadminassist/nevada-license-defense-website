@@ -140,8 +140,8 @@ function PharmacyRoute() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
           <div className="overflow-hidden rounded-lg shadow-lg">
             <img
-              src={IMAGES.pharmacistWorking}
-              alt="Pharmacist reviewing medication at the pharmacy shelves"
+              src={IMAGES.pharmacistCounter}
+              alt="Pharmacist scanning a prescription at the pharmacy counter"
               loading="lazy"
               className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
             />
