@@ -21,7 +21,7 @@ function BoardPage() {
     <>
       <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
         <img src={IMAGES.mountainDramatic} alt="Nevada mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
-        <div className="absolute inset-0 bg-dark-blue/70" />
+        <div className="absolute inset-0 bg-dark-blue/50" />
         <div className="relative z-10 max-w-3xl px-6 space-y-3">
           <h1 className="text-4xl md:text-5xl font-bold text-white">Board of Psychological Examiners Defense</h1>
           <p className="text-lg text-white/80">Defending licensed psychologists and psychological assistants before the Nevada Board of Psychological Examiners.</p>

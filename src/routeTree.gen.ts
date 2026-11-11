@@ -18,6 +18,7 @@ import { Route as MarketingFaqRouteImport } from './routes/_marketing/faq'
 import { Route as MarketingMarriageFamilyTherapyRouteImport } from './routes/_marketing/marriage-family-therapy'
 import { Route as MarketingMedicalRouteImport } from './routes/_marketing/medical'
 import { Route as MarketingNursingRouteImport } from './routes/_marketing/nursing'
+import { Route as MarketingOccupationalTherapyRouteImport } from './routes/_marketing/occupational-therapy'
 import { Route as MarketingOsteopathicRouteImport } from './routes/_marketing/osteopathic'
 import { Route as MarketingPharmacyRouteImport } from './routes/_marketing/pharmacy'
 import { Route as MarketingPhysicalTherapyRouteImport } from './routes/_marketing/physical-therapy'
@@ -72,6 +73,12 @@ const MarketingNursingRoute = MarketingNursingRouteImport.update({
   path: '/nursing',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingOccupationalTherapyRoute =
+  MarketingOccupationalTherapyRouteImport.update({
+    id: '/occupational-therapy',
+    path: '/occupational-therapy',
+    getParentRoute: () => MarketingRoute,
+  } as any)
 const MarketingOsteopathicRoute = MarketingOsteopathicRouteImport.update({
   id: '/osteopathic',
   path: '/osteopathic',
@@ -123,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/marriage-family-therapy': typeof MarketingMarriageFamilyTherapyRoute
   '/medical': typeof MarketingMedicalRoute
   '/nursing': typeof MarketingNursingRoute
+  '/occupational-therapy': typeof MarketingOccupationalTherapyRoute
   '/osteopathic': typeof MarketingOsteopathicRoute
   '/pharmacy': typeof MarketingPharmacyRoute
   '/physical-therapy': typeof MarketingPhysicalTherapyRoute
@@ -140,6 +148,7 @@ export interface FileRoutesByTo {
   '/marriage-family-therapy': typeof MarketingMarriageFamilyTherapyRoute
   '/medical': typeof MarketingMedicalRoute
   '/nursing': typeof MarketingNursingRoute
+  '/occupational-therapy': typeof MarketingOccupationalTherapyRoute
   '/osteopathic': typeof MarketingOsteopathicRoute
   '/pharmacy': typeof MarketingPharmacyRoute
   '/physical-therapy': typeof MarketingPhysicalTherapyRoute
@@ -160,6 +169,7 @@ export interface FileRoutesById {
   '/_marketing/marriage-family-therapy': typeof MarketingMarriageFamilyTherapyRoute
   '/_marketing/medical': typeof MarketingMedicalRoute
   '/_marketing/nursing': typeof MarketingNursingRoute
+  '/_marketing/occupational-therapy': typeof MarketingOccupationalTherapyRoute
   '/_marketing/osteopathic': typeof MarketingOsteopathicRoute
   '/_marketing/pharmacy': typeof MarketingPharmacyRoute
   '/_marketing/physical-therapy': typeof MarketingPhysicalTherapyRoute
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
     | '/marriage-family-therapy'
     | '/medical'
     | '/nursing'
+    | '/occupational-therapy'
     | '/osteopathic'
     | '/pharmacy'
     | '/physical-therapy'
@@ -198,6 +209,7 @@ export interface FileRouteTypes {
     | '/marriage-family-therapy'
     | '/medical'
     | '/nursing'
+    | '/occupational-therapy'
     | '/osteopathic'
     | '/pharmacy'
     | '/physical-therapy'
@@ -217,6 +229,7 @@ export interface FileRouteTypes {
     | '/_marketing/marriage-family-therapy'
     | '/_marketing/medical'
     | '/_marketing/nursing'
+    | '/_marketing/occupational-therapy'
     | '/_marketing/osteopathic'
     | '/_marketing/pharmacy'
     | '/_marketing/physical-therapy'
@@ -297,6 +310,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingNursingRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/occupational-therapy': {
+      id: '/_marketing/occupational-therapy'
+      path: '/occupational-therapy'
+      fullPath: '/occupational-therapy'
+      preLoaderRoute: typeof MarketingOccupationalTherapyRouteImport
+      parentRoute: typeof MarketingRoute
+    }
     '/_marketing/osteopathic': {
       id: '/_marketing/osteopathic'
       path: '/osteopathic'
@@ -364,6 +384,7 @@ interface MarketingRouteChildren {
   MarketingMarriageFamilyTherapyRoute: typeof MarketingMarriageFamilyTherapyRoute
   MarketingMedicalRoute: typeof MarketingMedicalRoute
   MarketingNursingRoute: typeof MarketingNursingRoute
+  MarketingOccupationalTherapyRoute: typeof MarketingOccupationalTherapyRoute
   MarketingOsteopathicRoute: typeof MarketingOsteopathicRoute
   MarketingPharmacyRoute: typeof MarketingPharmacyRoute
   MarketingPhysicalTherapyRoute: typeof MarketingPhysicalTherapyRoute
@@ -383,6 +404,7 @@ const MarketingRouteChildren: MarketingRouteChildren = {
   MarketingMarriageFamilyTherapyRoute: MarketingMarriageFamilyTherapyRoute,
   MarketingMedicalRoute: MarketingMedicalRoute,
   MarketingNursingRoute: MarketingNursingRoute,
+  MarketingOccupationalTherapyRoute: MarketingOccupationalTherapyRoute,
   MarketingOsteopathicRoute: MarketingOsteopathicRoute,
   MarketingPharmacyRoute: MarketingPharmacyRoute,
   MarketingPhysicalTherapyRoute: MarketingPhysicalTherapyRoute,

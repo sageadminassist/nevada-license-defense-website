@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { Bone, Brain, Dumbbell, FlaskConical, HeartHandshake, PawPrint, Scan, SmilePlus, Stethoscope, Users } from "lucide-react";
+import { Bone, Brain, Dumbbell, FlaskConical, Hand, HeartHandshake, PawPrint, Scan, SmilePlus, Stethoscope, Users } from "lucide-react";
 
 import {
   Section,
@@ -21,6 +21,7 @@ const MORE_BOARDS_ICONS = [
   { ...MORE_BOARDS[7], icon: Stethoscope,   anim: "anim-swing"   },  // chiropractic
   { ...MORE_BOARDS[8], icon: FlaskConical,  anim: "anim-swirl"   },  // respiratory
   { ...MORE_BOARDS[9], icon: HeartHandshake,anim: "anim-beat"    },  // MFT
+  { ...MORE_BOARDS[10], icon: Hand,         anim: "anim-wobble"  },  // occupational therapy
 ];
 
 export const Route = createFileRoute("/_marketing/")({
@@ -209,14 +210,14 @@ function HomePage() {
       {/* More Boards section */}
       <Section variant="muted">
         <SectionTitle>We Also Defend Before These Boards</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {MORE_BOARDS_ICONS.map((board, i) => {
+        <div className="flex flex-wrap justify-center gap-4">
+          {MORE_BOARDS_ICONS.map((board) => {
             const Icon = board.icon;
             return (
               <Link
                 key={board.to}
                 to={board.to}
-                className="group flex flex-col items-center text-center rounded-xl border border-gray-200 bg-white p-5 hover:shadow-lg hover:-translate-y-1 hover:border-gold/40 transition-all duration-300"
+                className="group w-[calc(50%-0.5rem)] md:w-[calc(25%-0.75rem)] lg:w-[calc(16.666%-0.834rem)] flex flex-col items-center text-center rounded-xl border border-gray-200 bg-white p-5 hover:shadow-lg hover:-translate-y-1 hover:border-gold/40 transition-all duration-300"
               >
                 <div className="mb-3 flex items-center justify-center w-16 h-16 rounded-full bg-dark-blue/5 group-hover:bg-gold/10 transition-colors duration-300">
                   <Icon className="w-9 h-9 text-dark-blue" />
@@ -266,9 +267,9 @@ function HomePage() {
           </div>
           <div className="animate-slide-in-right overflow-hidden rounded-lg shadow-lg">
             <img
-              src={IMAGES.nurseDiscussion}
-              alt="Healthcare professionals collaborating"
-              className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
+              src={IMAGES.craig}
+              alt="Craig K. Perry, Nevada professional license defense attorney"
+              className="w-full h-[520px] object-cover object-top transition-transform duration-500 hover:scale-105"
               loading="lazy"
             />
           </div>

@@ -80,4 +80,5 @@ export const MORE_BOARDS = [
   { to: "/chiropractic", label: "Chiropractic Physicians Board", nrs: "NRS 634" },
   { to: "/respiratory", label: "Respiratory Care Board", nrs: "NRS 630A" },
   { to: "/marriage-family-therapy", label: "Marriage & Family Therapy Board", nrs: "NRS 641C" },
+  { to: "/occupational-therapy", label: "Board of Occupational Therapy", nrs: "NRS 640A" },
 ] as const;

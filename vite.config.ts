@@ -26,6 +26,7 @@ export default defineConfig({
         { path: "/chiropractic" },
         { path: "/respiratory" },
         { path: "/marriage-family-therapy" },
+        { path: "/occupational-therapy" },
       ],
       prerender: {
         enabled: true,
