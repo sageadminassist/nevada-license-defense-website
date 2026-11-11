@@ -6,7 +6,8 @@
     "build": "vite build",
     "serve": "vite preview",
     "dev": "vite dev",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",

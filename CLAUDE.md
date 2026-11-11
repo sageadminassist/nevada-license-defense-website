@@ -4,8 +4,8 @@ Read this before doing anything in this repo. These are the owner's standing rul
 
 ## Hard rules
 
-1. **Never push or deploy without asking first.** Every `git push` to `main`
-   triggers a live deploy to Hostinger. Commit locally, show the change, then
+1. **Never push or deploy without asking first.** `bun run deploy`
+   publishes the live site. Commit locally, show the change, then
    ask "want me to push?" and wait for a clear yes. One yes covers one push.
 2. **Keep the owner's local preview live and current.** The owner watches
    `http://localhost:3334` in their own Chrome. After every change:
@@ -49,14 +49,15 @@ Then restart the dev server.
 
 ## Deploy
 
-- Push to `main` → GitHub Actions (`.github/workflows/deploy.yml`) builds and
-  FTPs `dist/client/` to Hostinger. Secrets: `FTP_SERVER` (bare IP, no
-  `ftp://`), `FTP_USERNAME`, `FTP_PASSWORD`. FTP root is already
-  `public_html`, so `server-dir: ./`.
+- Hostinger's Git connection watches the **`deploy` branch** and copies it
+  as-is into `public_html` (no build step on Hostinger).
+- `main` = source code. Pushing `main` does NOT change the live site.
+- `deploy` = built site only (contents of `dist/client`). Never edit it by hand.
+- To go live: commit on `main`, then `bun run deploy` — it builds and pushes
+  the output to `deploy`. Ask the owner before running it (it is a live deploy).
+- Hostinger's Git connection must point at `deploy`, never `main` — pointing
+  it at `main` publishes raw source files and 404s every page.
 - Staging URL: https://ghostwhite-stingray-877877.hostingersite.com/
-- Do not also enable Hostinger's own Git auto-deploy — it uploads raw source
-  (no build) and overwrites the real site.
-- Run `bun run build` locally to confirm the build passes before asking to push.
 
 ## Content & SEO
 
