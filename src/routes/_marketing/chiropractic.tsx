@@ -24,8 +24,8 @@ function BoardPage() {
         <img src={IMAGES.mountainBrian} alt="Nevada valley mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-dark-blue/50" />
         <div className="relative z-10 max-w-3xl px-6 space-y-3">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">Chiropractic Physicians Board Defense</h1>
-          <p className="text-lg text-white/80">Defending chiropractic physicians before the Nevada Chiropractic Physicians Board.</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">Chiropractic Physicians Board Defense</h1>
+          <p className="text-lg text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]">Defending chiropractic physicians before the Nevada Chiropractic Physicians Board.</p>
           <div className="flex justify-center gap-4 pt-2">
             <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Free Consultation</a>

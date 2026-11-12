@@ -34,8 +34,8 @@ function ContactRoute() {
         <img src={IMAGES.mountainCaleb2} alt="Nevada mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-dark-blue/50" />
         <div className="relative z-10 max-w-2xl px-6 space-y-3">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">Contact Us</h1>
-          <p className="text-lg text-white/80">Your first consultation is free — call, email, or request a Zoom meeting.</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">Contact Us</h1>
+          <p className="text-lg text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]">Your first consultation is free — call, email, or request a Zoom meeting.</p>
         </div>
       </section>
 
