@@ -81,10 +81,10 @@ function MedicalHero() {
   return (
     <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
       <img src={IMAGES.mountainDramatic} alt="Nevada mountains" className="absolute inset-0 w-full h-full object-cover object-center" />
-      <div className="absolute inset-0 bg-dark-blue/50" />
+      <div className="absolute inset-0 bg-dark-blue/25" />
       <div className="relative z-10 max-w-3xl px-6 space-y-3">
-        <h1 className="text-4xl md:text-5xl font-bold text-white">Nevada Board of Medical Examiners Defense</h1>
-        <p className="text-lg text-white/80">Defending physicians, surgeons, and licensed medical professionals before the Nevada State Board of Medical Examiners.</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">Nevada Board of Medical Examiners Defense</h1>
+        <p className="text-lg text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]">Defending physicians, surgeons, and licensed medical professionals before the Nevada State Board of Medical Examiners.</p>
         <div className="flex justify-center gap-4 pt-2">
           <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
           <a href="/contact" className="btn-secondary">Free Consultation</a>
