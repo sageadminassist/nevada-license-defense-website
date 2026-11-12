@@ -16,6 +16,7 @@ export default defineConfig({
         { path: "/medical" },
         { path: "/contact" },
         { path: "/faq" },
+        { path: "/discipline-process" },
         { path: "/osteopathic" },
         { path: "/veterinary" },
         { path: "/social-work" },

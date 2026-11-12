@@ -49,6 +49,8 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
+              <li><a href="/discipline-process" className="hover:text-gold transition-colors duration-300 font-semibold">Board Discipline Process</a></li>
+              <li><a href="/faq" className="hover:text-gold transition-colors duration-300 font-semibold">FAQ</a></li>
             </ul>
           </div>
 

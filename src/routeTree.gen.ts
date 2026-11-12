@@ -14,6 +14,7 @@ import { Route as MarketingIndexRouteImport } from './routes/_marketing/index'
 import { Route as MarketingChiropracticRouteImport } from './routes/_marketing/chiropractic'
 import { Route as MarketingContactRouteImport } from './routes/_marketing/contact'
 import { Route as MarketingDentalRouteImport } from './routes/_marketing/dental'
+import { Route as MarketingDisciplineProcessRouteImport } from './routes/_marketing/discipline-process'
 import { Route as MarketingFaqRouteImport } from './routes/_marketing/faq'
 import { Route as MarketingMarriageFamilyTherapyRouteImport } from './routes/_marketing/marriage-family-therapy'
 import { Route as MarketingMedicalRouteImport } from './routes/_marketing/medical'
@@ -52,6 +53,12 @@ const MarketingDentalRoute = MarketingDentalRouteImport.update({
   path: '/dental',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingDisciplineProcessRoute =
+  MarketingDisciplineProcessRouteImport.update({
+    id: '/discipline-process',
+    path: '/discipline-process',
+    getParentRoute: () => MarketingRoute,
+  } as any)
 const MarketingFaqRoute = MarketingFaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -126,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/chiropractic': typeof MarketingChiropracticRoute
   '/contact': typeof MarketingContactRoute
   '/dental': typeof MarketingDentalRoute
+  '/discipline-process': typeof MarketingDisciplineProcessRoute
   '/faq': typeof MarketingFaqRoute
   '/marriage-family-therapy': typeof MarketingMarriageFamilyTherapyRoute
   '/medical': typeof MarketingMedicalRoute
@@ -144,6 +152,7 @@ export interface FileRoutesByTo {
   '/chiropractic': typeof MarketingChiropracticRoute
   '/contact': typeof MarketingContactRoute
   '/dental': typeof MarketingDentalRoute
+  '/discipline-process': typeof MarketingDisciplineProcessRoute
   '/faq': typeof MarketingFaqRoute
   '/marriage-family-therapy': typeof MarketingMarriageFamilyTherapyRoute
   '/medical': typeof MarketingMedicalRoute
@@ -165,6 +174,7 @@ export interface FileRoutesById {
   '/_marketing/chiropractic': typeof MarketingChiropracticRoute
   '/_marketing/contact': typeof MarketingContactRoute
   '/_marketing/dental': typeof MarketingDentalRoute
+  '/_marketing/discipline-process': typeof MarketingDisciplineProcessRoute
   '/_marketing/faq': typeof MarketingFaqRoute
   '/_marketing/marriage-family-therapy': typeof MarketingMarriageFamilyTherapyRoute
   '/_marketing/medical': typeof MarketingMedicalRoute
@@ -187,6 +197,7 @@ export interface FileRouteTypes {
     | '/chiropractic'
     | '/contact'
     | '/dental'
+    | '/discipline-process'
     | '/faq'
     | '/marriage-family-therapy'
     | '/medical'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/chiropractic'
     | '/contact'
     | '/dental'
+    | '/discipline-process'
     | '/faq'
     | '/marriage-family-therapy'
     | '/medical'
@@ -225,6 +237,7 @@ export interface FileRouteTypes {
     | '/_marketing/chiropractic'
     | '/_marketing/contact'
     | '/_marketing/dental'
+    | '/_marketing/discipline-process'
     | '/_marketing/faq'
     | '/_marketing/marriage-family-therapy'
     | '/_marketing/medical'
@@ -280,6 +293,13 @@ declare module '@tanstack/react-router' {
       path: '/dental'
       fullPath: '/dental'
       preLoaderRoute: typeof MarketingDentalRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/_marketing/discipline-process': {
+      id: '/_marketing/discipline-process'
+      path: '/discipline-process'
+      fullPath: '/discipline-process'
+      preLoaderRoute: typeof MarketingDisciplineProcessRouteImport
       parentRoute: typeof MarketingRoute
     }
     '/_marketing/faq': {
@@ -380,6 +400,7 @@ interface MarketingRouteChildren {
   MarketingChiropracticRoute: typeof MarketingChiropracticRoute
   MarketingContactRoute: typeof MarketingContactRoute
   MarketingDentalRoute: typeof MarketingDentalRoute
+  MarketingDisciplineProcessRoute: typeof MarketingDisciplineProcessRoute
   MarketingFaqRoute: typeof MarketingFaqRoute
   MarketingMarriageFamilyTherapyRoute: typeof MarketingMarriageFamilyTherapyRoute
   MarketingMedicalRoute: typeof MarketingMedicalRoute
@@ -400,6 +421,7 @@ const MarketingRouteChildren: MarketingRouteChildren = {
   MarketingChiropracticRoute: MarketingChiropracticRoute,
   MarketingContactRoute: MarketingContactRoute,
   MarketingDentalRoute: MarketingDentalRoute,
+  MarketingDisciplineProcessRoute: MarketingDisciplineProcessRoute,
   MarketingFaqRoute: MarketingFaqRoute,
   MarketingMarriageFamilyTherapyRoute: MarketingMarriageFamilyTherapyRoute,
   MarketingMedicalRoute: MarketingMedicalRoute,
