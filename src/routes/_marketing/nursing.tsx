@@ -121,23 +121,32 @@ function NursingRoute() {
       </Section>
 
       <Section>
-        <div className="rounded-lg border-l-4 border-gold bg-gray-50 p-8">
-          <p className="text-2xl font-bold text-dark-blue">
-            The Nevada State Board of Nursing opened{" "}
-            <span className="text-gold-dark">605 investigations</span> in 2022–2023 — up 21% over the
-            prior year.
-          </p>
-          <p className="mt-3 text-gray-600">
-            That included 377 complaints against RNs and LPNs and 153 against APRNs (a 57% jump).
-            If you've been contacted by the NSBN, don't face it alone.
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
+          <img src={IMAGES.nurseUpset} alt="Nurse sitting alone, worried about a board complaint" loading="lazy" className="w-full h-[420px] rounded-lg object-cover object-center shadow-md" />
+          <div className="rounded-lg border-l-4 border-gold bg-gray-50 p-8">
+            <p className="text-2xl font-bold text-dark-blue">
+              The Nevada State Board of Nursing opened{" "}
+              <span className="text-gold-dark">605 investigations</span> in 2022–2023 — up 21% over the
+              prior year.
+            </p>
+            <p className="mt-3 text-gray-600">
+              That included 377 complaints against RNs and LPNs and 153 against APRNs (a 57% jump).
+              If you've been contacted by the NSBN, don't face it alone.
+            </p>
+          </div>
         </div>
       </Section>
 
       {/* When should I contact you */}
       <Section variant="muted">
         <SectionTitle>When Should I Contact You?</SectionTitle>
-        <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">The short answer is — the sooner the better. You will always have more options and sound advice the earlier you start. The initial consultation is free and confidential.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto mb-10">
+          <img src={IMAGES.craigCall} alt="Craig K. Perry meeting with a nurse client over a secure video call" loading="lazy" className="w-full h-72 rounded-lg object-cover shadow-md" />
+          <div className="space-y-3 text-gray-700">
+            <p className="text-lg">The short answer is — the sooner the better. You will always have more options and sound advice the earlier you start.</p>
+            <p>The initial consultation is free and confidential, in person in Las Vegas or by secure Zoom from anywhere in Nevada.</p>
+          </div>
+        </div>
         <div className="max-w-4xl mx-auto space-y-4">
           {[
             ["I think I'm going to be reported for something I did at work.", "Let's talk. You can begin to plan on next steps, and work with the Board, from an attorney who has handled hundreds of cases. Such a call usually calms your fears and anxieties about losing your license."],
@@ -162,6 +171,7 @@ function NursingRoute() {
       {/* Common problems */}
       <Section>
         <SectionTitle>Common Reasons Nurses Are Investigated</SectionTitle>
+        <img src={IMAGES.nurseDiscussion} alt="Nurses reviewing patient charts together at a computer" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-center shadow-md mb-10" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
           {[
             ["Fraudulent Application", "False information or concealment in an application for licensure, renewal, or endorsement — sometimes unintentional, such as not reporting a resolved criminal conviction."],

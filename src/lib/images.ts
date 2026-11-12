@@ -30,7 +30,7 @@ export const IMAGES = {
   craig: "/images/craig_blue_arms_crossed.jpg",
   craigContact: "/images/craig-perry-contact.jpg",
   craigOffice: "/images/craig-portrait-028.jpg",
-  craigCall: "/images/craig_video_call_1.png",
+  craigCall: "/images/craig_video_call_1.jpg",
   craigDefending: "/images/craig_defending_nurse_in_court.png",
 
   // Board seals
