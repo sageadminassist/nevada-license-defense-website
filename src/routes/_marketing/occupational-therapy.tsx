@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
+import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -50,6 +51,7 @@ function BoardPage() {
           </div>
         </div>
       </section>
+      <BoardAnswer slug="occupational-therapy" />
 
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -85,6 +87,8 @@ function BoardPage() {
           ))}
         </div>
       </Section>
+
+      <BoardFaq slug="occupational-therapy" title="Occupational Therapy Board Defense" />
 
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">

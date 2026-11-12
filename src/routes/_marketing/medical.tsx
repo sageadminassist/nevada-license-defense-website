@@ -6,6 +6,7 @@ import {
   ServiceCard,
   ServiceGrid,
 } from "@/components/marketing/sections";
+import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -115,6 +116,7 @@ function MedicalRoute() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalLd) }} />
       <MedicalHero />
+      <BoardAnswer slug="medical" />
       <Section>
         <div className="mb-8 flex justify-center">
           <img src={IMAGES.boardMedical} alt="Nevada Board of Medical Examiners" className="w-auto h-36 md:h-44 object-contain" />
@@ -199,6 +201,7 @@ function MedicalRoute() {
           </div>
         </div>
       </Section>
+      <BoardFaq slug="medical" title="Nevada Medical Board Defense" />
     </>
   );
 }

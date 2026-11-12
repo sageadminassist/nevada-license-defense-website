@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
+import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -31,6 +32,7 @@ function BoardPage() {
           </div>
         </div>
       </section>
+      <BoardAnswer slug="radiology" />
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <img src={IMAGES.xrayMriReview} alt="Radiologist reviewing MRI brain scans" className="w-full rounded-lg object-cover shadow-md max-h-96" />
@@ -53,6 +55,8 @@ function BoardPage() {
           ))}
         </div>
       </Section>
+      <BoardFaq slug="radiology" title="Radiologic Technologist Defense" />
+
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>

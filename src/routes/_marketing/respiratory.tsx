@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
+import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -24,20 +25,21 @@ function BoardPage() {
         <div className="absolute inset-0 bg-dark-blue/50" />
         <div className="relative z-10 max-w-3xl px-6 space-y-3">
           <h1 className="text-4xl md:text-5xl font-bold text-white">Respiratory Care Board Defense</h1>
-          <p className="text-lg text-white/80">Defending respiratory therapists and respiratory care practitioners before the Nevada Respiratory Care Board.</p>
+          <p className="text-lg text-white/80">Defending respiratory therapists and respiratory care practitioners before the Nevada State Board of Medical Examiners, which regulates respiratory care in Nevada.</p>
           <div className="flex justify-center gap-4 pt-2">
             <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Free Consultation</a>
           </div>
         </div>
       </section>
+      <BoardAnswer slug="respiratory" />
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <img src={IMAGES.respiratoryStethoscope} alt="Doctor examining patient with stethoscope" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
-            <p className="text-lg">Respiratory therapists and respiratory care practitioners facing licensing board complaints or disciplinary action before the Nevada Respiratory Care Board.</p>
-            <p className="text-gray-700">Respiratory therapist licenses in Nevada are governed by <strong>NRS Chapter 630A</strong> (Nevada State Board of Medical Examiners — Respiratory Care). All disciplinary proceedings are conducted under <strong>NRS 233B</strong>, the Nevada Administrative Procedure Act. RTs facing complaints, credentialing issues, or investigations before the Board should consult an experienced license defense attorney before responding to any Board inquiry.</p>
+            <p className="text-lg">Respiratory therapists and respiratory care practitioners facing licensing board complaints or disciplinary action before the Nevada State Board of Medical Examiners, which regulates respiratory care in Nevada.</p>
+            <p className="text-gray-700">Respiratory therapist licenses in Nevada are governed by <strong>NRS Chapter 630</strong> (Nevada State Board of Medical Examiners — Respiratory Care). All disciplinary proceedings are conducted under <strong>NRS 233B</strong>, the Nevada Administrative Procedure Act. RTs facing complaints, credentialing issues, or investigations before the Board should consult an experienced license defense attorney before responding to any Board inquiry.</p>
             <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           </div>
         </div>
@@ -53,6 +55,8 @@ function BoardPage() {
           ))}
         </div>
       </Section>
+      <BoardFaq slug="respiratory" title="Respiratory Care License Defense" />
+
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>

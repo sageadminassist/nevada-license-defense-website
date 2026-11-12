@@ -6,6 +6,7 @@ import {
   ServiceCard,
   ServiceGrid,
 } from "@/components/marketing/sections";
+import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -83,6 +84,7 @@ function PharmacyRoute() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pharmacyLd) }} />
       <PharmacyHero />
+      <BoardAnswer slug="pharmacy" />
       <Section>
         <div className="mb-8 flex justify-center">
           <img src={IMAGES.boardPharmacy} alt="Nevada Board of Pharmacy" className="w-auto h-36 md:h-44 object-contain" />
@@ -160,6 +162,7 @@ function PharmacyRoute() {
           </div>
         </div>
       </Section>
+      <BoardFaq slug="pharmacy" title="Nevada Board of Pharmacy Defense" />
     </>
   );
 }

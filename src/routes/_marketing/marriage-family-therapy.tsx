@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
+import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -31,13 +32,14 @@ function BoardPage() {
           </div>
         </div>
       </section>
+      <BoardAnswer slug="marriage-family-therapy" />
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <img src={IMAGES.familyTherapy} alt="Marriage and family therapy session" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
             <p className="text-lg">Licensed marriage and family therapists (LMFTs) and clinical professional counselors facing disciplinary proceedings before Nevada's licensing board.</p>
-            <p className="text-gray-700">Marriage and family therapist licenses in Nevada are governed by <strong>NRS Chapter 641C</strong> (Nevada State Board of Examiners for Marriage and Family Therapists and Clinical Professional Counselors). All disciplinary proceedings are conducted under <strong>NRS 233B</strong>, the Nevada Administrative Procedure Act. MFTs and CPCs facing ethical complaints, dual-relationship allegations, or license investigations should retain legal counsel before any Board communication.</p>
+            <p className="text-gray-700">Marriage and family therapist licenses in Nevada are governed by <strong>NRS Chapter 641A</strong> (Nevada State Board of Examiners for Marriage and Family Therapists and Clinical Professional Counselors). All disciplinary proceedings are conducted under <strong>NRS 233B</strong>, the Nevada Administrative Procedure Act. MFTs and CPCs facing ethical complaints, dual-relationship allegations, or license investigations should retain legal counsel before any Board communication.</p>
             <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           </div>
         </div>
@@ -53,6 +55,8 @@ function BoardPage() {
           ))}
         </div>
       </Section>
+      <BoardFaq slug="marriage-family-therapy" title="MFT & Counselor Board Defense" />
+
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>

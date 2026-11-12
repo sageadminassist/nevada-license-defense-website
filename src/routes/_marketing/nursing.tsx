@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
-  FaqList,
+
   Section,
   SectionTitle,
   ServiceCard,
   ServiceGrid,
 } from "@/components/marketing/sections";
+import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -76,6 +77,7 @@ function NursingRoute() {
   return (
     <>
       <NursingHero />
+      <BoardAnswer slug="nursing" />
       <Section>
         <div className="mb-8 flex justify-center">
           <img src={IMAGES.boardNursing} alt="Nevada State Board of Nursing" className="w-auto h-36 md:h-44 object-contain" />
@@ -196,12 +198,7 @@ function NursingRoute() {
         </div>
       </Section>
 
-      <Section variant="muted">
-        <SectionTitle>Frequently Asked Questions</SectionTitle>
-        <div className="max-w-3xl mx-auto">
-          <FaqList items={FAQS} />
-        </div>
-      </Section>
+      <BoardFaq slug="nursing" title="Nevada Board of Nursing Defense" faqs={FAQS} />
 
       <section className="border-t border-gray-200 bg-white py-8">
         <div className="section-container">

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
+import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -31,13 +32,14 @@ function BoardPage() {
           </div>
         </div>
       </section>
+      <BoardAnswer slug="psychology" />
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <img src={IMAGES.comfortingPatient} alt="Clinician reassuring a worried patient" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
             <p className="text-lg">Licensed psychologists and psychological assistants facing disciplinary proceedings before the Nevada Board of Psychological Examiners.</p>
-            <p className="text-gray-700">Psychologist licenses in Nevada are governed by <strong>NRS Chapter 641A</strong> (Nevada State Board of Psychological Examiners). All disciplinary proceedings are conducted under <strong>NRS 233B</strong>, the Nevada Administrative Procedure Act. Psychologists facing ethical complaints, boundary violation allegations, or license suspension proceedings before the Board should seek legal representation before submitting any written response.</p>
+            <p className="text-gray-700">Psychologist licenses in Nevada are governed by <strong>NRS Chapter 641</strong> (Nevada State Board of Psychological Examiners). All disciplinary proceedings are conducted under <strong>NRS 233B</strong>, the Nevada Administrative Procedure Act. Psychologists facing ethical complaints, boundary violation allegations, or license suspension proceedings before the Board should seek legal representation before submitting any written response.</p>
             <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           </div>
         </div>
@@ -53,6 +55,8 @@ function BoardPage() {
           ))}
         </div>
       </Section>
+      <BoardFaq slug="psychology" title="Psychology Board Defense" />
+
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>

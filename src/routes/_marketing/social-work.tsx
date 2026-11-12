@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
+import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -31,13 +32,14 @@ function BoardPage() {
           </div>
         </div>
       </section>
+      <BoardAnswer slug="social-work" />
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <img src={IMAGES.counseling} alt="Social work counseling session" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
             <p className="text-lg">Licensed clinical social workers (LCSWs), licensed social workers (LSWs), and social work associates facing licensing board complaints or disciplinary proceedings.</p>
-            <p className="text-sm text-gray-500">Governed by <strong>NRS Chapter 641</strong>. All disciplinary proceedings conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).</p>
+            <p className="text-sm text-gray-500">Governed by <strong>NRS Chapter 641B</strong>. All disciplinary proceedings conducted under <strong>NRS 233B</strong> (Nevada Administrative Procedure Act).</p>
             <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           </div>
         </div>
@@ -53,6 +55,8 @@ function BoardPage() {
           ))}
         </div>
       </Section>
+      <BoardFaq slug="social-work" title="Social Work Board Defense" />
+
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>
