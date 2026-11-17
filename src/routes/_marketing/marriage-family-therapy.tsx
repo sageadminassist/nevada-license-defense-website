@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
-import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
+import { BoardAnswer, BoardFaq, CraigBlock } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -55,6 +55,8 @@ function BoardPage() {
           ))}
         </div>
       </Section>
+      <CraigBlock src={IMAGES.craigMeetingClient1} alt="Craig K. Perry meeting with a therapist client" />
+
       <BoardFaq slug="marriage-family-therapy" title="MFT & Counselor Board Defense" />
 
       <Section className="bg-dark-blue">

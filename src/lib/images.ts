@@ -31,6 +31,12 @@ export const IMAGES = {
   craigContact: "/images/craig-perry-contact.jpg",
   craigOffice: "/images/craig-portrait-028.jpg",
   craigCall: "/images/craig_video_call_1.jpg",
+  craigMeetingDoctor: "/images/craig-meeting-doctor.jpg",
+  craigMeetingPhysician: "/images/craig-meeting-physician.jpg",
+  craigMeetingClient1: "/images/craig-meeting-client-1.jpg",
+  craigMeetingClient2: "/images/craig-meeting-client-2.jpg",
+  craigMeetingClient3: "/images/craig-meeting-client-3.jpg",
+  craigMeetingClient4: "/images/craig-meeting-client-4.jpg",
   craigDefending: "/images/craig_defending_nurse_in_court.png",
 
   // Board seals

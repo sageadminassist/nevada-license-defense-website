@@ -113,3 +113,21 @@ export function BoardFaq({
     </>
   );
 }
+
+/** Portrait of Craig with a client + short trust copy. */
+export function CraigBlock({ src, alt }: { src: string; alt: string }) {
+  return (
+    <Section>
+      <div className="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-10 items-center max-w-5xl mx-auto">
+        <img src={src} alt={alt} loading="lazy" className="w-full h-[460px] rounded-lg object-cover object-[50%_25%] shadow-md" />
+        <div className="space-y-4 text-gray-700">
+          <h2 className="text-3xl font-bold text-dark-blue">You Work Directly With Craig</h2>
+          <p className="text-lg">Your case isn't handed off to a junior associate. Craig K. Perry personally reviews your situation, prepares your response, and stands beside you at every interview and hearing.</p>
+          <p>Over 31 years he has defended Nevada licensed professionals before licensing boards across the state — and he knows how investigators, board staff, and hearing officers think.</p>
+          <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
+          <a href={SITE.phoneHref} className="btn-primary inline-block">Call {SITE.phoneDisplay}</a>
+        </div>
+      </div>
+    </Section>
+  );
+}

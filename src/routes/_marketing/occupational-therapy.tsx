@@ -71,6 +71,7 @@ function BoardPage() {
 
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
+        <img src={IMAGES.physicalTherapistExplanation} alt="Therapist explaining a treatment plan to a patient" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-center shadow-md mb-10" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {[
             ["Board Investigations", "Representation from the moment you receive a notice — before you respond to the board."],

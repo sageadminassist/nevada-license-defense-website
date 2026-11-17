@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { FaqList, Section, SectionTitle } from "@/components/marketing/sections";
+import { CraigBlock } from "@/components/marketing/board-ai";
+import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/_marketing/faq")({
@@ -63,6 +65,8 @@ function FaqRoute() {
           <FaqList items={FAQS} />
         </div>
       </Section>
+
+      <CraigBlock src={IMAGES.craigMeetingClient4} alt="Craig K. Perry greeting a client in his Las Vegas office" />
 
       <Section variant="dark">
         <div className="flex flex-col items-center gap-4 text-center">

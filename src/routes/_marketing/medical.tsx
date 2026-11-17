@@ -6,7 +6,7 @@ import {
   ServiceCard,
   ServiceGrid,
 } from "@/components/marketing/sections";
-import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
+import { BoardAnswer, BoardFaq, CraigBlock } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -168,6 +168,7 @@ function MedicalRoute() {
 
       <Section>
         <SectionTitle>Our Medical License Defense Services</SectionTitle>
+        <img src={IMAGES.doctorOnPhone} alt="Physician on the phone in a hospital hallway" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-center shadow-md mb-10" />
         <ServiceGrid>
           {SERVICES.map(([title, body]) => (
             <ServiceCard key={title} title={title}>{body}</ServiceCard>
@@ -201,6 +202,8 @@ function MedicalRoute() {
           </div>
         </div>
       </Section>
+      <CraigBlock src={IMAGES.craigMeetingDoctor} alt="Craig K. Perry meeting with a physician client in his Las Vegas office" />
+
       <BoardFaq slug="medical" title="Nevada Medical Board Defense" />
     </>
   );

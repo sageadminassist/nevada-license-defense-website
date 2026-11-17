@@ -46,6 +46,7 @@ function BoardPage() {
       </Section>
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
+        <img src={IMAGES.doctorPatient} alt="Clinician speaking with a patient" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-center shadow-md mb-10" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {[["Board Investigations","Representation from the moment you receive a notice — before you respond to the board."],["Disciplinary Hearings","Defense at formal and informal hearings before your licensing board."],["License Reinstatement","Guidance reinstating a suspended or revoked license."],["Probation & Monitoring","Negotiating monitoring agreements and defending probation violations."],["Criminal Matters","Defense when criminal charges impact your professional license."],["License Renewal Issues","Resolving continuing-education, disclosure, or renewal problems."]].map(([title, blurb]) => (
             <div key={title} className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
