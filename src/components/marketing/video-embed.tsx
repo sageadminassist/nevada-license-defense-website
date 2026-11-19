@@ -1,16 +1,25 @@
 import { useState } from "react";
 import type { Video } from "@/lib/accusations";
 
+// Custom thumbnails (public/images/video-thumbs/<id>.webp) made for Craig's videos.
+const LOCAL_THUMBS = new Set([
+  "xWVLP_fxJ3Y", "o4StWufcMCA", "53eOznxcMac", "H29BDE8hz0M", "c8xHd2jRTsA", "dSYM9Xp8CAc", "50fWCTz-0Ig",
+  "HWUjbVo4mkE", "nv3278wZxY0", "K1ZemvWLY4o", "4jiLGDxN8G0", "wL8Z3KfIc1A", "Wc2CaPgKULU", "tzY1J3BNOKA",
+  "n8OGqrbVAR8", "QaPA_Fgq8CQ", "ixiZf7lBEa8", "LORjfggVzgs", "RQ63vrM3YYI", "9cWvY5xT5mE",
+]);
+
 /** Click-to-load YouTube embed (no YouTube JS until clicked) + VideoObject JSON-LD. */
 export function VideoEmbed({ video, description }: { video: Video; description: string }) {
   const [play, setPlay] = useState(false);
-  const thumb = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+  const thumb = LOCAL_THUMBS.has(video.id)
+    ? `/images/video-thumbs/${video.id}.webp`
+    : `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
   const ld = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     name: video.title,
     description,
-    thumbnailUrl: thumb,
+    thumbnailUrl: thumb.startsWith("/") ? `https://nevadalicensedefense.com${thumb}` : thumb,
     uploadDate: video.uploadDate,
     duration: `PT${Math.floor(video.seconds / 60)}M${video.seconds % 60}S`,
     contentUrl: `https://www.youtube.com/watch?v=${video.id}`,
