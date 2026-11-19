@@ -6,7 +6,7 @@ const LOCAL_THUMBS = new Set([
   "xWVLP_fxJ3Y", "o4StWufcMCA", "53eOznxcMac", "H29BDE8hz0M", "c8xHd2jRTsA", "dSYM9Xp8CAc", "50fWCTz-0Ig",
   "HWUjbVo4mkE", "nv3278wZxY0", "K1ZemvWLY4o", "4jiLGDxN8G0", "wL8Z3KfIc1A", "Wc2CaPgKULU", "tzY1J3BNOKA",
   "n8OGqrbVAR8", "QaPA_Fgq8CQ", "ixiZf7lBEa8", "LORjfggVzgs", "RQ63vrM3YYI", "9cWvY5xT5mE",
-  "-kuzykuleCs", "14Ah2mtH0W0", "5aPjzj2fWsg",
+  "-kuzykuleCs", "14Ah2mtH0W0", "5aPjzj2fWsg", "GqwLK5QHDKg", "lnZQCzeGwio",
 ]);
 
 /** Click-to-load YouTube embed (no YouTube JS until clicked) + VideoObject JSON-LD. */
