@@ -147,7 +147,7 @@ function ContactRoute() {
               <h2 className="mb-3 text-xl font-bold">Part of Craig K. Perry &amp; Associates</h2>
               <p className="mb-5 text-white/75 text-sm leading-relaxed">
                 Nevada License Defense is a specialized practice of Craig K. Perry &amp; Associates
-                — a Las Vegas law firm with over 31 years of experience defending licensed professionals.
+                — a Las Vegas law firm founded by an attorney with over 31 years of Nevada legal practice.
               </p>
               <div className="flex flex-col gap-2">
                 <a href={SITE.firmUrl} target="_blank" rel="noopener" className="text-gold hover:text-white transition-colors text-sm font-semibold">

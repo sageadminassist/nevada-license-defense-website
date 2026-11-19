@@ -18,7 +18,7 @@ export const Route = createFileRoute("/_marketing/nursing")({
       {
         name: "description",
         content:
-          "Defense before the Nevada State Board of Nursing (NSBN) for RNs, LPNs, NPs, and APRNs. Craig K. Perry has 31+ years defending nurses statewide. Free consultation.",
+          "Defense before the Nevada State Board of Nursing (NSBN) for RNs, LPNs, NPs, and APRNs. Craig K. Perry has defended Nevada nurses for over 16 years. Free consultation.",
       },
       {
         property: "og:title",

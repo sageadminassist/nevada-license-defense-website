@@ -40,7 +40,7 @@ export const Route = createFileRoute("/_marketing/")({
       {
         property: "og:description",
         content:
-          "Facing a Nevada licensing board complaint? Craig K. Perry has 31+ years defending medical professionals. Free consultation — 702.893.4777.",
+          "Facing a Nevada licensing board complaint? Craig K. Perry has 31+ years of Nevada law practice and hundreds of board cases. Free consultation — 702.893.4777.",
       },
       { property: "og:url", content: "https://nevadalicensedefense.com" },
     ],

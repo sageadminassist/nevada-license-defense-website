@@ -27,7 +27,7 @@ export function BoardAnswer({ slug }: { slug: string }) {
             disciplinary cases follow the Nevada Administrative Procedure Act (NRS Chapter 233B).
             If you receive a complaint, investigator call, or Notice of Investigation, do not respond
             until you speak with a lawyer. Craig K. Perry of Craig K. Perry &amp; Associates in Las
-            Vegas has defended Nevada licensed professionals for over 31 years — free consultation
+            Vegas has practiced law in Nevada for over 31 years and handled hundreds of licensing board cases — free consultation
             at <a href={SITE.phoneHref} className="font-semibold text-dark-blue underline">{SITE.phoneDisplay}</a>.
           </p>
           <p className="mt-2 text-xs text-gray-500">
@@ -121,9 +121,9 @@ export function CraigBlock({ src, alt }: { src: string; alt: string }) {
       <div className="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-10 items-center max-w-5xl mx-auto">
         <img src={src} alt={alt} loading="lazy" className="w-full h-[460px] rounded-lg object-cover object-[50%_25%] shadow-md" />
         <div className="space-y-4 text-gray-700">
-          <h2 className="text-3xl font-bold text-dark-blue">You Work Directly With Craig</h2>
-          <p className="text-lg">Your case isn't handed off to a junior associate. Craig K. Perry personally reviews your situation, prepares your response, and stands beside you at every interview and hearing.</p>
-          <p>Over 31 years he has defended Nevada licensed professionals before licensing boards across the state — and he knows how investigators, board staff, and hearing officers think.</p>
+          <h2 className="text-3xl font-bold text-dark-blue">Meet Craig K. Perry</h2>
+          <p className="text-lg">Craig is a career trial attorney — 37 years of trial practice, more than 31 of them in Nevada — and the founder of Craig K. Perry &amp; Associates in Las Vegas. For over 14 years he has defended nurses and medical professionals before Nevada licensing boards, handling hundreds of board cases, many resolved by dismissal of the complaint.</p>
+          <p>He and Office Manager Tyrin Kanemeier, with the firm for nearly 20 years, guide clients from the first letter of investigation to final resolution. Craig also teaches nurses and health professionals how to protect their licenses through CE sessions and keynotes as Craig Perry Speaks.</p>
           <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           <a href={SITE.phoneHref} className="btn-primary inline-block">Call {SITE.phoneDisplay}</a>
         </div>

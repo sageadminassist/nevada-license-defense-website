@@ -171,7 +171,7 @@ function AccusationPage() {
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Facing This Accusation? Call Before You Respond.</h2>
-          <p className="text-white/80 max-w-xl mx-auto">Craig K. Perry has defended Nevada licensed professionals for over 31 years. {SITE.consultation}</p>
+          <p className="text-white/80 max-w-xl mx-auto">Craig K. Perry has practiced law in Nevada for over 31 years and handled hundreds of licensing board cases. {SITE.consultation}</p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Free Consultation</a>
