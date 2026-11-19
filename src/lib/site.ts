@@ -100,3 +100,17 @@ export const MORE_BOARDS = [
   { to: "/marriage-family-therapy", label: "Marriage & Family Therapy Board", nrs: "NRS 641A" },
   { to: "/occupational-therapy", label: "Board of Occupational Therapy", nrs: "NRS 640A" },
 ] as const;
+
+export const ALL_BOARDS = [
+  { to: "/nursing", label: "Board of Nursing", nrs: "NRS 632" },
+  { to: "/pharmacy", label: "Board of Pharmacy", nrs: "NRS 639" },
+  { to: "/medical", label: "Board of Medical Examiners", nrs: "NRS 630" },
+  ...MORE_BOARDS,
+] as const;
+
+export const RESOURCES = [
+  { to: "/discipline-process", label: "Board Discipline Process", nrs: "Step by step" },
+  { to: "/accusations", label: "All Accusations", nrs: "Guides" },
+  { to: "/faq", label: "FAQ", nrs: "" },
+  { to: "/contact", label: "Free Consultation", nrs: "" },
+] as const;

@@ -37,6 +37,8 @@ export const IMAGES = {
   craigMeetingClient2: "/images/craig-meeting-client-2.jpg",
   craigMeetingClient3: "/images/craig-meeting-client-3.jpg",
   craigMeetingClient4: "/images/craig-meeting-client-4.jpg",
+  craigCourtroom: "/images/craig-courtroom-hearing.jpg",
+  craigReinstatement: "/images/craig-meeting-reinstatement.jpg",
   craigDefending: "/images/craig_defending_nurse_in_court.png",
 
   // Board seals
@@ -55,7 +57,7 @@ export const IMAGES = {
   // Medical / Doctors
   doctorStethoscope: "/images/doctor_stethoscope.jpg",
   doctorReviewing: "/images/doctor_reviewing_paperwork.jpg",
-  doctorHandshake: "/images/doctor_handshake.png",
+  doctorHandshake: "/images/doctor_handshake.jpg",
   doctorOnPhone: "/images/male_doctor_on_phone.jpg",
   doctorWriting: "/images/doctor_writing_notes.jpg",
   femaleDoctorClipboard: "/images/female_doctor_reviewing_clipboard.jpg",

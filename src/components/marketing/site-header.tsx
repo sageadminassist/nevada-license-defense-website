@@ -4,30 +4,68 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { ACCUSATIONS } from "@/lib/accusations";
 import { IMAGES } from "@/lib/images";
-import { MORE_BOARDS, NAV_ITEMS, SITE } from "@/lib/site";
+import { ALL_BOARDS, RESOURCES, SITE } from "@/lib/site";
+
+type Item = { to: string; label: string; note?: string };
+
+const MENUS: { id: string; label: string; items: Item[]; columns: 1 | 2; footer?: Item }[] = [
+  {
+    id: "boards",
+    label: "Licensing Boards",
+    columns: 2,
+    items: ALL_BOARDS.map((b) => ({ to: b.to, label: b.label, note: b.nrs })),
+  },
+  {
+    id: "accusations",
+    label: "Accusations",
+    columns: 1,
+    items: ACCUSATIONS.map((a) => ({ to: `/accusations/${a.slug}`, label: a.nav })),
+    footer: { to: "/accusations", label: "View all accusations →" },
+  },
+  {
+    id: "resources",
+    label: "Resources",
+    columns: 1,
+    items: RESOURCES.map((r) => ({ to: r.to, label: r.label, note: r.nrs || undefined })),
+  },
+];
+
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg className={`w-3 h-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+    </svg>
+  );
+}
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
-  const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const navRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (mobileOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const isOutside = Object.values(dropdownRefs.current).every(
-        (ref) => ref && !ref.contains(e.target as Node)
-      );
-      if (isOutside && activeSubmenu) setActiveSubmenu(null);
+    const onDown = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setActiveSubmenu(null);
     };
-    if (activeSubmenu) document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActiveSubmenu(null); };
+    if (activeSubmenu) {
+      document.addEventListener("mousedown", onDown);
+      document.addEventListener("keydown", onKey);
+    }
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
   }, [activeSubmenu]);
+
+  const toggle = (id: string) => setActiveSubmenu(activeSubmenu === id ? null : id);
 
   return (
     <>
@@ -37,19 +75,10 @@ export function SiteHeader() {
           <div className="flex items-center justify-between py-4">
             <div className="flex-1" />
             <Link to="/" className="flex items-center justify-center flex-1">
-              <img
-                src={IMAGES.logoDark}
-                alt="Nevada License Defense Logo"
-                className="h-20 md:h-24 lg:h-28 w-auto"
-              />
+              <img src={IMAGES.logoDark} alt="Nevada License Defense Logo" className="h-20 md:h-24 lg:h-28 w-auto" />
             </Link>
-            {/* Mobile hamburger */}
             <div className="flex-1 flex justify-end">
-              <button
-                className="lg:hidden p-2 text-gray-700"
-                onClick={() => setMobileOpen(!mobileOpen)}
-                aria-label="Toggle menu"
-              >
+              <button className="lg:hidden p-2 text-gray-700" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
                 {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
@@ -57,59 +86,36 @@ export function SiteHeader() {
 
           {/* Mobile nav */}
           {mobileOpen && (
-            <div className="lg:hidden py-4 border-t border-gray-200">
-              <a
-                href={SITE.phoneHref}
-                className="flex items-center justify-center gap-2 bg-dark-blue text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 shadow-md mb-4 mx-4"
-              >
+            <div className="lg:hidden py-4 border-t border-gray-200 max-h-[75vh] overflow-y-auto">
+              <a href={SITE.phoneHref} className="flex items-center justify-center gap-2 bg-dark-blue text-white px-6 py-3 rounded-lg font-bold shadow-md mb-4 mx-4">
                 <Phone className="w-5 h-5" />
                 <span>{SITE.phoneDisplay}</span>
               </a>
-              {NAV_ITEMS.map((item) => (
-                <div key={item.to}>
-                  <Link
-                    to={item.to}
-                    className="block py-3 text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 text-center"
-                    onClick={() => setMobileOpen(false)}
+              {MENUS.map((m) => (
+                <div key={m.id}>
+                  <button
+                    onClick={() => toggle(m.id)}
+                    className="w-full py-3 text-gray-700 hover:text-dark-blue font-bold uppercase text-sm flex items-center justify-center gap-1"
                   >
-                    {item.label}
-                  </Link>
+                    {m.label}
+                    <Chevron open={activeSubmenu === m.id} />
+                  </button>
+                  {activeSubmenu === m.id && (
+                    <div className="pb-2">
+                      {[...m.items, ...(m.footer ? [m.footer] : [])].map((it) => (
+                        <a key={it.to} href={it.to} onClick={() => setMobileOpen(false)} className="block py-2 text-gray-600 hover:text-dark-blue font-semibold text-sm text-center">
+                          {it.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
-              {/* More Boards mobile accordion */}
-              <div>
-                <button
-                  onClick={() => setActiveSubmenu(activeSubmenu === "more-boards" ? null : "more-boards")}
-                  className="w-full py-3 text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 text-center uppercase text-sm flex items-center justify-center gap-1"
-                >
-                  More Boards
-                  <svg className={`w-3 h-3 transition-transform duration-200 ${activeSubmenu === "more-boards" ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {activeSubmenu === "more-boards" && (
-                  <div className="pb-2">
-                    {MORE_BOARDS.map((board) => (
-                      <Link
-                        key={board.to}
-                        to={board.to}
-                        onClick={() => setMobileOpen(false)}
-                        className="block py-2 text-gray-600 hover:text-dark-blue font-semibold text-sm text-center transition-colors duration-200"
-                      >
-                        {board.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <a href="/contact" onClick={() => setMobileOpen(false)} className="block py-3 text-gray-700 hover:text-dark-blue font-bold uppercase text-sm text-center">
+                Contact
+              </a>
               <div className="mt-3 flex justify-center">
-                <a
-                  href={SITE.mycaseUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileOpen(false)}
-                  className="inline-block bg-gold text-dark-blue px-6 py-2 rounded-lg font-bold text-sm hover:bg-gold-dark transition-colors duration-300"
-                >
+                <a href={SITE.mycaseUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-gold text-dark-blue px-6 py-2 rounded-lg font-bold text-sm hover:bg-gold-dark transition-colors duration-300">
                   Client Login
                 </a>
               </div>
@@ -121,84 +127,55 @@ export function SiteHeader() {
       {/* Sticky nav bar */}
       <div className="hidden lg:block bg-white border-t border-gray-200 sticky top-0 z-[99] shadow-sm">
         <div className="section-container">
-          <div className="flex items-center justify-center flex-nowrap gap-x-4 xl:gap-x-6 py-4">
-            {NAV_ITEMS.filter(i => i.to !== "/contact").map((item) => (
-              <div
-                key={item.to}
-                className="relative flex-shrink-0"
-                ref={(el) => { dropdownRefs.current[item.to] = el; }}
-              >
-                <Link
-                  to={item.to}
-                  className="text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 relative group uppercase text-sm whitespace-nowrap"
+          <div ref={navRef} className="flex items-center justify-center flex-nowrap gap-x-5 xl:gap-x-8 py-4">
+            {MENUS.map((m) => (
+              <div key={m.id} className="relative flex-shrink-0">
+                <button
+                  onClick={() => toggle(m.id)}
+                  aria-expanded={activeSubmenu === m.id}
+                  className={`flex items-center gap-1 font-bold transition-colors duration-300 uppercase text-sm whitespace-nowrap ${activeSubmenu === m.id ? "text-dark-blue" : "text-gray-700 hover:text-dark-blue"}`}
                 >
-                  {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300" />
-                </Link>
+                  {m.label}
+                  <Chevron open={activeSubmenu === m.id} />
+                </button>
+                {activeSubmenu === m.id && (
+                  <div
+                    className={`absolute top-full mt-3 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50 animate-scale-in ${
+                      m.columns === 2 ? "left-0 w-[620px] grid grid-cols-2 grid-rows-7 grid-flow-col" : "left-0 w-80"
+                    }`}
+                  >
+                    {m.items.map((it) => (
+                      <a
+                        key={it.to}
+                        href={it.to}
+                        onClick={() => setActiveSubmenu(null)}
+                        className="flex items-center justify-between px-4 py-2.5 text-gray-700 hover:bg-gold/10 hover:text-dark-blue transition-colors duration-200 font-semibold text-sm"
+                      >
+                        <span>{it.label}</span>
+                        {it.note ? <span className="text-xs text-gray-400 ml-2 shrink-0">{it.note}</span> : null}
+                      </a>
+                    ))}
+                    {m.footer ? (
+                      <a href={m.footer.to} onClick={() => setActiveSubmenu(null)} className="block border-t border-gray-100 mt-1 px-4 pt-3 pb-1.5 text-sm font-bold text-gold-dark hover:text-dark-blue">
+                        {m.footer.label}
+                      </a>
+                    ) : null}
+                  </div>
+                )}
               </div>
             ))}
 
-            {/* More Boards dropdown */}
-            <div
-              className="relative flex-shrink-0"
-              ref={(el) => { dropdownRefs.current["more-boards"] = el; }}
-            >
-              <button
-                onClick={() => setActiveSubmenu(activeSubmenu === "more-boards" ? null : "more-boards")}
-                className="flex items-center gap-1 text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 uppercase text-sm whitespace-nowrap"
-              >
-                More Boards
-                <svg
-                  className={`w-3 h-3 transition-transform duration-200 ${activeSubmenu === "more-boards" ? "rotate-180" : ""}`}
-                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {activeSubmenu === "more-boards" && (
-                <div className="absolute left-0 top-full mt-2 w-72 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50 animate-scale-in">
-                  {MORE_BOARDS.map((board) => (
-                    <Link
-                      key={board.to}
-                      to={board.to}
-                      onClick={() => setActiveSubmenu(null)}
-                      className="flex items-center justify-between px-4 py-2.5 text-gray-700 hover:bg-gold/10 hover:text-dark-blue transition-colors duration-200 font-semibold text-sm"
-                    >
-                      <span>{board.label}</span>
-                      <span className="text-xs text-gray-400 ml-2 shrink-0">{board.nrs}</span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            <a href="/contact" className="text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 relative group uppercase text-sm whitespace-nowrap flex-shrink-0">
+              Contact
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300" />
+            </a>
 
-            {/* Contact */}
-            <div className="relative flex-shrink-0">
-              <Link
-                to="/contact"
-                className="text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 relative group uppercase text-sm whitespace-nowrap"
-              >
-                Contact
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300" />
-              </Link>
-            </div>
-
-            {/* Phone CTA */}
-            <a
-              href={SITE.phoneHref}
-              className="flex items-center gap-2 bg-dark-blue text-white px-4 py-2 rounded-lg font-bold hover:opacity-90 transition-all duration-300 ml-4 flex-shrink-0 whitespace-nowrap text-sm"
-            >
+            <a href={SITE.phoneHref} className="flex items-center gap-2 bg-dark-blue text-white px-4 py-2 rounded-lg font-bold hover:opacity-90 transition-all duration-300 ml-4 flex-shrink-0 whitespace-nowrap text-sm">
               <Phone className="w-4 h-4 flex-shrink-0" />
               <span>{SITE.phoneDisplay}</span>
             </a>
 
-            {/* Client login */}
-            <a
-              href={SITE.mycaseUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-shrink-0 bg-gold text-dark-blue px-4 py-2 rounded-lg font-bold text-sm hover:bg-gold-dark transition-colors duration-300 whitespace-nowrap"
-            >
+            <a href={SITE.mycaseUrl} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 bg-gold text-dark-blue px-4 py-2 rounded-lg font-bold text-sm hover:bg-gold-dark transition-colors duration-300 whitespace-nowrap">
               Login
             </a>
           </div>

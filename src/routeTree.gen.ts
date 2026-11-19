@@ -28,6 +28,8 @@ import { Route as MarketingRadiologyRouteImport } from './routes/_marketing/radi
 import { Route as MarketingRespiratoryRouteImport } from './routes/_marketing/respiratory'
 import { Route as MarketingSocialWorkRouteImport } from './routes/_marketing/social-work'
 import { Route as MarketingVeterinaryRouteImport } from './routes/_marketing/veterinary'
+import { Route as MarketingAccusationsIndexRouteImport } from './routes/_marketing/accusations/index'
+import { Route as MarketingAccusationsSlugRouteImport } from './routes/_marketing/accusations/$slug'
 
 const MarketingRoute = MarketingRouteImport.update({
   id: '/_marketing',
@@ -127,6 +129,18 @@ const MarketingVeterinaryRoute = MarketingVeterinaryRouteImport.update({
   path: '/veterinary',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingAccusationsIndexRoute =
+  MarketingAccusationsIndexRouteImport.update({
+    id: '/accusations/',
+    path: '/accusations/',
+    getParentRoute: () => MarketingRoute,
+  } as any)
+const MarketingAccusationsSlugRoute =
+  MarketingAccusationsSlugRouteImport.update({
+    id: '/accusations/$slug',
+    path: '/accusations/$slug',
+    getParentRoute: () => MarketingRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof MarketingIndexRoute
@@ -147,6 +161,8 @@ export interface FileRoutesByFullPath {
   '/respiratory': typeof MarketingRespiratoryRoute
   '/social-work': typeof MarketingSocialWorkRoute
   '/veterinary': typeof MarketingVeterinaryRoute
+  '/accusations/$slug': typeof MarketingAccusationsSlugRoute
+  '/accusations/': typeof MarketingAccusationsIndexRoute
 }
 export interface FileRoutesByTo {
   '/chiropractic': typeof MarketingChiropracticRoute
@@ -167,6 +183,8 @@ export interface FileRoutesByTo {
   '/social-work': typeof MarketingSocialWorkRoute
   '/veterinary': typeof MarketingVeterinaryRoute
   '/': typeof MarketingIndexRoute
+  '/accusations/$slug': typeof MarketingAccusationsSlugRoute
+  '/accusations': typeof MarketingAccusationsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -189,6 +207,8 @@ export interface FileRoutesById {
   '/_marketing/social-work': typeof MarketingSocialWorkRoute
   '/_marketing/veterinary': typeof MarketingVeterinaryRoute
   '/_marketing/': typeof MarketingIndexRoute
+  '/_marketing/accusations/$slug': typeof MarketingAccusationsSlugRoute
+  '/_marketing/accusations/': typeof MarketingAccusationsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -211,6 +231,8 @@ export interface FileRouteTypes {
     | '/respiratory'
     | '/social-work'
     | '/veterinary'
+    | '/accusations/$slug'
+    | '/accusations/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/chiropractic'
@@ -231,6 +253,8 @@ export interface FileRouteTypes {
     | '/social-work'
     | '/veterinary'
     | '/'
+    | '/accusations/$slug'
+    | '/accusations'
   id:
     | '__root__'
     | '/_marketing'
@@ -252,6 +276,8 @@ export interface FileRouteTypes {
     | '/_marketing/social-work'
     | '/_marketing/veterinary'
     | '/_marketing/'
+    | '/_marketing/accusations/$slug'
+    | '/_marketing/accusations/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -393,6 +419,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingVeterinaryRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/accusations/': {
+      id: '/_marketing/accusations/'
+      path: '/accusations'
+      fullPath: '/accusations/'
+      preLoaderRoute: typeof MarketingAccusationsIndexRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/_marketing/accusations/$slug': {
+      id: '/_marketing/accusations/$slug'
+      path: '/accusations/$slug'
+      fullPath: '/accusations/$slug'
+      preLoaderRoute: typeof MarketingAccusationsSlugRouteImport
+      parentRoute: typeof MarketingRoute
+    }
   }
 }
 
@@ -415,6 +455,8 @@ interface MarketingRouteChildren {
   MarketingSocialWorkRoute: typeof MarketingSocialWorkRoute
   MarketingVeterinaryRoute: typeof MarketingVeterinaryRoute
   MarketingIndexRoute: typeof MarketingIndexRoute
+  MarketingAccusationsSlugRoute: typeof MarketingAccusationsSlugRoute
+  MarketingAccusationsIndexRoute: typeof MarketingAccusationsIndexRoute
 }
 
 const MarketingRouteChildren: MarketingRouteChildren = {
@@ -436,6 +478,8 @@ const MarketingRouteChildren: MarketingRouteChildren = {
   MarketingSocialWorkRoute: MarketingSocialWorkRoute,
   MarketingVeterinaryRoute: MarketingVeterinaryRoute,
   MarketingIndexRoute: MarketingIndexRoute,
+  MarketingAccusationsSlugRoute: MarketingAccusationsSlugRoute,
+  MarketingAccusationsIndexRoute: MarketingAccusationsIndexRoute,
 }
 
 const MarketingRouteWithChildren = MarketingRoute._addFileChildren(
