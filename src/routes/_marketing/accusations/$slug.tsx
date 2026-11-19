@@ -80,7 +80,7 @@ function AccusationPage() {
       ))}
 
       <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
-        <img src={img} alt={a.imageAlt} className="absolute inset-0 w-full h-full object-cover object-[50%_30%]" />
+        <img src={img} alt={a.imageAlt} className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: a.imagePos ?? "50% 30%" }} />
         <div className="absolute inset-0 bg-dark-blue/60" />
         <div className="relative z-10 max-w-3xl px-6 space-y-3">
           <p className="text-sm font-semibold uppercase tracking-wider text-gold [text-shadow:0_1px_6px_rgba(0,0,0,0.8)]">Nevada License Defense · {a.nav}</p>

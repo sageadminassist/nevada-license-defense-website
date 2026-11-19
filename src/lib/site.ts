@@ -111,6 +111,7 @@ export const ALL_BOARDS = [
 export const RESOURCES = [
   { to: "/discipline-process", label: "Board Discipline Process", nrs: "Step by step" },
   { to: "/accusations", label: "All Accusations", nrs: "Guides" },
+  { to: "/videos", label: "Video Library", nrs: "26 videos" },
   { to: "/faq", label: "FAQ", nrs: "" },
   { to: "/contact", label: "Free Consultation", nrs: "" },
 ] as const;

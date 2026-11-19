@@ -18,6 +18,8 @@ export default defineConfig({
         { path: "/faq" },
         { path: "/discipline-process" },
         { path: "/search" },
+        { path: "/about" },
+        { path: "/videos" },
         { path: "/accusations" },
         { path: "/accusations/marijuana" },
         { path: "/accusations/employer-termination" },

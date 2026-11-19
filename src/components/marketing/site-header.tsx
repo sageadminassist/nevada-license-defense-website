@@ -116,6 +116,9 @@ export function SiteHeader() {
                   )}
                 </div>
               ))}
+              <a href="/about" onClick={() => setMobileOpen(false)} className="block py-3 text-gray-700 hover:text-dark-blue font-bold uppercase text-sm text-center">
+                About
+              </a>
               <a href="/contact" onClick={() => setMobileOpen(false)} className="block py-3 text-gray-700 hover:text-dark-blue font-bold uppercase text-sm text-center">
                 Contact
               </a>
@@ -190,6 +193,11 @@ export function SiteHeader() {
                 )}
               </div>
             ))}
+
+            <a href="/about" className="text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 relative group uppercase text-sm whitespace-nowrap flex-shrink-0">
+              About
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold group-hover:w-full transition-all duration-300" />
+            </a>
 
             <a href="/contact" className="text-gray-700 hover:text-dark-blue font-bold transition-colors duration-300 relative group uppercase text-sm whitespace-nowrap flex-shrink-0">
               Contact

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MarketingRouteImport } from './routes/_marketing'
 import { Route as MarketingIndexRouteImport } from './routes/_marketing/index'
+import { Route as MarketingAboutRouteImport } from './routes/_marketing/about'
 import { Route as MarketingChiropracticRouteImport } from './routes/_marketing/chiropractic'
 import { Route as MarketingContactRouteImport } from './routes/_marketing/contact'
 import { Route as MarketingDentalRouteImport } from './routes/_marketing/dental'
@@ -29,6 +30,7 @@ import { Route as MarketingRespiratoryRouteImport } from './routes/_marketing/re
 import { Route as MarketingSearchRouteImport } from './routes/_marketing/search'
 import { Route as MarketingSocialWorkRouteImport } from './routes/_marketing/social-work'
 import { Route as MarketingVeterinaryRouteImport } from './routes/_marketing/veterinary'
+import { Route as MarketingVideosRouteImport } from './routes/_marketing/videos'
 import { Route as MarketingAccusationsIndexRouteImport } from './routes/_marketing/accusations/index'
 import { Route as MarketingAccusationsSlugRouteImport } from './routes/_marketing/accusations/$slug'
 
@@ -39,6 +41,11 @@ const MarketingRoute = MarketingRouteImport.update({
 const MarketingIndexRoute = MarketingIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingAboutRoute = MarketingAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => MarketingRoute,
 } as any)
 const MarketingChiropracticRoute = MarketingChiropracticRouteImport.update({
@@ -135,6 +142,11 @@ const MarketingVeterinaryRoute = MarketingVeterinaryRouteImport.update({
   path: '/veterinary',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingVideosRoute = MarketingVideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => MarketingRoute,
+} as any)
 const MarketingAccusationsIndexRoute =
   MarketingAccusationsIndexRouteImport.update({
     id: '/accusations/',
@@ -150,6 +162,7 @@ const MarketingAccusationsSlugRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof MarketingIndexRoute
+  '/about': typeof MarketingAboutRoute
   '/chiropractic': typeof MarketingChiropracticRoute
   '/contact': typeof MarketingContactRoute
   '/dental': typeof MarketingDentalRoute
@@ -168,10 +181,12 @@ export interface FileRoutesByFullPath {
   '/search': typeof MarketingSearchRoute
   '/social-work': typeof MarketingSocialWorkRoute
   '/veterinary': typeof MarketingVeterinaryRoute
+  '/videos': typeof MarketingVideosRoute
   '/accusations/$slug': typeof MarketingAccusationsSlugRoute
   '/accusations/': typeof MarketingAccusationsIndexRoute
 }
 export interface FileRoutesByTo {
+  '/about': typeof MarketingAboutRoute
   '/chiropractic': typeof MarketingChiropracticRoute
   '/contact': typeof MarketingContactRoute
   '/dental': typeof MarketingDentalRoute
@@ -190,6 +205,7 @@ export interface FileRoutesByTo {
   '/search': typeof MarketingSearchRoute
   '/social-work': typeof MarketingSocialWorkRoute
   '/veterinary': typeof MarketingVeterinaryRoute
+  '/videos': typeof MarketingVideosRoute
   '/': typeof MarketingIndexRoute
   '/accusations/$slug': typeof MarketingAccusationsSlugRoute
   '/accusations': typeof MarketingAccusationsIndexRoute
@@ -197,6 +213,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_marketing': typeof MarketingRouteWithChildren
+  '/_marketing/about': typeof MarketingAboutRoute
   '/_marketing/chiropractic': typeof MarketingChiropracticRoute
   '/_marketing/contact': typeof MarketingContactRoute
   '/_marketing/dental': typeof MarketingDentalRoute
@@ -215,6 +232,7 @@ export interface FileRoutesById {
   '/_marketing/search': typeof MarketingSearchRoute
   '/_marketing/social-work': typeof MarketingSocialWorkRoute
   '/_marketing/veterinary': typeof MarketingVeterinaryRoute
+  '/_marketing/videos': typeof MarketingVideosRoute
   '/_marketing/': typeof MarketingIndexRoute
   '/_marketing/accusations/$slug': typeof MarketingAccusationsSlugRoute
   '/_marketing/accusations/': typeof MarketingAccusationsIndexRoute
@@ -223,6 +241,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/chiropractic'
     | '/contact'
     | '/dental'
@@ -241,10 +260,12 @@ export interface FileRouteTypes {
     | '/search'
     | '/social-work'
     | '/veterinary'
+    | '/videos'
     | '/accusations/$slug'
     | '/accusations/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/about'
     | '/chiropractic'
     | '/contact'
     | '/dental'
@@ -263,12 +284,14 @@ export interface FileRouteTypes {
     | '/search'
     | '/social-work'
     | '/veterinary'
+    | '/videos'
     | '/'
     | '/accusations/$slug'
     | '/accusations'
   id:
     | '__root__'
     | '/_marketing'
+    | '/_marketing/about'
     | '/_marketing/chiropractic'
     | '/_marketing/contact'
     | '/_marketing/dental'
@@ -287,6 +310,7 @@ export interface FileRouteTypes {
     | '/_marketing/search'
     | '/_marketing/social-work'
     | '/_marketing/veterinary'
+    | '/_marketing/videos'
     | '/_marketing/'
     | '/_marketing/accusations/$slug'
     | '/_marketing/accusations/'
@@ -310,6 +334,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof MarketingIndexRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/_marketing/about': {
+      id: '/_marketing/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof MarketingAboutRouteImport
       parentRoute: typeof MarketingRoute
     }
     '/_marketing/chiropractic': {
@@ -438,6 +469,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingVeterinaryRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/videos': {
+      id: '/_marketing/videos'
+      path: '/videos'
+      fullPath: '/videos'
+      preLoaderRoute: typeof MarketingVideosRouteImport
+      parentRoute: typeof MarketingRoute
+    }
     '/_marketing/accusations/': {
       id: '/_marketing/accusations/'
       path: '/accusations'
@@ -456,6 +494,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface MarketingRouteChildren {
+  MarketingAboutRoute: typeof MarketingAboutRoute
   MarketingChiropracticRoute: typeof MarketingChiropracticRoute
   MarketingContactRoute: typeof MarketingContactRoute
   MarketingDentalRoute: typeof MarketingDentalRoute
@@ -474,12 +513,14 @@ interface MarketingRouteChildren {
   MarketingSearchRoute: typeof MarketingSearchRoute
   MarketingSocialWorkRoute: typeof MarketingSocialWorkRoute
   MarketingVeterinaryRoute: typeof MarketingVeterinaryRoute
+  MarketingVideosRoute: typeof MarketingVideosRoute
   MarketingIndexRoute: typeof MarketingIndexRoute
   MarketingAccusationsSlugRoute: typeof MarketingAccusationsSlugRoute
   MarketingAccusationsIndexRoute: typeof MarketingAccusationsIndexRoute
 }
 
 const MarketingRouteChildren: MarketingRouteChildren = {
+  MarketingAboutRoute: MarketingAboutRoute,
   MarketingChiropracticRoute: MarketingChiropracticRoute,
   MarketingContactRoute: MarketingContactRoute,
   MarketingDentalRoute: MarketingDentalRoute,
@@ -498,6 +539,7 @@ const MarketingRouteChildren: MarketingRouteChildren = {
   MarketingSearchRoute: MarketingSearchRoute,
   MarketingSocialWorkRoute: MarketingSocialWorkRoute,
   MarketingVeterinaryRoute: MarketingVeterinaryRoute,
+  MarketingVideosRoute: MarketingVideosRoute,
   MarketingIndexRoute: MarketingIndexRoute,
   MarketingAccusationsSlugRoute: MarketingAccusationsSlugRoute,
   MarketingAccusationsIndexRoute: MarketingAccusationsIndexRoute,

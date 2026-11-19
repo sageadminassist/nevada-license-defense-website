@@ -14,6 +14,7 @@ export type Accusation = {
   title: string; // <title>
   description: string; // meta description
   image: string; // IMAGES key
+  imagePos?: string; // CSS object-position for the header
   imageAlt: string;
   answer: string; // quick answer paragraph
   forms: string[]; // how the allegation shows up
@@ -33,8 +34,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "Drug Diversion Defense for Nevada Licensed Professionals",
     title: "Nevada Drug Diversion License Defense | Nurses, Pharmacists, Physicians",
     description: "Accused of diverting controlled substances? Craig K. Perry defends Nevada nurses, pharmacists, and physicians in board drug diversion investigations. Free consultation — 702.893.4777.",
-    image: "pharmacistShelves",
-    imageAlt: "Pharmacist organizing medication on pharmacy shelves",
+    image: "nursePillsDiversion",
+    imageAlt: "Nurse in scrubs pouring pills from a prescription bottle into her hand",
+    imagePos: "70% 8%",
     answer: "Drug diversion allegations — taking, misusing, or failing to account for controlled substances — are among the most serious complaints a Nevada licensing board handles. They often start with an automated dispensing cabinet report, a waste discrepancy, or a pharmacy audit, and can lead to summary suspension, mandatory evaluation, and criminal referral. Many diversion cases turn out to be documentation or workflow problems, not theft. Talk to a license defense attorney before you answer any questions from your employer, the board, or law enforcement.",
     forms: [
       "Pyxis / Omnicell or other dispensing-cabinet discrepancies",
