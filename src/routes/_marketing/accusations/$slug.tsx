@@ -4,6 +4,7 @@ import { ACCUSATION_BY_SLUG, ACCUSATIONS } from "@/lib/accusations";
 import { BOARDS, LAST_UPDATED } from "@/lib/boards";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
+import { VideoEmbed } from "@/components/marketing/video-embed";
 
 const BASE = "https://nevadalicensedefense.com";
 
@@ -140,6 +141,13 @@ function AccusationPage() {
           </div>
         </div>
       </Section>
+
+      {a.video ? (
+        <Section>
+          <SectionTitle>Craig Explains</SectionTitle>
+          <VideoEmbed video={a.video} description={a.description} />
+        </Section>
+      ) : null}
 
       <Section>
         <SectionTitle>Licensing Boards That Handle This</SectionTitle>

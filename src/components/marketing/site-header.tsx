@@ -2,15 +2,15 @@
 
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
-import { ACCUSATIONS } from "@/lib/accusations";
+import { ACCUSATIONS, GROUPS } from "@/lib/accusations";
 import { IMAGES } from "@/lib/images";
 import { ALL_BOARDS, RESOURCES, SITE } from "@/lib/site";
 
-type Item = { to: string; label: string; note?: string };
+type Item = { to: string; label: string; note?: string; group?: string };
 
-const MENUS: { id: string; label: string; items: Item[]; columns: 1 | 2; footer?: Item }[] = [
+const MENUS: { id: string; label: string; items: Item[]; columns: 1 | 2 | "grouped"; footer?: Item }[] = [
   {
     id: "boards",
     label: "Licensing Boards",
@@ -20,8 +20,8 @@ const MENUS: { id: string; label: string; items: Item[]; columns: 1 | 2; footer?
   {
     id: "accusations",
     label: "Accusations",
-    columns: 1,
-    items: ACCUSATIONS.map((a) => ({ to: `/accusations/${a.slug}`, label: a.nav })),
+    columns: "grouped",
+    items: [...ACCUSATIONS].sort((x, y) => GROUPS.indexOf(x.group) - GROUPS.indexOf(y.group)).map((a) => ({ to: `/accusations/${a.slug}`, label: a.nav, group: a.group })),
     footer: { to: "/accusations", label: "View all accusations →" },
   },
   {
@@ -102,10 +102,13 @@ export function SiteHeader() {
                   </button>
                   {activeSubmenu === m.id && (
                     <div className="pb-2">
-                      {[...m.items, ...(m.footer ? [m.footer] : [])].map((it) => (
-                        <a key={it.to} href={it.to} onClick={() => setMobileOpen(false)} className="block py-2 text-gray-600 hover:text-dark-blue font-semibold text-sm text-center">
-                          {it.label}
-                        </a>
+                      {[...m.items, ...(m.footer ? [m.footer] : [])].map((it, i, arr) => (
+                        <Fragment key={it.to}>
+                          {it.group && it.group !== arr[i - 1]?.group ? <p className="pt-3 pb-1 text-center text-[11px] font-bold uppercase tracking-wider text-gold-dark">{it.group}</p> : null}
+                          <a href={it.to} onClick={() => setMobileOpen(false)} className="block py-2 text-gray-600 hover:text-dark-blue font-semibold text-sm text-center">
+                            {it.label}
+                          </a>
+                        </Fragment>
                       ))}
                     </div>
                   )}
@@ -138,7 +141,28 @@ export function SiteHeader() {
                   {m.label}
                   <Chevron open={activeSubmenu === m.id} />
                 </button>
-                {activeSubmenu === m.id && (
+                {activeSubmenu === m.id && m.columns === "grouped" && (
+                  <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-[760px] bg-white rounded-lg shadow-xl border border-gray-200 p-5 z-50 animate-scale-in">
+                    <div className="columns-3 gap-6">
+                      {GROUPS.map((g) => (
+                        <div key={g} className="break-inside-avoid mb-4">
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-gold-dark mb-1.5 px-2">{g}</p>
+                          {m.items.filter((it) => it.group === g).map((it) => (
+                            <a key={it.to} href={it.to} onClick={() => setActiveSubmenu(null)} className="block rounded px-2 py-1.5 text-sm font-semibold text-gray-700 hover:bg-gold/10 hover:text-dark-blue transition-colors">
+                              {it.label}
+                            </a>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                    {m.footer ? (
+                      <a href={m.footer.to} onClick={() => setActiveSubmenu(null)} className="block border-t border-gray-100 pt-3 px-2 text-sm font-bold text-gold-dark hover:text-dark-blue">
+                        {m.footer.label}
+                      </a>
+                    ) : null}
+                  </div>
+                )}
+                {activeSubmenu === m.id && m.columns !== "grouped" && (
                   <div
                     className={`absolute top-full mt-3 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50 animate-scale-in ${
                       m.columns === 2 ? "left-0 w-[620px] grid grid-cols-2 grid-rows-7 grid-flow-col" : "left-0 w-80"

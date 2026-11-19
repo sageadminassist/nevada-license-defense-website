@@ -39,6 +39,8 @@ export const IMAGES = {
   craigMeetingClient4: "/images/craig-meeting-client-4.jpg",
   craigCourtroom: "/images/craig-courtroom-hearing.jpg",
   craigReinstatement: "/images/craig-meeting-reinstatement.jpg",
+  craigNursingBoardHearing: "/images/craig-nursing-board-hearing.jpg",
+  craigAdvisingCall: "/images/craig-advising-call.jpg",
   craigDefending: "/images/craig_defending_nurse_in_court.png",
 
   // Board seals

@@ -3,6 +3,7 @@ import { FaqList, Section, SectionTitle } from "@/components/marketing/sections"
 import { LAST_UPDATED } from "@/lib/boards";
 import { IMAGES } from "@/lib/images";
 import { MORE_BOARDS, SITE } from "@/lib/site";
+import { VideoEmbed } from "@/components/marketing/video-embed";
 
 const URL = "https://nevadalicensedefense.com/discipline-process";
 const TITLE = "How Nevada Licensing Board Discipline Works: Step by Step";
@@ -128,6 +129,11 @@ function GuidePage() {
       </Section>
 
       <Section variant="muted">
+        <SectionTitle>Craig Explains the Complaint Process</SectionTitle>
+        <VideoEmbed video={{ id: "wL8Z3KfIc1A", title: "The Complaint Process - Navigating Nursing Challenges with LV Nurse Attorney", uploadDate: "2023-09-30T17:33:33-07:00", seconds: 330 }} description="Attorney Craig K. Perry explains how a Nevada State Board of Nursing complaint moves from investigation to resolution." />
+      </Section>
+
+      <Section >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
           <img src={IMAGES.craigDefending} alt="Attorney Craig K. Perry defending a licensed professional at a hearing" loading="lazy" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
@@ -145,7 +151,7 @@ function GuidePage() {
         </div>
       </Section>
 
-      <Section>
+      <Section variant="muted">
         <SectionTitle>Board-Specific Guides</SectionTitle>
         <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">The process above applies across Nevada's licensing boards. Each board has its own statute, regulations, and common complaints:</p>
         <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
@@ -162,7 +168,7 @@ function GuidePage() {
         </div>
       </Section>
 
-      <Section variant="muted">
+      <Section>
         <SectionTitle>Process FAQ</SectionTitle>
         <div className="max-w-3xl mx-auto">
           <FaqList items={FAQS} />

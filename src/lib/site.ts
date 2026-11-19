@@ -46,7 +46,7 @@ export const NLD_LD = {
       "Nevada State Board of Medical Examiners",
       "Nevada licensing board disciplinary hearings",
     ],
-    sameAs: ["https://craigperry.com", "https://lvnurseattorney.com"],
+    sameAs: ["https://craigperry.com", "https://lvnurseattorney.com", "https://www.youtube.com/@lvnurseattorney"],
   },
   address: {
     "@type": "PostalAddress",
