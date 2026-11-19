@@ -29,6 +29,7 @@ export const IMAGES = {
   // Craig
   craig: "/images/craig_blue_arms_crossed.jpg",
   nursePillsDiversion: "/images/nurse-pills-drug-diversion.jpg",
+  prescriptionBottles: "/images/prescription-bottles-doctor-writing.jpg",
   doctorWatchingLaptop: "/images/doctor-watching-laptop.jpg",
   courtroomInterior: "/images/courtroom-interior.jpg",
   craigContact: "/images/craig-perry-contact.jpg",

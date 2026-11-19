@@ -114,8 +114,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "Overprescribing & Controlled-Substance Complaints in Nevada",
     title: "Nevada Overprescribing & Controlled Substance License Defense | Physicians, APRNs, PAs",
     description: "Physicians, APRNs, PAs, and dentists facing Nevada board complaints for opioid or controlled-substance prescribing. Craig K. Perry defends prescribers statewide. 702.893.4777.",
-    image: "doctorWriting",
-    imageAlt: "Physician writing a prescription",
+    image: "prescriptionBottles",
+    imageAlt: "Prescription bottles and a stethoscope on a desk while a physician writes a prescription",
+    imagePos: "50% 65%",
     answer: "Nevada prescribers — physicians, DOs, PAs, APRNs, dentists, and others — can face board investigation for opioid and controlled-substance prescribing based on Prescription Monitoring Program (PMP) data, pharmacy reports, patient overdoses, or DEA activity. Boards look at whether you followed Nevada's prescribing laws and regulations, checked the PMP, documented medical need, and used appropriate patient agreements. Expert review of your charts usually decides these cases, so the records and your response must be handled carefully from the start.",
     forms: [
       "High-dose or long-term opioid prescribing flagged by PMP data",
