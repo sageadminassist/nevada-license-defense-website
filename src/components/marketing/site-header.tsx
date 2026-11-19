@@ -7,6 +7,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { ACCUSATIONS, GROUPS } from "@/lib/accusations";
 import { IMAGES } from "@/lib/images";
 import { ALL_BOARDS, RESOURCES, SITE } from "@/lib/site";
+import { SiteSearch } from "@/components/marketing/site-search";
 
 type Item = { to: string; label: string; note?: string; group?: string };
 
@@ -87,6 +88,7 @@ export function SiteHeader() {
           {/* Mobile nav */}
           {mobileOpen && (
             <div className="lg:hidden py-4 border-t border-gray-200 max-h-[75vh] overflow-y-auto">
+              <SiteSearch variant="bar" />
               <a href={SITE.phoneHref} className="flex items-center justify-center gap-2 bg-dark-blue text-white px-6 py-3 rounded-lg font-bold shadow-md mb-4 mx-4">
                 <Phone className="w-5 h-5" />
                 <span>{SITE.phoneDisplay}</span>
@@ -202,6 +204,8 @@ export function SiteHeader() {
             <a href={SITE.mycaseUrl} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 bg-gold text-dark-blue px-4 py-2 rounded-lg font-bold text-sm hover:bg-gold-dark transition-colors duration-300 whitespace-nowrap">
               Login
             </a>
+
+            <SiteSearch />
           </div>
         </div>
       </div>

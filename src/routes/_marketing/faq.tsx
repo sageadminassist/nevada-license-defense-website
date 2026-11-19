@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { FaqList, Section, SectionTitle } from "@/components/marketing/sections";
+import { useMemo, useState } from "react";
+import { Search, X } from "lucide-react";
+
+import { Section, SectionTitle } from "@/components/marketing/sections";
 import { CraigBlock } from "@/components/marketing/board-ai";
 import { IMAGES } from "@/lib/images";
+import { FAQ_COUNT, FAQ_GROUPS } from "@/lib/faqs";
+import { slugify } from "@/lib/search-index";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/_marketing/faq")({
@@ -12,7 +17,7 @@ export const Route = createFileRoute("/_marketing/faq")({
       {
         name: "description",
         content:
-          "Frequently asked questions about Nevada professional license defense — nursing board complaints, medical board investigations, and working with Craig K. Perry & Associates.",
+          "Over 100 answers about Nevada professional license defense — board investigations, drug diversion, DUI, probation, reinstatement, and every Nevada health licensing board. Searchable FAQ by Craig K. Perry & Associates.",
       },
       { property: "og:title", content: "FAQ | Nevada License Defense | Craig K. Perry" },
       {
@@ -27,42 +32,109 @@ export const Route = createFileRoute("/_marketing/faq")({
   component: FaqRoute,
 });
 
-const FAQS = [
-  ["When should I contact an attorney about a board complaint?", "As soon as possible — ideally before you respond to the board at all. You always have more options the earlier you start, and the initial consultation with Craig K. Perry is free. If you've received a Notice of Investigation, the board typically expects a response within 14 days."],
-  ["Do I have to self-report to my licensing board?", "It depends on your license type, the nature of the issue, and the specific circumstances. Self-reporting can carry real consequences and should not be done without first consulting an attorney. We can help you determine your obligations and how to respond strategically."],
-  ["What happens at a disciplinary hearing?", "A disciplinary hearing is an administrative proceeding before your licensing board. You have the right to be represented by an attorney, to present evidence, and to cross-examine witnesses. The outcome can range from a reprimand or fine to license suspension or revocation. Having experienced legal representation significantly improves your odds."],
-  ["Can I keep practicing while under investigation?", "Usually yes — a license investigation does not automatically suspend your license. However, the board can seek an emergency suspension in serious cases. Contact us immediately if you receive any communication from your licensing board."],
-  ["How long does a board investigation take?", "It varies widely — from a few months to over a year, depending on the complexity of the case and the board involved. Some matters can be resolved quickly through informal conferences; others proceed to formal hearings. We'll give you a realistic picture of your timeline at the outset."],
-  ["What does it cost to hire Craig K. Perry?", "Fees vary by case complexity. The initial consultation is always free. We'll discuss fee structures at that consultation — including whether a flat fee, retainer, or other arrangement makes sense for your situation."],
-  ["My malpractice insurer assigned me an attorney — do I still need my own?", "It depends. Malpractice defense attorneys represent your insurer's interests, which may not align perfectly with yours — particularly when it comes to your license. A separate attorney focused on your license defense can be critical, especially if the board investigation parallels a civil case."],
-  ["Can a revoked or surrendered license be reinstated?", "Often yes. After a specified period (which varies by board and by the nature of the original action), you may petition for reinstatement. We can help you build the strongest possible case for returning to practice."],
-] as const;
-
 const faqLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: FAQS.map(([q, a]) => ({
+  mainEntity: FAQ_GROUPS.flatMap((g) => g.items).map(({ q, a }) => ({
     "@type": "Question",
     name: q,
     acceptedAnswer: { "@type": "Answer", text: a },
   })),
 };
 
-function FaqRoute() {
+function Highlight({ text, terms }: { text: string; terms: string[] }) {
+  if (!terms.length) return <>{text}</>;
+  const re = new RegExp(`(${terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "gi");
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
+      {text.split(re).map((part, i) =>
+        i % 2 === 1 ? <mark key={i} className="bg-gold/30 text-inherit rounded px-0.5">{part}</mark> : part,
+      )}
+    </>
+  );
+}
+
+function FaqRoute() {
+  const [query, setQuery] = useState("");
+  const terms = useMemo(() => query.toLowerCase().split(/\s+/).filter((t) => t.length > 1), [query]);
+  const groups = useMemo(() => {
+    if (!terms.length) return FAQ_GROUPS;
+    return FAQ_GROUPS.map((g) => ({
+      ...g,
+      items: g.items.filter((i) => {
+        const hay = `${i.q} ${i.a}`.toLowerCase();
+        return terms.every((t) => hay.includes(t));
+      }),
+    })).filter((g) => g.items.length);
+  }, [terms]);
+  const shown = groups.reduce((n, g) => n + g.items.length, 0);
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <Section>
         <SectionTitle as="h1">Frequently Asked Questions</SectionTitle>
-        <p className="mb-10 max-w-3xl mx-auto text-lg text-gray-600 text-center">
-          Common questions about Nevada professional license defense and working with Craig K.
-          Perry &amp; Associates.
+        <p className="mb-8 max-w-3xl mx-auto text-lg text-gray-600 text-center">
+          {FAQ_COUNT} answers about Nevada professional license defense — from your first board letter to hearings,
+          probation, and reinstatement.
         </p>
-        <div className="max-w-3xl mx-auto">
-          <FaqList items={FAQS} />
+
+        <div className="max-w-3xl mx-auto sticky top-[72px] z-20 bg-white/95 backdrop-blur py-3">
+          <label className="relative block">
+            <span className="sr-only">Search the FAQ</span>
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search questions — e.g. DUI, drug test, probation, self-report"
+              className="w-full rounded-full border border-gray-300 bg-white py-3.5 pl-12 pr-12 text-base shadow-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40"
+            />
+            {query ? (
+              <button type="button" onClick={() => setQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-dark-blue" aria-label="Clear search">
+                <X className="h-5 w-5" />
+              </button>
+            ) : null}
+          </label>
+          <p className="mt-2 text-center text-sm text-gray-500">
+            {terms.length ? `${shown} of ${FAQ_COUNT} questions match` : (
+              <span className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+                {FAQ_GROUPS.map((g) => (
+                  <a key={g.id} href={`#${g.id}`} className="font-semibold text-dark-blue hover:text-gold">{g.title}</a>
+                ))}
+              </span>
+            )}
+          </p>
+        </div>
+
+        <div className="max-w-3xl mx-auto mt-8 space-y-12">
+          {groups.map((g) => (
+            <div key={g.id} id={g.id} className="scroll-mt-40">
+              <h2 className="text-2xl font-bold text-dark-blue mb-4 border-b-2 border-gold pb-2">{g.title}</h2>
+              <div className="divide-y divide-gray-200">
+                {g.items.map((i) => (
+                  <details key={i.q} id={slugify(i.q)} open={terms.length > 0} className="group scroll-mt-40 py-4">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-lg font-bold text-dark-blue hover:text-gold">
+                      <span><Highlight text={i.q} terms={terms} /></span>
+                      <span className="mt-1 flex-none text-gold transition-transform group-open:rotate-45 text-2xl leading-none">+</span>
+                    </summary>
+                    <p className="mt-3 text-gray-700 leading-relaxed"><Highlight text={i.a} terms={terms} /></p>
+                    {i.source ? (
+                      <a href={i.source.to} className="mt-2 inline-block text-sm font-semibold text-gold-dark hover:text-dark-blue">
+                        More on {i.source.label} →
+                      </a>
+                    ) : null}
+                  </details>
+                ))}
+              </div>
+            </div>
+          ))}
+          {!shown ? (
+            <div className="text-center text-gray-600 py-10">
+              <p className="text-lg">No questions match “{query}”.</p>
+              <p className="mt-2">Try another word — or call <a href={SITE.phoneHref} className="font-semibold text-dark-blue">{SITE.phoneDisplay}</a> and ask Craig directly.</p>
+            </div>
+          ) : null}
         </div>
       </Section>
 

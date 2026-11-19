@@ -17,6 +17,7 @@ export default defineConfig({
         { path: "/contact" },
         { path: "/faq" },
         { path: "/discipline-process" },
+        { path: "/search" },
         { path: "/accusations" },
         { path: "/accusations/marijuana" },
         { path: "/accusations/employer-termination" },

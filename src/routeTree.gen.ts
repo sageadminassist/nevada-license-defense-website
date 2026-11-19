@@ -26,6 +26,7 @@ import { Route as MarketingPhysicalTherapyRouteImport } from './routes/_marketin
 import { Route as MarketingPsychologyRouteImport } from './routes/_marketing/psychology'
 import { Route as MarketingRadiologyRouteImport } from './routes/_marketing/radiology'
 import { Route as MarketingRespiratoryRouteImport } from './routes/_marketing/respiratory'
+import { Route as MarketingSearchRouteImport } from './routes/_marketing/search'
 import { Route as MarketingSocialWorkRouteImport } from './routes/_marketing/social-work'
 import { Route as MarketingVeterinaryRouteImport } from './routes/_marketing/veterinary'
 import { Route as MarketingAccusationsIndexRouteImport } from './routes/_marketing/accusations/index'
@@ -119,6 +120,11 @@ const MarketingRespiratoryRoute = MarketingRespiratoryRouteImport.update({
   path: '/respiratory',
   getParentRoute: () => MarketingRoute,
 } as any)
+const MarketingSearchRoute = MarketingSearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => MarketingRoute,
+} as any)
 const MarketingSocialWorkRoute = MarketingSocialWorkRouteImport.update({
   id: '/social-work',
   path: '/social-work',
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/psychology': typeof MarketingPsychologyRoute
   '/radiology': typeof MarketingRadiologyRoute
   '/respiratory': typeof MarketingRespiratoryRoute
+  '/search': typeof MarketingSearchRoute
   '/social-work': typeof MarketingSocialWorkRoute
   '/veterinary': typeof MarketingVeterinaryRoute
   '/accusations/$slug': typeof MarketingAccusationsSlugRoute
@@ -180,6 +187,7 @@ export interface FileRoutesByTo {
   '/psychology': typeof MarketingPsychologyRoute
   '/radiology': typeof MarketingRadiologyRoute
   '/respiratory': typeof MarketingRespiratoryRoute
+  '/search': typeof MarketingSearchRoute
   '/social-work': typeof MarketingSocialWorkRoute
   '/veterinary': typeof MarketingVeterinaryRoute
   '/': typeof MarketingIndexRoute
@@ -204,6 +212,7 @@ export interface FileRoutesById {
   '/_marketing/psychology': typeof MarketingPsychologyRoute
   '/_marketing/radiology': typeof MarketingRadiologyRoute
   '/_marketing/respiratory': typeof MarketingRespiratoryRoute
+  '/_marketing/search': typeof MarketingSearchRoute
   '/_marketing/social-work': typeof MarketingSocialWorkRoute
   '/_marketing/veterinary': typeof MarketingVeterinaryRoute
   '/_marketing/': typeof MarketingIndexRoute
@@ -229,6 +238,7 @@ export interface FileRouteTypes {
     | '/psychology'
     | '/radiology'
     | '/respiratory'
+    | '/search'
     | '/social-work'
     | '/veterinary'
     | '/accusations/$slug'
@@ -250,6 +260,7 @@ export interface FileRouteTypes {
     | '/psychology'
     | '/radiology'
     | '/respiratory'
+    | '/search'
     | '/social-work'
     | '/veterinary'
     | '/'
@@ -273,6 +284,7 @@ export interface FileRouteTypes {
     | '/_marketing/psychology'
     | '/_marketing/radiology'
     | '/_marketing/respiratory'
+    | '/_marketing/search'
     | '/_marketing/social-work'
     | '/_marketing/veterinary'
     | '/_marketing/'
@@ -405,6 +417,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketingRespiratoryRouteImport
       parentRoute: typeof MarketingRoute
     }
+    '/_marketing/search': {
+      id: '/_marketing/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof MarketingSearchRouteImport
+      parentRoute: typeof MarketingRoute
+    }
     '/_marketing/social-work': {
       id: '/_marketing/social-work'
       path: '/social-work'
@@ -452,6 +471,7 @@ interface MarketingRouteChildren {
   MarketingPsychologyRoute: typeof MarketingPsychologyRoute
   MarketingRadiologyRoute: typeof MarketingRadiologyRoute
   MarketingRespiratoryRoute: typeof MarketingRespiratoryRoute
+  MarketingSearchRoute: typeof MarketingSearchRoute
   MarketingSocialWorkRoute: typeof MarketingSocialWorkRoute
   MarketingVeterinaryRoute: typeof MarketingVeterinaryRoute
   MarketingIndexRoute: typeof MarketingIndexRoute
@@ -475,6 +495,7 @@ const MarketingRouteChildren: MarketingRouteChildren = {
   MarketingPsychologyRoute: MarketingPsychologyRoute,
   MarketingRadiologyRoute: MarketingRadiologyRoute,
   MarketingRespiratoryRoute: MarketingRespiratoryRoute,
+  MarketingSearchRoute: MarketingSearchRoute,
   MarketingSocialWorkRoute: MarketingSocialWorkRoute,
   MarketingVeterinaryRoute: MarketingVeterinaryRoute,
   MarketingIndexRoute: MarketingIndexRoute,

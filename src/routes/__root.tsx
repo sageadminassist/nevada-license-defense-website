@@ -111,6 +111,20 @@ function RootDocument() {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(NLD_LD) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Nevada License Defense",
+            url: "https://nevadalicensedefense.com",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: { "@type": "EntryPoint", urlTemplate: "https://nevadalicensedefense.com/search?q={search_term_string}" },
+              "query-input": "required name=search_term_string",
+            },
+          }) }}
+        />
       </head>
       <body>
         <Outlet />

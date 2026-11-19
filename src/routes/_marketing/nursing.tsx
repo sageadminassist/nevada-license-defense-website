@@ -8,6 +8,7 @@ import {
   ServiceGrid,
 } from "@/components/marketing/sections";
 import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
+import { NURSING_FAQS } from "@/lib/faqs";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -65,13 +66,6 @@ const SERVICES = [
   ["Employment Protection", "Guidance to help prevent termination and address workplace allegations of wrongdoing."],
 ] as const;
 
-const FAQS = [
-  ["When should I contact an attorney?", "As soon as possible. You always have more options the earlier you start — and the initial consultation is free. If you've received a Notice of Investigation, the NSBN typically expects a response within 14 days."],
-  ["Do I have to report an arrest to the Board?", "Not always — arrests don't automatically need to be reported, but convictions must be handled carefully. Talk with an attorney before disclosing anything."],
-  ["My employer told me to self-report. Should I?", "Self-reporting deserves careful thought — it can carry real consequences. Discuss your situation with experienced counsel before you act."],
-  ["Someone from the Board called me — should I talk to them?", "Be careful. Anything you say can be used against you. Consult an attorney before responding or calling back."],
-  ["Can I get a revoked license back?", "Often yes. After a period of time, nurses whose licenses were revoked or surrendered may pursue reinstatement. We can help you build a plan to return to practice."],
-] as const;
 
 function NursingRoute() {
   return (
@@ -208,7 +202,7 @@ function NursingRoute() {
         </div>
       </Section>
 
-      <BoardFaq slug="nursing" title="Nevada Board of Nursing Defense" faqs={FAQS} />
+      <BoardFaq slug="nursing" title="Nevada Board of Nursing Defense" faqs={NURSING_FAQS} />
 
       <section className="border-t border-gray-200 bg-white py-8">
         <div className="section-container">
