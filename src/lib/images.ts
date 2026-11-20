@@ -33,6 +33,7 @@ export const IMAGES = {
   syringesSurgicalTray: "/images/syringes-surgical-tray.jpg",
   shotsPouredBar: "/images/shots-poured-bar.jpg",
   skullGlasses: "/images/skull-glasses.jpg",
+  brandyFlaskCigar: "/images/brandy-flask-cigar.jpg",
   prescriptionBottles: "/images/prescription-bottles-doctor-writing.jpg",
   doctorWatchingLaptop: "/images/doctor-watching-laptop.jpg",
   courtroomInterior: "/images/courtroom-interior.jpg",
