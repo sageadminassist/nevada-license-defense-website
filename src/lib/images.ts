@@ -34,6 +34,7 @@ export const IMAGES = {
   shotsPouredBar: "/images/shots-poured-bar.jpg",
   skullGlasses: "/images/skull-glasses.jpg",
   brandyFlaskCigar: "/images/brandy-flask-cigar.jpg",
+  manDrinkingWhiskey: "/images/man-drinking-whiskey.jpg",
   prescriptionBottles: "/images/prescription-bottles-doctor-writing.jpg",
   doctorWatchingLaptop: "/images/doctor-watching-laptop.jpg",
   courtroomInterior: "/images/courtroom-interior.jpg",
