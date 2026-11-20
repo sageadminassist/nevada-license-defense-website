@@ -32,6 +32,7 @@ export const IMAGES = {
   syringesBloodTubes: "/images/syringes-blood-tubes.jpg",
   syringesSurgicalTray: "/images/syringes-surgical-tray.jpg",
   shotsPouredBar: "/images/shots-poured-bar.jpg",
+  skullGlasses: "/images/skull-glasses.jpg",
   prescriptionBottles: "/images/prescription-bottles-doctor-writing.jpg",
   doctorWatchingLaptop: "/images/doctor-watching-laptop.jpg",
   courtroomInterior: "/images/courtroom-interior.jpg",
