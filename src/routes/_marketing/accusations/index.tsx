@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SectionTitle } from "@/components/marketing/sections";
 import { ACCUSATIONS, GROUPS } from "@/lib/accusations";
+import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
 const URL = "https://nevadalicensedefense.com/accusations";
@@ -25,6 +26,8 @@ const listLd = {
   itemListElement: ACCUSATIONS.map((a, i) => ({ "@type": "ListItem", position: i + 1, name: a.nav, url: `${URL}/${a.slug}` })),
 };
 
+const thumb = (key: string) => "/images/thumbs/" + IMAGES[key as keyof typeof IMAGES].split("/").pop()!.replace(/\.\w+$/, ".jpg");
+
 function AccusationsIndex() {
   return (
     <>
@@ -42,6 +45,9 @@ function AccusationsIndex() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {ACCUSATIONS.filter((a) => a.group === g).map((a) => (
                   <a key={a.slug} href={`/accusations/${a.slug}`} className="group rounded-lg border border-gray-200 border-t-4 border-t-gold bg-white shadow-sm hover:shadow-lg transition-shadow">
+                    <div className="overflow-hidden rounded-t-md">
+                      <img src={thumb(a.image)} alt={a.imageAlt} loading="lazy" className="h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105" style={{ objectPosition: a.imagePos ?? "50% 30%" }} />
+                    </div>
                     <div className="p-5">
                       <h3 className="text-lg font-bold text-dark-blue group-hover:text-gold transition-colors">{a.nav}</h3>
                       <p className="mt-1 text-sm text-gray-600 line-clamp-3">{a.description.replace(/ ?(Free consultation — |Confidential consultation — |Craig K\. Perry — free consultation, )?702\.893\.4777\.?$/, "")}</p>
