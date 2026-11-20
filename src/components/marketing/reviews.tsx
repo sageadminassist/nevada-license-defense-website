@@ -63,7 +63,7 @@ function ReviewCard({ review, onOpen }: { review: Review; onOpen: () => void }) 
           &ldquo;{review.text}&rdquo;
         </blockquote>
         {canExpand && (
-          <button type="button" onClick={onOpen} aria-haspopup="dialog" className="mt-4 cursor-pointer rounded-lg border-2 border-dark-blue px-4 py-1.5 text-sm font-bold text-dark-blue transition-colors duration-300 hover:border-gold hover:bg-gold">
+          <button type="button" onClick={onOpen} aria-haspopup="dialog" className="mt-4 cursor-pointer rounded-lg bg-gold px-4 py-2 text-sm font-bold text-dark-blue transition-colors duration-300 hover:bg-gold-dark">
             Read more
           </button>
         )}
