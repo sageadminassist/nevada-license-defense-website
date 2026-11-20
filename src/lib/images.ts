@@ -28,6 +28,17 @@ export const IMAGES = {
 
   // Craig
   craig: "/images/craig_blue_arms_crossed.jpg",
+  dentistTreatingPatient: "/images/dentist-treating-patient.jpg",
+  chiropractorAdjusting: "/images/chiropractor-adjusting-patient.jpg",
+  doctorCannabisLeaf: "/images/doctor-cannabis-leaf.jpg",
+  nurseMeetingEmployer: "/images/nurse-meeting-employer.jpg",
+  nurseTestifyingHearing: "/images/nurse-testifying-hearing.jpg",
+  nurseReadingBoardLetter: "/images/nurse-reading-board-letter.jpg",
+  doctorFillingForm: "/images/doctor-filling-form.jpg",
+  nursePhoneBedside: "/images/nurse-phone-bedside.jpg",
+  patientCallingNurse: "/images/patient-calling-nurse.jpg",
+  careTeamReviewingScan: "/images/care-team-reviewing-scan.jpg",
+  policeTrafficStop: "/images/police-traffic-stop.jpg",
   nursePillsDiversion: "/images/nurse-pills-drug-diversion.jpg",
   syringesBloodTubes: "/images/syringes-blood-tubes.jpg",
   syringesSurgicalTray: "/images/syringes-surgical-tray.jpg",
