@@ -1,74 +1,123 @@
+import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { REVIEWS } from "@/lib/reviews";
-import { cn } from "@/lib/utils";
+import { REVIEWS, type Review } from "@/lib/reviews";
 
 const AVATAR_COLORS = ["#12203b", "#b27e4f", "#2c5f6e", "#2d6a4f", "#7b2d3e", "#4a5568"];
 
-function ReviewCard({ name, rating, date, photoUrl, text }: { name: string; rating: number | null; date: string | null; photoUrl: string | null; text: string }) {
-  const [expanded, setExpanded] = useState(false);
+function Stars({ rating, className }: { rating: number | null; className?: string }) {
+  const stars = rating ? Math.round(rating) : 0;
+  if (!stars) return null;
+  return (
+    <div className={`text-gold ${className ?? ""}`} aria-label={`${stars} out of 5 stars`}>
+      {"★".repeat(stars)}
+      <span className="text-gray-300">{"★".repeat(5 - stars)}</span>
+    </div>
+  );
+}
+
+function Reviewer({ review, large }: { review: Review; large?: boolean }) {
+  const name = review.author;
+  const avatarColor = AVATAR_COLORS[name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % AVATAR_COLORS.length];
+  const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+  const subline = [review.date, "via Google"].filter(Boolean).join(" · ");
+  const size = large ? "size-12" : "size-10";
+  return (
+    <div className="flex items-center gap-3">
+      {review.photoUrl ? (
+        <img src={review.photoUrl} alt={name} width={48} height={48} loading="lazy" referrerPolicy="no-referrer" className={`${size} shrink-0 rounded-full object-cover`} />
+      ) : (
+        <span aria-hidden className={`flex ${size} shrink-0 items-center justify-center rounded-full text-sm font-bold text-white`} style={{ backgroundColor: avatarColor }}>
+          {initials}
+        </span>
+      )}
+      <span className="min-w-0">
+        <span className={`block font-bold tracking-[0.05em] text-dark-blue ${large ? "text-lg" : ""}`}>{name}</span>
+        <span className="block text-xs font-medium text-gray-500">{subline}</span>
+      </span>
+    </div>
+  );
+}
+
+function ReviewCard({ review, onOpen }: { review: Review; onOpen: () => void }) {
   // Initial guess so the button is in the prerendered HTML for long reviews;
   // corrected by the measurement below once mounted in the browser.
-  const [canExpand, setCanExpand] = useState(() => text.length > 240);
+  const [canExpand, setCanExpand] = useState(() => review.text.length > 240);
   const quoteRef = useRef<HTMLQuoteElement>(null);
 
   useEffect(() => {
-    // While expanded the clamp is off, so the element no longer overflows:
-    // skip measuring then so "Show less" stays visible.
-    if (expanded) return;
     const el = quoteRef.current;
     if (!el) return;
     const measure = () => setCanExpand(el.scrollHeight - el.clientHeight > 1);
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
-  }, [text, expanded]);
-
-  const avatarColor = AVATAR_COLORS[name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % AVATAR_COLORS.length];
-  const stars = rating ? Math.round(rating) : 0;
-  const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
-  const subline = [date, "via Google"].filter(Boolean).join(" · ");
+  }, [review.text]);
 
   return (
     <figure className="flex h-full flex-col rounded-lg bg-white p-8 shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
-      {stars > 0 ? (
-        <div className="mb-3 text-gold" aria-label={`${stars} out of 5 stars`}>
-          {"★".repeat(stars)}
-          <span className="text-gray-300">{"★".repeat(5 - stars)}</span>
-        </div>
-      ) : null}
+      <Stars rating={review.rating} className="mb-3" />
       <div className="flex-1">
-        {/* Collapsed preview height. Change `line-clamp-4` to show more/fewer lines. */}
-        <blockquote ref={quoteRef} className={cn("text-gray-600 italic", !expanded && "line-clamp-4")}>
-          &ldquo;{text}&rdquo;
+        {/* Preview height. Change `line-clamp-4` to show more/fewer lines. */}
+        <blockquote ref={quoteRef} className="line-clamp-4 text-gray-600 italic">
+          &ldquo;{review.text}&rdquo;
         </blockquote>
         {canExpand && (
-          <button type="button" onClick={() => setExpanded((v) => !v)} aria-expanded={expanded} className="mt-2 cursor-pointer text-sm font-semibold text-gold-dark hover:text-dark-blue">
-            {expanded ? "Show less" : "Read more"}
+          <button type="button" onClick={onOpen} aria-haspopup="dialog" className="mt-2 cursor-pointer text-sm font-semibold text-gold-dark hover:text-dark-blue">
+            Read more
           </button>
         )}
       </div>
-      <figcaption className="mt-6 flex items-center gap-3">
-        {photoUrl ? (
-          <img src={photoUrl} alt={name} width={40} height={40} loading="lazy" referrerPolicy="no-referrer" className="size-10 shrink-0 rounded-full object-cover" />
-        ) : (
-          <span aria-hidden className="flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: avatarColor }}>
-            {initials}
-          </span>
-        )}
-        <span className="min-w-0">
-          <span className="block font-bold tracking-[0.05em] text-dark-blue">{name}</span>
-          <span className="block text-xs font-medium text-gray-500">{subline}</span>
-        </span>
+      <figcaption className="mt-6">
+        <Reviewer review={review} />
       </figcaption>
     </figure>
+  );
+}
+
+/** Full review in a large, easy-to-read pop-up. Closes on X, Escape, or a click outside. */
+function ReviewModal({ review, onClose }: { review: Review; onClose: () => void }) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+      opener?.focus();
+    };
+  }, [onClose]);
+
+  return (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-dark-blue/70 p-4 backdrop-blur-sm animate-fade-in" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div role="dialog" aria-modal="true" aria-label={`Review from ${review.author}`} className="relative flex max-h-[90dvh] w-full max-w-2xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl animate-scale-in">
+        <div className="flex items-start justify-between gap-4 border-b border-gray-200 px-6 py-5 md:px-10">
+          <div className="space-y-3">
+            <Reviewer review={review} large />
+            <Stars rating={review.rating} className="text-xl" />
+          </div>
+          <button ref={closeRef} type="button" onClick={onClose} aria-label="Close review" className="-mr-2 cursor-pointer rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-dark-blue">
+            <X className="size-6" />
+          </button>
+        </div>
+        <blockquote className="overflow-y-auto px-6 py-7 text-lg leading-relaxed text-gray-700 md:px-10 md:text-xl md:leading-relaxed">
+          &ldquo;{review.text}&rdquo;
+        </blockquote>
+      </div>
+    </div>
   );
 }
 
 /** Google rating summary plus every saved review. Wrap in a <Section> at the call site. */
 export function Reviews() {
   const { reviews, rating, total, googleUrl } = REVIEWS;
-  const overallStars = rating ? Math.round(rating) : 0;
+  const [open, setOpen] = useState<Review | null>(null);
+  const close = useRef(() => setOpen(null)).current;
   return (
     <>
       {rating ? (
@@ -77,10 +126,7 @@ export function Reviews() {
             <span className="text-5xl font-bold text-dark-blue">{rating.toFixed(1)}</span>
             <span className="text-lg text-gray-500">/ 5</span>
           </div>
-          <div className="text-2xl text-gold" aria-label={`${overallStars} out of 5 stars`}>
-            {"★".repeat(overallStars)}
-            <span className="text-gray-300">{"★".repeat(5 - overallStars)}</span>
-          </div>
+          <Stars rating={rating} className="text-2xl" />
           <p className="text-gray-600">{total ? `Based on ${total.toLocaleString()} Google reviews` : "Rated on Google"}</p>
           {googleUrl ? (
             <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-1 font-bold uppercase tracking-[0.1em] text-gold-dark hover:text-dark-blue">
@@ -91,9 +137,10 @@ export function Reviews() {
       ) : null}
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {reviews.map((r, i) => (
-          <ReviewCard key={`${r.author}-${i}`} name={r.author} rating={r.rating} date={r.date} photoUrl={r.photoUrl} text={r.text} />
+          <ReviewCard key={`${r.author}-${i}`} review={r} onOpen={() => setOpen(r)} />
         ))}
       </div>
+      {open ? <ReviewModal review={open} onClose={close} /> : null}
     </>
   );
 }
