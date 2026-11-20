@@ -268,8 +268,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "Impairment, Substance Use & Monitoring Programs in Nevada",
     title: "Nevada Impaired Professional & Substance Use License Defense",
     description: "Nevada nurses, physicians and pharmacists facing impairment allegations, positive drug tests, or monitoring-program issues. Craig K. Perry protects your license. 702.893.4777.",
-    image: "labTesting",
-    imageAlt: "Laboratory testing of samples",
+    image: "shotsPouredBar",
+    imageAlt: "Liquor being poured into a row of shot glasses at a bar",
+    imagePos: "50% 55%",
     answer: "Nevada licensing boards treat impairment — from alcohol, drugs, or a health condition — as a safety issue, but most also offer a path to keep practicing through evaluation, treatment, and monitoring. Positive or missed drug screens, reports of impairment at work, and DUI arrests commonly start these cases. Choosing the right evaluator, understanding what a monitoring agreement really requires, and avoiding unnecessary admissions can mean the difference between confidential monitoring and public discipline.",
     forms: [
       "Positive pre-employment, random, or for-cause drug screen",

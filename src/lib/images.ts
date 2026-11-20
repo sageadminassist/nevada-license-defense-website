@@ -31,6 +31,7 @@ export const IMAGES = {
   nursePillsDiversion: "/images/nurse-pills-drug-diversion.jpg",
   syringesBloodTubes: "/images/syringes-blood-tubes.jpg",
   syringesSurgicalTray: "/images/syringes-surgical-tray.jpg",
+  shotsPouredBar: "/images/shots-poured-bar.jpg",
   prescriptionBottles: "/images/prescription-bottles-doctor-writing.jpg",
   doctorWatchingLaptop: "/images/doctor-watching-laptop.jpg",
   courtroomInterior: "/images/courtroom-interior.jpg",
