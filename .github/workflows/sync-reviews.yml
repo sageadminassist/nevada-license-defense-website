@@ -1,0 +1,59 @@
+# Daily: pull new Google reviews, and if any arrived, save them to main and
+# publish the site (build -> `deploy` branch, which Hostinger copies live).
+# If nothing changed, it does nothing. Run it by hand from the Actions tab too.
+# Requires repo secrets: GOOGLE_PLACES_API_KEY, GOOGLE_PLACE_ID, optional GOOGLE_PLACE_ID_2
+name: Sync Google reviews
+
+on:
+  schedule:
+    - cron: "17 13 * * *" # once a day, about 5-6am Las Vegas time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-reviews
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Pull new reviews from Google
+        id: sync
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          GOOGLE_PLACE_ID: ${{ secrets.GOOGLE_PLACE_ID }}
+          GOOGLE_PLACE_ID_2: ${{ secrets.GOOGLE_PLACE_ID_2 }}
+        run: |
+          bun scripts/sync-reviews.mjs
+          if git diff --quiet -- src/data/reviews.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Save new reviews to main
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: sync Google reviews" -- src/data/reviews.json
+          git push origin main
+
+      - name: Build and publish
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          bun install --frozen-lockfile
+          bash scripts/deploy.sh

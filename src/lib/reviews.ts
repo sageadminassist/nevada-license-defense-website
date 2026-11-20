@@ -23,12 +23,14 @@ export interface Review {
 export interface ReviewStore {
   savedAt: number;
   reviews: Review[];
-  /** Aggregate Google star rating. */
+  /** Google star rating, combined across listings. */
   rating: number | null;
-  /** Total number of Google ratings. */
+  /** Total number of Google ratings, summed across listings. */
   total: number | null;
-  /** Link to the Google listing. */
+  /** Link to the main Google listing. */
   googleUrl: string | null;
+  /** Per-listing numbers the combined rating/total are computed from. */
+  listings?: { rating: number | null; total: number | null; googleUrl: string | null }[];
 }
 
 export const REVIEWS = store as ReviewStore;
