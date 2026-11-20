@@ -492,7 +492,7 @@ export const ACCUSATIONS: Accusation[] = [
     title: "Nevada Patient Abuse or Neglect Allegation | License Defense Attorney",
     description: "Nurses, CNAs, therapists and caregivers accused of patient abuse or neglect in Nevada hospitals, long-term care, or home health. Craig K. Perry protects your license. 702.893.4777.",
     image: "nurseUnpluggingCallLight",
-    imagePos: "50% 22%",
+    imagePos: "50% 40%",
     imageAlt: "Nurse unplugging a call light cord beside an elderly patient in a hospital bed",
     answer: "Allegations of patient abuse or neglect — rough handling, verbal abuse, failure to provide care, or leaving a vulnerable patient unattended — can trigger a licensing board investigation, an employer investigation, and sometimes a state agency or criminal inquiry at the same time. These cases often arise in long-term care, home health, and behavioral settings, frequently from a single witness or a confused or upset patient. Because several agencies may be involved, statements must be coordinated from the start.",
     forms: [
