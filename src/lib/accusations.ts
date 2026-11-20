@@ -194,8 +194,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "Negligence, Patient Harm & Standard-of-Care Complaints in Nevada",
     title: "Nevada Standard of Care & Patient Harm Board Complaint Defense",
     description: "Facing a Nevada board complaint after a bad patient outcome or malpractice claim? Craig K. Perry defends licensed health professionals in standard-of-care investigations. 702.893.4777.",
-    image: "nursePatient",
-    imageAlt: "Nurse meeting with a patient",
+    image: "nurseDistractedWard",
+    imagePos: "50% 30%",
+    imageAlt: "Nurse looking at a phone beside an elderly patient in a hospital bed",
     answer: "A bad outcome is not the same as negligence. Nevada boards investigate standard-of-care complaints after patient injuries, deaths, malpractice settlements, and employer reports, and they judge the care against what a reasonable practitioner would have done. Your malpractice insurer's lawyer defends the civil case; your license often needs separate counsel, because what helps settle a lawsuit can hurt you before the board.",
     forms: [
       "Missed or delayed diagnosis",
