@@ -7,6 +7,7 @@ import {
   ServiceCard,
   ServiceGrid,
 } from "@/components/marketing/sections";
+import { Reviews } from "@/components/marketing/reviews";
 import { IMAGES } from "@/lib/images";
 import { MORE_BOARDS, SITE } from "@/lib/site";
 
@@ -274,6 +275,12 @@ function HomePage() {
             />
           </div>
         </div>
+      </Section>
+
+      {/* Client reviews (shared Google listing with craigperry.com) */}
+      <Section variant="muted">
+        <SectionTitle>What Our Clients Say</SectionTitle>
+        <Reviews />
       </Section>
 
       {/* CTA section */}

@@ -6,6 +6,12 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
+# Pull any new Google reviews into the saved list and commit them, so the build includes them.
+bun scripts/sync-reviews.mjs || true
+if ! git diff --quiet -- src/data/reviews.json; then
+  git commit -q -m "chore: sync Google reviews" -- src/data/reviews.json
+fi
+
 if [[ -n "$(git status --porcelain)" ]]; then
   echo "!! Commit or stash your changes first — the deploy must match a commit on main." >&2
   exit 1

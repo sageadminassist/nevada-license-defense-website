@@ -37,6 +37,10 @@ Read this before doing anything in this repo. These are the owner's standing rul
 - `src/routes/_marketing/index.tsx` — homepage; `MORE_BOARDS_ICONS` maps
   each board to a homepage card icon
 - `public/images/` — photo files
+- `src/data/reviews.json` — saved Google reviews shown on the homepage (same
+  listing as craigperry.com). The list only grows. `bun run reviews:sync`
+  merges in new 5-star reviews; `bun run deploy` runs it automatically and
+  commits the file. The Google key lives in `.env.local` (gitignored, never commit).
 
 ## Adding a new licensing board page
 
