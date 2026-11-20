@@ -30,6 +30,7 @@ export const IMAGES = {
   craig: "/images/craig_blue_arms_crossed.jpg",
   nursePillsDiversion: "/images/nurse-pills-drug-diversion.jpg",
   syringesBloodTubes: "/images/syringes-blood-tubes.jpg",
+  syringesSurgicalTray: "/images/syringes-surgical-tray.jpg",
   prescriptionBottles: "/images/prescription-bottles-doctor-writing.jpg",
   doctorWatchingLaptop: "/images/doctor-watching-laptop.jpg",
   courtroomInterior: "/images/courtroom-interior.jpg",
