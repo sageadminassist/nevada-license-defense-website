@@ -33,4 +33,18 @@ export interface ReviewStore {
   listings?: { rating: number | null; total: number | null; googleUrl: string | null }[];
 }
 
-export const REVIEWS = store as ReviewStore;
+/**
+ * Reviews kept in the saved list but not shown on this site (off-topic for
+ * license defense). Match on author + the start of the text. They stay in
+ * reviews.json so the sync doesn't add them back.
+ */
+const HIDDEN: { author: string; startsWith: string }[] = [
+  { author: "Day Mason", startsWith: "I was rear ended" }, // car-accident case
+];
+
+const all = store as ReviewStore;
+
+export const REVIEWS: ReviewStore = {
+  ...all,
+  reviews: all.reviews.filter((r) => !HIDDEN.some((h) => h.author === r.author && r.text.startsWith(h.startsWith))),
+};
