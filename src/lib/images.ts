@@ -28,6 +28,7 @@ export const IMAGES = {
 
   // Craig
   craig: "/images/craig_blue_arms_crossed.jpg",
+  cannabisPlantHands: "/images/cannabis-plant-hands.jpg",
   dentistTreatingPatient: "/images/dentist-treating-patient.jpg",
   doctorCannabisLeaf: "/images/doctor-cannabis-leaf.jpg",
   nurseMeetingEmployer: "/images/nurse-meeting-employer.jpg",
