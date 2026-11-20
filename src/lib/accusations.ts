@@ -454,9 +454,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "HIPAA Violations & Patient Privacy Complaints in Nevada",
     title: "Nevada HIPAA Violation & Patient Privacy License Defense",
     description: "Accused of a HIPAA violation, snooping in records, or sharing patient information on social media? Craig K. Perry defends Nevada licensed professionals. 702.893.4777.",
-    image: "nursePhoneBedside",
-    imageAlt: "Nurse using her phone at a patient's bedside",
-    imagePos: "50% 30%",
+    image: "doctorSelfieNursesStation",
+    imagePos: "50% 15%",
+    imageAlt: "Clinician taking a selfie on a busy hospital ward near the nurses' station",
     answer: "Privacy complaints — looking up records without a work reason, sharing patient details with friends or on social media, or mishandling records — can lead to termination and a Nevada licensing board complaint for unprofessional conduct, even though HIPAA itself is enforced by federal regulators. Electronic health records keep detailed access logs, so these cases often turn on why a record was opened. Context, intent, and how you respond make a large difference in the outcome.",
     forms: [
       "Accessing records of coworkers, family, celebrities, or yourself",
