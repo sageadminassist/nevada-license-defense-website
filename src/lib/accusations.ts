@@ -210,8 +210,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseDistractedWard",
     imagePos: "50% 30%",
     imageAlt: "Nurse looking at a phone beside an elderly patient in a hospital bed",
-    card: "cardStandardOfCare",
-    cardAlt: "Clinician in a mask and cap working beside anesthesia equipment",
+    card: "nurseChartingPatientDistress",
+    cardAlt: "Nurse typing at a computer while a distressed patient reaches out from the bed",
+    cardPos: "50% 45%",
     answer: "A bad outcome is not the same as negligence. Nevada boards investigate standard-of-care complaints after patient injuries, deaths, malpractice settlements, and employer reports, and they judge the care against what a reasonable practitioner would have done. Your malpractice insurer's lawyer defends the civil case; your license often needs separate counsel, because what helps settle a lawsuit can hurt you before the board.",
     forms: [
       "Missed or delayed diagnosis",
@@ -686,7 +687,7 @@ export const ACCUSATIONS: Accusation[] = [
     image: "femaleDoctorClipboard",
     imageAlt: "Physician reviewing a clipboard",
     card: "cardBillingFraud",
-    cardAlt: "Healthcare worker in scrubs holding cash",
+    cardAlt: "Gloved hands in scrubs holding a handful of pills",
     cardPos: "50% 75%",
     answer: "Billing allegations — upcoding, billing for services not provided, falsified visit notes, or improper telehealth billing — can lead to Nevada licensing board discipline alongside insurer audits, Medicaid Fraud Control Unit investigations, or federal inquiries. Physicians, therapists, chiropractors, dentists, home-health nurses, and behavioral-health providers are frequent targets. Because license, civil, and criminal exposure overlap, every statement and document production must be coordinated.",
     forms: [
