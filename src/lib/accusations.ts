@@ -529,9 +529,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseUnpluggingCallLight",
     imagePos: "50% 40%",
     imageAlt: "Nurse unplugging a call light cord beside an elderly patient in a hospital bed",
-    card: "nurseAdjustingIvSleepingPatient",
-    cardAlt: "Nurse adjusting an IV bag beside a sleeping patient",
-    cardPos: "50% 22%",
+    card: "nurseHandOnPatientHead",
+    cardAlt: "Nurse holding a wincing patient's head during a bedside exam",
+    cardPos: "50% 62%",
     answer: "Allegations of patient abuse or neglect — rough handling, verbal abuse, failure to provide care, or leaving a vulnerable patient unattended — can trigger a licensing board investigation, an employer investigation, and sometimes a state agency or criminal inquiry at the same time. These cases often arise in long-term care, home health, and behavioral settings, frequently from a single witness or a confused or upset patient. Because several agencies may be involved, statements must be coordinated from the start.",
     forms: [
       "Allegations of rough handling or improper restraint",
