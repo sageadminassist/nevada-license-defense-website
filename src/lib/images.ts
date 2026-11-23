@@ -56,6 +56,7 @@ export const IMAGES = {
   doctorWritingBesidePillPacks: "/images/doctor-writing-notes-beside-pill-packs.jpg",
   nurseChartingPatientDistress: "/images/nurse-charting-while-patient-in-distress.jpg",
   nurseAtEcgMonitor: "/images/nurse-gesturing-at-ecg-monitor.jpg",
+  nurseAdjustingIvSleepingPatient: "/images/nurse-adjusting-iv-sleeping-patient.jpg",
   doctorCannabisLeaf: "/images/doctor-cannabis-leaf.jpg",
   nurseMeetingEmployer: "/images/nurse-meeting-employer.jpg",
   nurseTestifyingHearing: "/images/nurse-testifying-hearing.jpg",
