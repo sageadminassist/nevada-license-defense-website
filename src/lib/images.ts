@@ -28,7 +28,7 @@ export const IMAGES = {
 
   // Craig
   craig: "/images/craig_blue_arms_crossed.jpg",
-  nurseSmilingAtDesk: "/images/nurse-smiling-at-desk-with-colleague.jpg",
+  clinicalTeamAtMonitor: "/images/clinical-team-working-at-monitor.jpg",
   nurseWaitingNursingStation: "/images/nurse-waiting-at-nursing-station-computer.jpg",
   doctorHoldingTablet: "/images/doctor-white-coat-holding-tablet.jpg",
   doctorSelfieNursesStation: "/images/doctor-selfie-nurses-station.jpg",
