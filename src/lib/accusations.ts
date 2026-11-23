@@ -382,8 +382,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "Reinstating a Suspended, Revoked, or Surrendered Nevada License",
     title: "Nevada License Reinstatement Attorney | Suspended or Revoked License",
     description: "Want your Nevada nursing, medical, pharmacy or other professional license back? Craig K. Perry guides reinstatement after suspension, revocation, or surrender. 702.893.4777.",
-    image: "craigReinstatement",
-    imageAlt: "Craig K. Perry shaking hands with a healthcare professional client",
+    image: "nurseSmilingCharting",
+    imageAlt: "Smiling nurse back at work, charting at a hospital station",
+    imagePos: "50% 10%",
     answer: "Many Nevada professionals who lost a license through suspension, revocation, voluntary surrender, or lapse can get it back. Reinstatement usually requires waiting any required period, completing the board's conditions, and proving you are safe to return to practice — often with evaluations, education, and evidence of rehabilitation. A focused petition and preparation for the board's questions make a significant difference.",
     forms: [
       "Revoked or suspended licenses",
