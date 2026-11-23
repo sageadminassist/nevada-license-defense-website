@@ -126,8 +126,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "prescriptionBottles",
     imageAlt: "Prescription bottles and a stethoscope on a desk while a physician writes a prescription",
     imagePos: "50% 65%",
-    card: "cardPrescribing",
-    cardAlt: "Hand writing a prescription beside a stethoscope",
+    card: "doctorWritingBesidePillPacks",
+    cardAlt: "Clinician writing in a notebook beside blister packs of pills",
+    cardPos: "50% 62%",
     answer: "Nevada prescribers — physicians, DOs, PAs, APRNs, dentists, and others — can face board investigation for opioid and controlled-substance prescribing based on Prescription Monitoring Program (PMP) data, pharmacy reports, patient overdoses, or DEA activity. Boards look at whether you followed Nevada's prescribing laws and regulations, checked the PMP, documented medical need, and used appropriate patient agreements. Expert review of your charts usually decides these cases, so the records and your response must be handled carefully from the start.",
     forms: [
       "High-dose or long-term opioid prescribing flagged by PMP data",
