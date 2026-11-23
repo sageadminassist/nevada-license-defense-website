@@ -233,8 +233,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "Boundary Violations & Unprofessional Conduct Allegations in Nevada",
     title: "Nevada Boundary Violation & Sexual Misconduct License Defense",
     description: "Defending Nevada therapists, physicians, nurses and other professionals accused of boundary violations, dual relationships, or unprofessional conduct. Confidential consultation — 702.893.4777.",
-    image: "doctorHandshake",
-    imageAlt: "Healthcare professional shaking hands with a patient",
+    image: "therapistTouchingClientKnee",
+    imageAlt: "Therapist leaning in and touching a client's knee during a session",
+    imagePos: "50% 50%",
     answer: "Boundary complaints — dual relationships, inappropriate communication, social-media contact, or sexual misconduct allegations — are investigated aggressively by Nevada boards and can lead to summary suspension. They often come down to one person's word against another's, which makes early, careful handling of statements, texts, and witnesses essential. These matters are confidential at the investigation stage; keep them that way by speaking only with counsel.",
     forms: [
       "Dual or personal relationships with clients or patients",
