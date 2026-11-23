@@ -344,8 +344,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "Nevada License Application Denials & Disclosure Problems",
     title: "Nevada Professional License Application Denial Attorney",
     description: "Nevada license application denied or delayed because of a criminal record, past discipline, or disclosure issue? Craig K. Perry helps applicants get licensed. 702.893.4777.",
-    image: "femaleDoctorBlue",
-    imageAlt: "Healthcare professional in blue scrubs",
+    image: "nurseWaitingNursingStation",
+    imageAlt: "Nurse waiting at a nursing station computer with paperwork",
+    imagePos: "50% 55%",
     answer: "Nevada boards can deny or delay a license, or license by endorsement, because of criminal history, discipline in another state, health or substance-use history, or an incomplete or inaccurate disclosure. Applicants usually have the right to request a hearing on a denial under the Nevada Administrative Procedure Act. The best results come from disclosing accurately and presenting rehabilitation evidence up front, before a denial happens.",
     forms: [
       "Criminal convictions or pending charges",
