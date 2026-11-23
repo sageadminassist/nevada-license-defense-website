@@ -721,9 +721,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "Fired, Asked to Resign, or Told to Self-Report: Protecting Your Nevada License",
     title: "Nevada Nurse Termination, Resign or Be Fired & Self-Reporting | License Attorney",
     description: "Placed on leave, asked to resign, or told by your employer to self-report to the Nevada board? Get advice before you decide. Craig K. Perry — free consultation, 702.893.4777.",
-    image: "nurseMeetingEmployer",
-    imageAlt: "Nurse in scrubs sitting across the table from her employer",
-    imagePos: "60% 25%",
+    image: "worriedNurseAtHome",
+    imageAlt: "Worried nurse in scrubs sitting at home with unopened mail and his phone",
+    imagePos: "50% 15%",
     answer: "When an employer accuses you of wrongdoing, places you on administrative leave, asks you to resign, or tells you to self-report to the Nevada licensing board, your next decisions can shape whether a board complaint is filed and how it goes. Employers can report terminations to the board, and resignations under investigation may also be reported. 'Self-report' is a common employer suggestion that should be discussed with an experienced attorney first. Get advice before you resign, sign anything, or contact the board.",
     forms: [
       "Administrative leave pending investigation",
