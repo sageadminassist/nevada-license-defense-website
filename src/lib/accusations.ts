@@ -16,6 +16,9 @@ export type Accusation = {
   image: string; // IMAGES key
   imagePos?: string; // CSS object-position for the header
   imageAlt: string;
+  card: string; // IMAGES key for the /accusations index card; must differ from every header image
+  cardAlt: string;
+  cardPos?: string;
   answer: string; // quick answer paragraph
   forms: string[]; // how the allegation shows up
   process: string; // how Nevada boards handle it
@@ -37,6 +40,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "syringesSurgicalTray",
     imageAlt: "Filled syringes beside surgical instruments on a sterile tray",
     imagePos: "50% 60%",
+    card: "nursePillsDiversion",
+    cardAlt: "Nurse counting pills from a medication bottle",
     answer: "Drug diversion allegations — taking, misusing, or failing to account for controlled substances — are among the most serious complaints a Nevada licensing board handles. They often start with an automated dispensing cabinet report, a waste discrepancy, or a pharmacy audit, and can lead to summary suspension, mandatory evaluation, and criminal referral. Many diversion cases turn out to be documentation or workflow problems, not theft. Talk to a license defense attorney before you answer any questions from your employer, the board, or law enforcement.",
     forms: [
       "Pyxis / Omnicell or other dispensing-cabinet discrepancies",
@@ -78,6 +83,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "policeTrafficStop",
     imageAlt: "Police officer checking a driver's license during a traffic stop",
     imagePos: "50% 40%",
+    card: "craigCourtroom",
+    cardAlt: "Attorney speaking in a courtroom beside a nurse",
+    cardPos: "50% 25%",
     answer: "A DUI or other arrest does not automatically cost a Nevada professional their license, but how the criminal case ends — and what you disclose, when — can trigger a board investigation. Reporting duties differ by board and by whether it is an arrest, a charge, or a conviction, and renewal applications ask specific questions. A plea that looks minor in criminal court can carry license consequences, so coordinate the criminal case with license counsel before you plead.",
     forms: [
       "DUI / DWI, especially a second offense or high BAC",
@@ -118,6 +126,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "prescriptionBottles",
     imageAlt: "Prescription bottles and a stethoscope on a desk while a physician writes a prescription",
     imagePos: "50% 65%",
+    card: "cardPrescribing",
+    cardAlt: "Hand writing a prescription beside a stethoscope",
     answer: "Nevada prescribers — physicians, DOs, PAs, APRNs, dentists, and others — can face board investigation for opioid and controlled-substance prescribing based on Prescription Monitoring Program (PMP) data, pharmacy reports, patient overdoses, or DEA activity. Boards look at whether you followed Nevada's prescribing laws and regulations, checked the PMP, documented medical need, and used appropriate patient agreements. Expert review of your charts usually decides these cases, so the records and your response must be handled carefully from the start.",
     forms: [
       "High-dose or long-term opioid prescribing flagged by PMP data",
@@ -158,6 +168,8 @@ export const ACCUSATIONS: Accusation[] = [
     description: "Accused of falsifying or failing to document records? Craig K. Perry defends Nevada nurses, physicians, therapists and other professionals in documentation complaints. 702.893.4777.",
     image: "medicalRecords",
     imageAlt: "Clinician holding a patient medical record",
+    card: "cardDocumentationErrors",
+    cardAlt: "Patient records open on a clinic computer screen",
     answer: "Documentation complaints range from honest charting mistakes to allegations of falsifying records, late entries, copied vital signs, or billing for care not provided. Nevada boards treat intentional falsification as a dishonesty violation, which can carry heavier discipline than the underlying care issue. The difference between an error and falsification usually comes down to audit trails and context, so preserving and analyzing the electronic record early is critical.",
     forms: [
       "Late or back-dated entries",
@@ -197,6 +209,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseDistractedWard",
     imagePos: "50% 30%",
     imageAlt: "Nurse looking at a phone beside an elderly patient in a hospital bed",
+    card: "cardStandardOfCare",
+    cardAlt: "Clinician in a mask and cap working beside anesthesia equipment",
     answer: "A bad outcome is not the same as negligence. Nevada boards investigate standard-of-care complaints after patient injuries, deaths, malpractice settlements, and employer reports, and they judge the care against what a reasonable practitioner would have done. Your malpractice insurer's lawyer defends the civil case; your license often needs separate counsel, because what helps settle a lawsuit can hurt you before the board.",
     forms: [
       "Missed or delayed diagnosis",
@@ -236,6 +250,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "therapistTouchingClientKnee",
     imageAlt: "Therapist leaning in and touching a client's knee during a session",
     imagePos: "50% 50%",
+    card: "cardBoundaryViolations",
+    cardAlt: "Clinician's hand resting on a patient's shoulder",
     answer: "Boundary complaints — dual relationships, inappropriate communication, social-media contact, or sexual misconduct allegations — are investigated aggressively by Nevada boards and can lead to summary suspension. They often come down to one person's word against another's, which makes early, careful handling of statements, texts, and witnesses essential. These matters are confidential at the investigation stage; keep them that way by speaking only with counsel.",
     forms: [
       "Dual or personal relationships with clients or patients",
@@ -274,6 +290,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "liquorBottlesTable",
     imageAlt: "Liquor bottles and shot glasses on a wooden table",
     imagePos: "20% 50%",
+    card: "manDrinkingWhiskey",
+    cardAlt: "Man drinking whiskey at home",
     answer: "Nevada licensing boards treat impairment — from alcohol, drugs, or a health condition — as a safety issue, but most also offer a path to keep practicing through evaluation, treatment, and monitoring. Positive or missed drug screens, reports of impairment at work, and DUI arrests commonly start these cases. Choosing the right evaluator, understanding what a monitoring agreement really requires, and avoiding unnecessary admissions can mean the difference between confidential monitoring and public discipline.",
     forms: [
       "Positive pre-employment, random, or for-cause drug screen",
@@ -312,6 +330,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "doctorHoldingTablet",
     imageAlt: "Doctor in a white coat holding a tablet",
     imagePos: "50% 60%",
+    card: "cardCeAuditRenewal",
+    cardAlt: "Doctor checking his watch while holding a clipboard",
     answer: "Renewal problems seem small but can lead to public discipline in Nevada: failing a continuing-education audit, practicing on an expired license, or giving an inaccurate answer to a renewal question about arrests, discipline, or health. Boards often view an incorrect renewal answer as a false statement. These matters are usually very fixable when handled promptly and accurately.",
     forms: [
       "Missing CE certificates in a random audit",
@@ -348,6 +368,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseWaitingNursingStation",
     imageAlt: "Nurse waiting at a nursing station computer with paperwork",
     imagePos: "50% 55%",
+    card: "cardLicenseDenial",
+    cardAlt: "Man leaning his head against a wall in a clinic hallway",
     answer: "Nevada boards can deny or delay a license, or license by endorsement, because of criminal history, discipline in another state, health or substance-use history, or an incomplete or inaccurate disclosure. Applicants usually have the right to request a hearing on a denial under the Nevada Administrative Procedure Act. The best results come from disclosing accurately and presenting rehabilitation evidence up front, before a denial happens.",
     forms: [
       "Criminal convictions or pending charges",
@@ -386,6 +408,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "clinicalTeamAtMonitor",
     imageAlt: "Clinical team back at work together around a patient monitor",
     imagePos: "50% 25%",
+    card: "craigReinstatement",
+    cardAlt: "Craig K. Perry shaking hands with a healthcare professional client",
     answer: "Many Nevada professionals who lost a license through suspension, revocation, voluntary surrender, or lapse can get it back. Reinstatement usually requires waiting any required period, completing the board's conditions, and proving you are safe to return to practice — often with evaluations, education, and evidence of rehabilitation. A focused petition and preparation for the board's questions make a significant difference.",
     forms: [
       "Revoked or suspended licenses",
@@ -423,6 +447,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "careTeamReviewingScan",
     imageAlt: "Hospital care team reviewing a scan together at a workstation",
     imagePos: "50% 30%",
+    card: "cardScopeOfPractice",
+    cardAlt: "Cosmetic injection being given at a med spa",
     answer: "Scope-of-practice complaints allege that a licensee performed work beyond what their license, training, or supervision allows — for example, an RN acting on standing orders that do not exist, an LPN performing RN assessments, an APRN or PA practicing outside their authorization, or anyone administering injectables at a med spa without proper licensure and supervision. Nevada boards take these seriously because they bear directly on patient safety, but many cases involve unclear employer policies or instructions from supervisors. The key is showing what you were trained, authorized, and told to do.",
     forms: [
       "Dermal fillers, Botox, IV hydration, or laser work at med spas",
@@ -461,6 +487,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "doctorSelfieNursesStation",
     imagePos: "50% 15%",
     imageAlt: "Clinician taking a selfie on a busy hospital ward near the nurses' station",
+    card: "cardHipaaPrivacy",
+    cardAlt: "Nurse looking at patient information on a computer monitor",
     answer: "Privacy complaints — looking up records without a work reason, sharing patient details with friends or on social media, or mishandling records — can lead to termination and a Nevada licensing board complaint for unprofessional conduct, even though HIPAA itself is enforced by federal regulators. Electronic health records keep detailed access logs, so these cases often turn on why a record was opened. Context, intent, and how you respond make a large difference in the outcome.",
     forms: [
       "Accessing records of coworkers, family, celebrities, or yourself",
@@ -498,6 +526,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseUnpluggingCallLight",
     imagePos: "50% 40%",
     imageAlt: "Nurse unplugging a call light cord beside an elderly patient in a hospital bed",
+    card: "patientCallingNurse",
+    cardAlt: "Patient calling out from a hospital bed while a nurse charts outside the room",
     answer: "Allegations of patient abuse or neglect — rough handling, verbal abuse, failure to provide care, or leaving a vulnerable patient unattended — can trigger a licensing board investigation, an employer investigation, and sometimes a state agency or criminal inquiry at the same time. These cases often arise in long-term care, home health, and behavioral settings, frequently from a single witness or a confused or upset patient. Because several agencies may be involved, statements must be coordinated from the start.",
     forms: [
       "Allegations of rough handling or improper restraint",
@@ -536,6 +566,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "doctorFillingForm",
     imageAlt: "Doctor filling out a form beside a laptop",
     imagePos: "50% 55%",
+    card: "cardFraudulentApplication",
+    cardAlt: "Healthcare worker reviewing a form with an interviewer",
     answer: "A wrong answer on a Nevada license or renewal application — most often about criminal convictions or discipline in another state — can be treated as a fraudulent application, leading to refusal to renew, denial of a new license, or discipline. Many professionals are confused by the conviction question: a criminal case that was closed or dismissed may still count as a conviction. Boards also learn of old arrests through fingerprints and ask why they were not explained. A mistake on an application does not have to end a career, but each case is fact-specific.",
     forms: [
       "Answering 'no' to a conviction question after a closed or dismissed case",
@@ -574,6 +606,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseReadingBoardLetter",
     imageAlt: "Nurse reading a letter from a nursing board at a table",
     imagePos: "50% 15%",
+    card: "craigNursingBoardHearing",
+    cardAlt: "Attorney addressing the Nevada State Board of Nursing",
+    cardPos: "50% 40%",
     answer: "Discipline in another state often follows you to Nevada. Nevada boards can impose reciprocal discipline on an existing Nevada license, and they ask about out-of-state discipline on applications and renewals. Failing to report it is a separate violation. Nurses and other professionals moving to Nevada with a disciplinary history may need to disclose it, and how it is presented can affect whether a Nevada license is issued with or without conditions.",
     forms: [
       "Discipline in another state while holding a Nevada license",
@@ -610,6 +645,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseTestifyingHearing",
     imageAlt: "Nurse speaking at a hearing in front of a panel and audience",
     imagePos: "50% 40%",
+    card: "syringesBloodTubes",
+    cardAlt: "Syringes and blood sample tubes used for drug testing",
     answer: "Probation with a Nevada licensing board can last years and usually requires random drug testing, counseling or support meetings, employer reports, and education deadlines. Violations — a missed or late test, a dilute or positive screen, a missed meeting, or a late class — can lead to immediate suspension, a new investigation, a hearing that may end in revocation, extended probation, or a warning. Responding quickly with documentation and context often prevents the most serious outcomes.",
     forms: [
       "Missed or late random drug tests",
@@ -647,6 +684,9 @@ export const ACCUSATIONS: Accusation[] = [
     description: "Facing billing, upcoding, or Medicaid/Medicare fraud allegations as a Nevada health professional? Craig K. Perry defends your license alongside any criminal or civil case. 702.893.4777.",
     image: "femaleDoctorClipboard",
     imageAlt: "Physician reviewing a clipboard",
+    card: "cardBillingFraud",
+    cardAlt: "Healthcare worker in scrubs holding cash",
+    cardPos: "50% 75%",
     answer: "Billing allegations — upcoding, billing for services not provided, falsified visit notes, or improper telehealth billing — can lead to Nevada licensing board discipline alongside insurer audits, Medicaid Fraud Control Unit investigations, or federal inquiries. Physicians, therapists, chiropractors, dentists, home-health nurses, and behavioral-health providers are frequent targets. Because license, civil, and criminal exposure overlap, every statement and document production must be coordinated.",
     forms: [
       "Upcoding or unbundling services",
@@ -685,6 +725,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "doctorColleaguesPointingTablet",
     imageAlt: "Doctor at a desk with colleagues standing over him, pointing at a tablet",
     imagePos: "50% 85%",
+    card: "cardUnprofessionalConduct",
+    cardAlt: "Two clinicians arguing in a hospital hallway",
     answer: "'Unprofessional conduct' is a broad category in Nevada licensing law. It can include failing to collaborate with the care team, not reporting changes in a patient's condition, borrowing money from or doing business with patients, disruptive behavior, and off-duty conduct or social media posts that reflect on fitness to practice. Because the category is broad, these complaints are very fact-dependent — and often more about workplace conflict than patient safety.",
     forms: [
       "Failure to collaborate or communicate with physicians and staff",
@@ -724,6 +766,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseBoardLetterKitchen",
     imageAlt: "Worried nurse in scrubs reading a board letter at her kitchen table",
     imagePos: "50% 65%",
+    card: "nurseMeetingEmployer",
+    cardAlt: "Nurse in scrubs sitting across the table from her employer",
     answer: "When an employer accuses you of wrongdoing, places you on administrative leave, asks you to resign, or tells you to self-report to the Nevada licensing board, your next decisions can shape whether a board complaint is filed and how it goes. Employers can report terminations to the board, and resignations under investigation may also be reported. 'Self-report' is a common employer suggestion that should be discussed with an experienced attorney first. Get advice before you resign, sign anything, or contact the board.",
     forms: [
       "Administrative leave pending investigation",
@@ -762,6 +806,8 @@ export const ACCUSATIONS: Accusation[] = [
     image: "cannabisPurpleFlower",
     imageAlt: "Close-up of a purple flowering cannabis plant",
     imagePos: "50% 45%",
+    card: "doctorCannabisLeaf",
+    cardAlt: "Clinician in a white coat holding a cannabis leaf",
     answer: "Marijuana is legal for medical and recreational use in Nevada, but that does not protect licensed health professionals from consequences. Employment may be jeopardized if even trace amounts are found in your system, even without evidence of impairment, and a positive workplace test can lead to a board report, evaluation, and monitoring. Professionals on board probation or in monitoring programs are usually prohibited from any use. Understanding how your employer, your board, and your monitoring terms treat cannabis is essential.",
     forms: [
       "Positive pre-employment or random drug test",

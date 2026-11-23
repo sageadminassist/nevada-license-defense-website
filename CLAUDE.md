@@ -71,3 +71,5 @@ Then restart the dev server.
 - Keep the Board of Nursing page — it's intentional alongside
   lvnurseattorney.com and craigperry.com (same firm, cross-linked network).
 - Sister sites: craigperry.com (firm), lvnurseattorney.com (nurse-only).
+
+- Accusation pages have two photos each in `src/lib/accusations.ts`: `image` (page header) and `card` (the /accusations index card). No photo may be used twice across all headers and cards. After changing a `card`, run `scripts/accusation-thumbs.py`.

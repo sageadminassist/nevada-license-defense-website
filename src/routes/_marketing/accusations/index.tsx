@@ -46,7 +46,7 @@ function AccusationsIndex() {
                 {ACCUSATIONS.filter((a) => a.group === g).map((a) => (
                   <a key={a.slug} href={`/accusations/${a.slug}`} className="group rounded-lg border border-gray-200 border-t-4 border-t-gold bg-white shadow-sm hover:shadow-lg transition-shadow">
                     <div className="overflow-hidden rounded-t-md">
-                      <img src={thumb(a.image)} alt={a.imageAlt} loading="lazy" className="h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105" style={{ objectPosition: a.imagePos ?? "50% 30%" }} />
+                      <img src={thumb(a.card)} alt={a.cardAlt} loading="lazy" className="h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105" style={{ objectPosition: a.cardPos ?? "50% 30%" }} />
                     </div>
                     <div className="p-5">
                       <h3 className="text-lg font-bold text-dark-blue group-hover:text-gold transition-colors">{a.nav}</h3>
