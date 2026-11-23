@@ -308,9 +308,9 @@ export const ACCUSATIONS: Accusation[] = [
     h1: "Continuing-Education Audits, Expired Licenses & Renewal Problems",
     title: "Nevada CE Audit, Expired License & Renewal Defense | License Attorney",
     description: "Failed a Nevada CE audit, practiced on an expired license, or answered a renewal question wrong? Craig K. Perry resolves renewal problems before they become discipline. 702.893.4777.",
-    image: "doctorWritingNotebookLaptop",
-    imageAlt: "Healthcare professional writing in a notebook beside a laptop",
-    imagePos: "50% 78%",
+    image: "doctorCheckingWatch",
+    imageAlt: "Doctor checking his watch while holding a clipboard and pen",
+    imagePos: "50% 72%",
     answer: "Renewal problems seem small but can lead to public discipline in Nevada: failing a continuing-education audit, practicing on an expired license, or giving an inaccurate answer to a renewal question about arrests, discipline, or health. Boards often view an incorrect renewal answer as a false statement. These matters are usually very fixable when handled promptly and accurately.",
     forms: [
       "Missing CE certificates in a random audit",
