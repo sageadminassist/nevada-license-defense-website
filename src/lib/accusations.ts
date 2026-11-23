@@ -806,8 +806,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "cannabisPurpleFlower",
     imageAlt: "Close-up of a purple flowering cannabis plant",
     imagePos: "50% 45%",
-    card: "doctorCannabisLeaf",
-    cardAlt: "Clinician in a white coat holding a cannabis leaf",
+    card: "handTouchingCannabis",
+    cardAlt: "Hand reaching into green cannabis plants",
+    cardPos: "50% 40%",
     answer: "Marijuana is legal for medical and recreational use in Nevada, but that does not protect licensed health professionals from consequences. Employment may be jeopardized if even trace amounts are found in your system, even without evidence of impairment, and a positive workplace test can lead to a board report, evaluation, and monitoring. Professionals on board probation or in monitoring programs are usually prohibited from any use. Understanding how your employer, your board, and your monitoring terms treat cannabis is essential.",
     forms: [
       "Positive pre-employment or random drug test",
