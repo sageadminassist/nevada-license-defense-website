@@ -449,8 +449,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "careTeamReviewingScan",
     imageAlt: "Hospital care team reviewing a scan together at a workstation",
     imagePos: "50% 30%",
-    card: "cardScopeOfPractice",
-    cardAlt: "Cosmetic injection being given at a med spa",
+    card: "nurseAtEcgMonitor",
+    cardAlt: "Nurse in scrubs gesturing toward an ECG monitor in a patient room",
+    cardPos: "50% 48%",
     answer: "Scope-of-practice complaints allege that a licensee performed work beyond what their license, training, or supervision allows — for example, an RN acting on standing orders that do not exist, an LPN performing RN assessments, an APRN or PA practicing outside their authorization, or anyone administering injectables at a med spa without proper licensure and supervision. Nevada boards take these seriously because they bear directly on patient safety, but many cases involve unclear employer policies or instructions from supervisors. The key is showing what you were trained, authorized, and told to do.",
     forms: [
       "Dermal fillers, Botox, IV hydration, or laser work at med spas",
