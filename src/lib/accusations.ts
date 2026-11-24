@@ -410,8 +410,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "clinicalTeamAtMonitor",
     imageAlt: "Clinical team back at work together around a patient monitor",
     imagePos: "50% 25%",
-    card: "craigReinstatement",
-    cardAlt: "Craig K. Perry shaking hands with a healthcare professional client",
+    card: "smilingDoctorSeminarAudience",
+    cardAlt: "Smiling doctor in a white coat seated among other healthcare professionals",
+    cardPos: "50% 10%",
     answer: "Many Nevada professionals who lost a license through suspension, revocation, voluntary surrender, or lapse can get it back. Reinstatement usually requires waiting any required period, completing the board's conditions, and proving you are safe to return to practice — often with evaluations, education, and evidence of rehabilitation. A focused petition and preparation for the board's questions make a significant difference.",
     forms: [
       "Revoked or suspended licenses",
