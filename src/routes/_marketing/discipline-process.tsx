@@ -119,7 +119,7 @@ function GuidePage() {
 
       <Section >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
-          <img src={IMAGES.nurseReadingNursingBoardLetter} alt="Nurse at her kitchen table reading a letter from the Nevada State Board of Nursing" loading="lazy" className="w-full rounded-lg object-cover object-[50%_40%] shadow-md max-h-96" />
+          <img src={IMAGES.nurseKitchenTableLaptop} alt="Worried nurse in scrubs at her kitchen table with a laptop, notes and a mug" loading="lazy" className="w-full rounded-lg object-cover object-[58%_50%] shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">What to Do If You Just Got a Board Letter</h2>
             <ul className="list-disc pl-5 space-y-2">
