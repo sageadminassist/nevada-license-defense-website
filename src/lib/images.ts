@@ -68,7 +68,7 @@ export const IMAGES = {
   assortedPillBlisterPacks: "/images/assorted-pill-blister-packs.jpg",
   courthouseColumnsSunlight: "/images/courthouse-columns-sunlight.jpg",
   marbleColumnsFromBelow: "/images/marble-courthouse-columns-from-below.jpg",
-  ornateCourtroomBench: "/images/ornate-courtroom-bench-painting.jpg",
+  courthouseExteriorFlags: "/images/courthouse-exterior-columns-flags.jpg",
   doctorCannabisLeaf: "/images/doctor-cannabis-leaf.jpg",
   nurseMeetingEmployer: "/images/nurse-meeting-employer.jpg",
   nurseTestifyingHearing: "/images/nurse-testifying-hearing.jpg",
