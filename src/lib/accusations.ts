@@ -371,8 +371,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseWaitingNursingStation",
     imageAlt: "Nurse waiting at a nursing station computer with paperwork",
     imagePos: "50% 55%",
-    card: "cardLicenseDenial",
-    cardAlt: "Man leaning his head against a wall in a clinic hallway",
+    card: "clinicianSittingOnFloorWindow",
+    cardAlt: "Clinician in scrubs sitting on the floor against a wall, looking toward a window",
+    cardPos: "50% 12%",
     answer: "Nevada boards can deny or delay a license, or license by endorsement, because of criminal history, discipline in another state, health or substance-use history, or an incomplete or inaccurate disclosure. Applicants usually have the right to request a hearing on a denial under the Nevada Administrative Procedure Act. The best results come from disclosing accurately and presenting rehabilitation evidence up front, before a denial happens.",
     forms: [
       "Criminal convictions or pending charges",
