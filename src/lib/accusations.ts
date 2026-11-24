@@ -773,8 +773,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseBoardLetterKitchen",
     imageAlt: "Worried nurse in scrubs reading a board letter at her kitchen table",
     imagePos: "50% 65%",
-    card: "nurseMeetingEmployer",
-    cardAlt: "Nurse in scrubs sitting across the table from her employer",
+    card: "nurseThinkingWardDesk",
+    cardAlt: "Nurse sitting at a ward desk, hand on her chin, looking out the window",
+    cardPos: "50% 40%",
     answer: "When an employer accuses you of wrongdoing, places you on administrative leave, asks you to resign, or tells you to self-report to the Nevada licensing board, your next decisions can shape whether a board complaint is filed and how it goes. Employers can report terminations to the board, and resignations under investigation may also be reported. 'Self-report' is a common employer suggestion that should be discussed with an experienced attorney first. Get advice before you resign, sign anything, or contact the board.",
     forms: [
       "Administrative leave pending investigation",
