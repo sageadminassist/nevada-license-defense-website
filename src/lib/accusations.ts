@@ -83,9 +83,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "policeTrafficStop",
     imageAlt: "Police officer checking a driver's license during a traffic stop",
     imagePos: "50% 40%",
-    card: "craigCourtroom",
-    cardAlt: "Attorney speaking in a courtroom beside a nurse",
-    cardPos: "50% 25%",
+    card: "driverBeerBottleAtWheel",
+    cardAlt: "Driver holding a beer bottle with one hand on the steering wheel",
+    cardPos: "50% 40%",
     answer: "A DUI or other arrest does not automatically cost a Nevada professional their license, but how the criminal case ends — and what you disclose, when — can trigger a board investigation. Reporting duties differ by board and by whether it is an arrest, a charge, or a conviction, and renewal applications ask specific questions. A plea that looks minor in criminal court can carry license consequences, so coordinate the criminal case with license counsel before you plead.",
     forms: [
       "DUI / DWI, especially a second offense or high BAC",
