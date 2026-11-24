@@ -60,7 +60,7 @@ function AboutPage() {
       ))}
 
       <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
-        <img src={IMAGES.courthouseGrandStaircase} alt="Grand marble staircase and columns inside a historic courthouse" className="absolute inset-0 w-full h-full object-cover object-[50%_82%]" />
+        <img src={IMAGES.courthouseColumnsSunlight} alt="Stone courthouse columns in warm sunlight" className="absolute inset-0 w-full h-full object-cover object-[50%_40%]" />
         <div className="absolute inset-0 bg-dark-blue/60" />
         <div className="relative z-10 max-w-3xl px-6 space-y-3">
           <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">About Nevada License Defense</h1>
