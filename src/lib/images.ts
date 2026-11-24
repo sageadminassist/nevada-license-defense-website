@@ -69,6 +69,7 @@ export const IMAGES = {
   courthouseColumnsSunlight: "/images/courthouse-columns-sunlight.jpg",
   marbleColumnsFromBelow: "/images/marble-courthouse-columns-from-below.jpg",
   courthouseExteriorFlags: "/images/courthouse-exterior-columns-flags.jpg",
+  nurseReadingNursingBoardLetter: "/images/nurse-reading-nursing-board-letter-at-table.jpg",
   doctorCannabisLeaf: "/images/doctor-cannabis-leaf.jpg",
   nurseMeetingEmployer: "/images/nurse-meeting-employer.jpg",
   nurseTestifyingHearing: "/images/nurse-testifying-hearing.jpg",
