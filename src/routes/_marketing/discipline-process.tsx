@@ -34,7 +34,7 @@ const articleLd = {
   mainEntityOfPage: URL,
   datePublished: LAST_UPDATED,
   dateModified: LAST_UPDATED,
-  image: `https://nevadalicensedefense.com${IMAGES.signingContract}`,
+  image: `https://nevadalicensedefense.com${IMAGES.marbleColumnsFromBelow}`,
   author: { "@id": "https://nevadalicensedefense.com/#craig-perry", "@type": "Person", name: "Craig K. Perry", url: "https://craigperry.com" },
   publisher: { "@id": "https://nevadalicensedefense.com/#organization", "@type": "LegalService", name: "Nevada License Defense" },
   about: ["Nevada professional licensing board discipline", "NRS Chapter 233B", "Nevada Administrative Procedure Act"],
@@ -66,7 +66,7 @@ function GuidePage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
       ))}
       <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
-        <img src={IMAGES.signingContract} alt="Professional reviewing and signing legal documents" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <img src={IMAGES.marbleColumnsFromBelow} alt="Marble courthouse columns and carved ceiling seen from below" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-dark-blue/60" />
         <div className="relative z-10 max-w-3xl px-6 space-y-3">
           <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">The Nevada Board Discipline Process</h1>
