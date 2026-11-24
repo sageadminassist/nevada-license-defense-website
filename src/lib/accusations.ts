@@ -731,8 +731,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "doctorColleaguesPointingTablet",
     imageAlt: "Doctor at a desk with colleagues standing over him, pointing at a tablet",
     imagePos: "50% 85%",
-    card: "cardUnprofessionalConduct",
-    cardAlt: "Two clinicians arguing in a hospital hallway",
+    card: "twoNursesTalkingOverTablet",
+    cardAlt: "Two nurses in a tense conversation over a tablet at a clinic desk",
+    cardPos: "50% 35%",
     answer: "'Unprofessional conduct' is a broad category in Nevada licensing law. It can include failing to collaborate with the care team, not reporting changes in a patient's condition, borrowing money from or doing business with patients, disruptive behavior, and off-duty conduct or social media posts that reflect on fitness to practice. Because the category is broad, these complaints are very fact-dependent — and often more about workplace conflict than patient safety.",
     forms: [
       "Failure to collaborate or communicate with physicians and staff",
