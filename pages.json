@@ -19,6 +19,81 @@
       "path": "/faq"
     },
     {
+      "path": "/discipline-process"
+    },
+    {
+      "path": "/search"
+    },
+    {
+      "path": "/about"
+    },
+    {
+      "path": "/videos"
+    },
+    {
+      "path": "/accusations"
+    },
+    {
+      "path": "/accusations/marijuana"
+    },
+    {
+      "path": "/accusations/employer-termination"
+    },
+    {
+      "path": "/accusations/unprofessional-conduct"
+    },
+    {
+      "path": "/accusations/billing-fraud"
+    },
+    {
+      "path": "/accusations/probation-violations"
+    },
+    {
+      "path": "/accusations/out-of-state-discipline"
+    },
+    {
+      "path": "/accusations/fraudulent-application"
+    },
+    {
+      "path": "/accusations/abuse-neglect"
+    },
+    {
+      "path": "/accusations/hipaa-privacy"
+    },
+    {
+      "path": "/accusations/scope-of-practice"
+    },
+    {
+      "path": "/accusations/drug-diversion"
+    },
+    {
+      "path": "/accusations/dui-arrest"
+    },
+    {
+      "path": "/accusations/prescribing"
+    },
+    {
+      "path": "/accusations/documentation-errors"
+    },
+    {
+      "path": "/accusations/standard-of-care"
+    },
+    {
+      "path": "/accusations/boundary-violations"
+    },
+    {
+      "path": "/accusations/impairment"
+    },
+    {
+      "path": "/accusations/ce-audit-renewal"
+    },
+    {
+      "path": "/accusations/license-denial"
+    },
+    {
+      "path": "/accusations/reinstatement"
+    },
+    {
       "path": "/osteopathic"
     },
     {
@@ -50,8 +125,11 @@
     },
     {
       "path": "/occupational-therapy"
+    },
+    {
+      "path": "/accusations/"
     }
   ],
   "host": "https://nevadalicensedefense.com",
-  "lastBuilt": "2026-11-11T21:14:34.767Z"
+  "lastBuilt": "2026-11-24T17:14:30.377Z"
 }
