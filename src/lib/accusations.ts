@@ -611,9 +611,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseReadingBoardLetter",
     imageAlt: "Nurse reading a letter from a nursing board at a table",
     imagePos: "50% 15%",
-    card: "craigNursingBoardHearing",
-    cardAlt: "Attorney addressing the Nevada State Board of Nursing",
-    cardPos: "50% 40%",
+    card: "doctorNurseDiscussingFile",
+    cardAlt: "Doctor and nurse discussing a file folder in a hallway",
+    cardPos: "50% 20%",
     answer: "Discipline in another state often follows you to Nevada. Nevada boards can impose reciprocal discipline on an existing Nevada license, and they ask about out-of-state discipline on applications and renewals. Failing to report it is a separate violation. Nurses and other professionals moving to Nevada with a disciplinary history may need to disclose it, and how it is presented can affect whether a Nevada license is issued with or without conditions.",
     forms: [
       "Discipline in another state while holding a Nevada license",
