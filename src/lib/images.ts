@@ -66,6 +66,7 @@ export const IMAGES = {
   clinicianOnPhoneBreakRoom: "/images/clinician-on-phone-in-break-room.jpg",
   clinicianSittingOnFloorWindow: "/images/male_nurse_sitting_on_ground_tired.jpg",
   assortedPillBlisterPacks: "/images/assorted-pill-blister-packs.jpg",
+  courthouseGrandStaircase: "/images/courthouse-grand-staircase-columns.jpg",
   doctorCannabisLeaf: "/images/doctor-cannabis-leaf.jpg",
   nurseMeetingEmployer: "/images/nurse-meeting-employer.jpg",
   nurseTestifyingHearing: "/images/nurse-testifying-hearing.jpg",
