@@ -653,8 +653,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "nurseTestifyingHearing",
     imageAlt: "Nurse speaking at a hearing in front of a panel and audience",
     imagePos: "50% 40%",
-    card: "syringesBloodTubes",
-    cardAlt: "Syringes and blood sample tubes used for drug testing",
+    card: "assortedPillBlisterPacks",
+    cardAlt: "Pile of assorted pill blister packs",
+    cardPos: "50% 70%",
     answer: "Probation with a Nevada licensing board can last years and usually requires random drug testing, counseling or support meetings, employer reports, and education deadlines. Violations — a missed or late test, a dilute or positive screen, a missed meeting, or a late class — can lead to immediate suspension, a new investigation, a hearing that may end in revocation, extended probation, or a warning. Responding quickly with documentation and context often prevents the most serious outcomes.",
     forms: [
       "Missed or late random drug tests",
