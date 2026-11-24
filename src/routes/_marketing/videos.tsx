@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_marketing/videos")({
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
       { property: "og:url", content: URL },
-      { property: "og:image", content: `${BASE}${IMAGES.doctorWatchingLaptop}` },
+      { property: "og:image", content: `${BASE}${IMAGES.courthouseHallSkylight}` },
     ],
     links: [{ rel: "canonical", href: URL }],
   }),
@@ -53,7 +53,7 @@ function VideosPage() {
       ))}
 
       <section className="relative flex items-center justify-center py-28 text-center overflow-hidden" style={{ minHeight: "340px" }}>
-        <img src={IMAGES.doctorWatchingLaptop} alt="Health professional watching a video on a laptop" className="absolute inset-0 w-full h-full object-cover object-[50%_35%]" />
+        <img src={IMAGES.courthouseHallSkylight} alt="Stone columns and skylight inside a grand courthouse hall" className="absolute inset-0 w-full h-full object-cover object-[50%_40%]" />
         <div className="absolute inset-0 bg-dark-blue/60" />
         <div className="relative z-10 max-w-3xl px-6 space-y-3">
           <h1 className="text-4xl md:text-5xl font-bold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">Video Library</h1>
