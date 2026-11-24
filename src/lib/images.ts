@@ -90,6 +90,7 @@ export const IMAGES = {
   prescriptionBottles: "/images/prescription-bottles-doctor-writing.jpg",
   doctorWatchingLaptop: "/images/doctor-watching-laptop.jpg",
   courtroomInterior: "/images/courtroom-interior.jpg",
+  craigPinstripe: "/images/craig-pinstripe-suit-arms-crossed.jpg",
   craigContact: "/images/craig-perry-contact.jpg",
   craigOffice: "/images/craig-portrait-028.jpg",
   craigCall: "/images/craig_video_call_1.jpg",

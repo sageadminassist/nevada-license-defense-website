@@ -138,7 +138,7 @@ function FaqRoute() {
         </div>
       </Section>
 
-      <CraigBlock src={IMAGES.craigMeetingClient4} alt="Craig K. Perry greeting a client in his Las Vegas office" />
+      <CraigBlock src={IMAGES.craigPinstripe} alt="Attorney Craig K. Perry in a navy pinstripe suit, arms crossed, smiling" />
 
       <Section variant="dark">
         <div className="flex flex-col items-center gap-4 text-center">
