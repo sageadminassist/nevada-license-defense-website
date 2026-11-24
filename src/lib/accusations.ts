@@ -252,8 +252,9 @@ export const ACCUSATIONS: Accusation[] = [
     image: "therapistTouchingClientKnee",
     imageAlt: "Therapist leaning in and touching a client's knee during a session",
     imagePos: "50% 50%",
-    card: "cardBoundaryViolations",
-    cardAlt: "Clinician's hand resting on a patient's shoulder",
+    card: "worriedNurseHallwayColleague",
+    cardAlt: "Worried nurse sitting in a hospital hallway while a colleague takes notes behind her",
+    cardPos: "50% 25%",
     answer: "Boundary complaints — dual relationships, inappropriate communication, social-media contact, or sexual misconduct allegations — are investigated aggressively by Nevada boards and can lead to summary suspension. They often come down to one person's word against another's, which makes early, careful handling of statements, texts, and witnesses essential. These matters are confidential at the investigation stage; keep them that way by speaking only with counsel.",
     forms: [
       "Dual or personal relationships with clients or patients",

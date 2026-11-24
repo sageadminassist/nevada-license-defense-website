@@ -60,6 +60,7 @@ export const IMAGES = {
   driverBeerBottleAtWheel: "/images/driver-holding-beer-bottle-at-wheel.jpg",
   smilingDoctorSeminarAudience: "/images/smiling-doctor-in-seminar-audience.jpg",
   doctorNurseDiscussingFile: "/images/doctor-and-nurse-discussing-file-hallway.jpg",
+  worriedNurseHallwayColleague: "/images/worried-nurse-sitting-in-hallway-colleague-behind.jpg",
   doctorCannabisLeaf: "/images/doctor-cannabis-leaf.jpg",
   nurseMeetingEmployer: "/images/nurse-meeting-employer.jpg",
   nurseTestifyingHearing: "/images/nurse-testifying-hearing.jpg",
