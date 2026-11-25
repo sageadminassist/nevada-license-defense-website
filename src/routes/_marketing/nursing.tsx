@@ -116,15 +116,15 @@ function NursingRoute() {
 
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
-          <img src={IMAGES.nurseUpset} alt="Nurse sitting alone, worried about a board complaint" loading="lazy" className="w-full h-[420px] rounded-lg object-cover object-center shadow-md" />
+          <img src={IMAGES.nurseHeadInHandHallway} alt="Nurse in scrubs sitting against a hospital hallway wall with her head in her hand" loading="lazy" className="w-full h-[420px] rounded-lg object-cover object-[80%_50%] shadow-md" />
           <div className="rounded-lg border-l-4 border-gold bg-gray-50 p-8">
             <p className="text-2xl font-bold text-dark-blue">
-              The Nevada State Board of Nursing opened{" "}
-              <span className="text-gold-dark">605 investigations</span> in 2022–2023 — up 21% over the
-              prior year.
+              The Nevada State Board of Nursing received{" "}
+              <span className="text-gold-dark">674 complaints</span> in fiscal year 2024–2025 — up 12% over
+              the prior year.
             </p>
             <p className="mt-3 text-gray-600">
-              That included 377 complaints against RNs and LPNs and 153 against APRNs (a 57% jump).
+              That included 399 against RNs and LPNs, 202 against APRNs (up from 171) and 73 against CNAs. The Board opened 422 of them to investigation.
               If you've been contacted by the NSBN, don't face it alone.
             </p>
           </div>
@@ -188,11 +188,11 @@ function NursingRoute() {
       <Section>
         <div className="rounded-lg border-l-4 border-gold bg-gray-50 p-8 max-w-4xl mx-auto">
           <p className="text-2xl font-bold text-dark-blue">
-            The Nevada State Board of Nursing opened{" "}
-            <span className="text-gold-dark">605 investigations</span> in 2022–2023 — up 21% over the prior year.
+            The Nevada State Board of Nursing received{" "}
+            <span className="text-gold-dark">674 complaints</span> in fiscal year 2024–2025 — up 12% over the prior year.
           </p>
           <p className="mt-3 text-gray-600">
-            That included 377 complaints against RNs and LPNs and 153 against APRNs (a 57% jump).
+            That included 399 against RNs and LPNs, 202 against APRNs (up from 171) and 73 against CNAs. The Board opened 422 of them to investigation.
             Don't become a statistic — the initial consultation is free and confidential.
           </p>
           <div className="mt-6 flex flex-wrap gap-4">

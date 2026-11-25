@@ -14,7 +14,7 @@ export const SEARCH_DOCS: SearchDoc[] = [
   { title: "Frequently Asked Questions", url: "/faq", type: "Page", snippet: "Answers to common questions about Nevada licensing board complaints.", text: "faq frequently asked questions answers" },
   { title: "Nevada Board Discipline Process, Step by Step", url: "/discipline-process", type: "Page", snippet: "Complaint, Notice of Investigation, investigation, settlement, NRS 233B hearing, sanctions, and judicial review.", text: "discipline process steps notice of investigation hearing appeal judicial review NRS 233B " + PROCESS_STEPS.map(([t, b]) => `${t} ${b}`).join(" ") },
   { title: "Video Library", url: "/videos", type: "Page", snippet: "26 short videos from Craig K. Perry on Nevada board complaints and license defense.", text: "videos video library youtube watch craig explains " + ALL_VIDEOS.map((v) => `${v.title} ${v.summary}`).join(" ") },
-  { title: "About Craig K. Perry", url: "/about", type: "Page", snippet: "37 years of trial practice, 31+ in Nevada, 14+ years of licensing board defense.", text: "about craig perry attorney lawyer experience bio biography firm tyrin kanemeier craig perry speaks trial lawyer las vegas" },
+  { title: "About Craig K. Perry", url: "/about", type: "Page", snippet: "37 years of practice in Nevada, 14+ years of licensing board defense.", text: "about craig perry attorney lawyer experience bio biography firm tyrin kanemeier craig perry speaks trial lawyer las vegas" },
   { title: "All Accusations We Defend", url: "/accusations", type: "Page", snippet: "Guides to the 20 most common complaints against Nevada licensed professionals.", text: "accusations allegations complaints list guides" },
   ...BOARD_ORDER.map((slug) => {
     const b = BOARDS[slug];

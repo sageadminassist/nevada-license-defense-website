@@ -7,7 +7,7 @@ import { ALL_BOARDS, NLD_LD, SITE } from "@/lib/site";
 const BASE = "https://nevadalicensedefense.com";
 const URL = `${BASE}/about`;
 const DESC =
-  "About Nevada License Defense and attorney Craig K. Perry: 37 years of trial practice, 31+ in Nevada, and 14+ years defending nurses and medical professionals before Nevada licensing boards.";
+  "About Nevada License Defense and attorney Craig K. Perry: 37 years of practice in Nevada, and 14+ years defending nurses and medical professionals before Nevada licensing boards.";
 
 export const Route = createFileRoute("/_marketing/about")({
   head: () => ({
@@ -39,8 +39,7 @@ const lds = [
 ];
 
 const STATS = [
-  ["37", "years of trial practice"],
-  ["31+", "years practicing in Nevada"],
+  ["37", "years of practice in Nevada"],
   ["14+", "years of licensing board defense"],
   ["100s", "of board cases handled"],
 ] as const;
@@ -73,7 +72,7 @@ function AboutPage() {
           <img src={IMAGES.craig} alt="Attorney Craig K. Perry" className="w-full h-[480px] rounded-lg object-cover object-[50%_20%] shadow-md" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-3xl font-bold text-dark-blue">Craig K. Perry, Attorney at Law</h2>
-            <p className="text-lg">Craig is a career trial attorney with 37 years of trial practice, more than 31 of them in Nevada, and the founder of Craig K. Perry &amp; Associates in Las Vegas.</p>
+            <p className="text-lg">Craig is a career trial attorney with 37 years of practice, all of it in Nevada, and the founder of Craig K. Perry &amp; Associates in Las Vegas.</p>
             <p>For over 14 years he has defended nurses, physicians, pharmacists and other health professionals before Nevada's licensing boards, handling hundreds of board cases, many resolved by dismissal of the complaint. He represents clients from the first Notice of Investigation through settlement, formal hearing under NRS Chapter 233B, and judicial review.</p>
             <p>Craig also teaches nurses and health professionals how to protect their licenses through continuing-education sessions and keynotes as Craig Perry Speaks, and explains common board issues on his <a href="/videos" className="font-semibold text-dark-blue underline">video library</a>.</p>
           </div>
@@ -81,7 +80,7 @@ function AboutPage() {
       </Section>
 
       <section className="bg-dark-blue">
-        <div className="section-container py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="section-container py-12 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {STATS.map(([n, l]) => (
             <div key={l}>
               <p className="text-4xl md:text-5xl font-bold text-gold">{n}</p>

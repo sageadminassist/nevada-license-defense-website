@@ -68,7 +68,7 @@ export const IMAGES = {
   assortedPillBlisterPacks: "/images/assorted-pill-blister-packs.jpg",
   courthouseColumnsSunlight: "/images/courthouse-columns-sunlight.jpg",
   marbleColumnsFromBelow: "/images/marble-courthouse-columns-from-below.jpg",
-  courthouseExteriorFlags: "/images/courthouse-exterior-columns-flags.jpg",
+  courthousePorticoFacade: "/images/courthouse-portico-corinthian-columns.jpg",
   nurseKitchenTableLaptop: "/images/nurse-at-kitchen-table-with-laptop-and-mug.jpg",
   doctorCannabisLeaf: "/images/doctor-cannabis-leaf.jpg",
   nurseMeetingEmployer: "/images/nurse-meeting-employer.jpg",
@@ -92,6 +92,10 @@ export const IMAGES = {
   doctorWatchingLaptop: "/images/doctor-watching-laptop.jpg",
   courtroomInterior: "/images/courtroom-interior.jpg",
   craigPinstripe: "/images/craig-pinstripe-suit-arms-crossed.jpg",
+  craigBlazerOffice: "/images/craig-navy-blazer-office-windows.jpg",
+  craigBlazerCornerOffice: "/images/craig-navy-blazer-corner-office.jpg",
+  craigArgyleSweater: "/images/craig-argyle-sweater-law-office.jpg",
+  craigStripedSweater: "/images/craig-striped-sweater-office-lobby.jpg",
   craigContact: "/images/craig-perry-contact.jpg",
   craigOffice: "/images/craig-portrait-028.jpg",
   craigCall: "/images/craig_video_call_1.jpg",
@@ -117,10 +121,14 @@ export const IMAGES = {
   nurseDiscussion: "/images/nurses_discussion_over_computer.jpg",
   nursePatient: "/images/female_nurse_meeting_with_patient.jpg",
   nursePhone: "/images/female_nurse_on_phone.jpg",
+  nurseHeadInHandHallway: "/images/nurse-head-in-hand-hospital-hallway.jpg",
   nurseUpset: "/images/female_nurse_sitting_upset.jpg",
   nurseReview: "/images/female_nurse_reviewing_xrays.jpg",
 
   // Medical / Doctors
+  handsHoldingStethoscope: "/images/doctor-hands-holding-stethoscope-white-coat.jpg",
+  doctorArmsCrossedStethoscope: "/images/doctor-arms-crossed-holding-stethoscope.jpg",
+  smilingDoctorExaminingPatient: "/images/female_doctor_checking_patient.jpg",
   doctorStethoscope: "/images/doctor_stethoscope.jpg",
   doctorReviewing: "/images/doctor_reviewing_paperwork.jpg",
   doctorHandshake: "/images/doctor_handshake.jpg",
@@ -135,6 +143,7 @@ export const IMAGES = {
   pharmacistShelves: "/images/african-american-pharmacist-organizing-pharmacy-shelves-with-medication.jpg",
   pharmacistCounter: "/images/female-pharmacist-scanning-medicine-counter.jpg",
   pharmacistWorking: "/images/female-pharmacist-working-drugstore.jpg",
+  pharmacistsCheckingShelf: "/images/pharmacists-checking-shelf-bottles.jpg",
   pharmacistStressed: "/images/freepik__pharmacist-looking-stressed-dim-fluorescent-pharma__94743.jpeg",
 
   // Chiropractic
@@ -165,6 +174,8 @@ export const IMAGES = {
   ptPatient: "/images/medium-shot-patient-physiotherapy.jpg",
   ptPatient2: "/images/medium-shot-patient-physiotherapy2.jpg",
   ptManHelping: "/images/medium-shot-man-helping-patient-physiotherapy.jpg",
+  therapistProstheticLeg: "/images/therapist-assisting-patient-prosthetic-leg.jpg",
+  therapistMatExercise: "/images/therapist-supporting-patient-mat-exercise.jpg",
   ptHandFlex: "/images/female_physical_therapist_hand_flex.jpg",
   ptGymnastics: "/images/woman-doing-gymnastics-with-help-his-young-physical-therapist.jpg",
 
@@ -175,6 +186,7 @@ export const IMAGES = {
 
   // Veterinary
   vetClinic: "/images/vet_at_clinic.jpg",
+  vetHoldingDogPaw: "/images/vet-gloved-hands-holding-dog-paw.jpg",
   vetUltrasound: "/images/veteranarian_ultrasound.jpg",
   dogTreatment: "/images/dog_getting_vet_treatment.jpg",
 

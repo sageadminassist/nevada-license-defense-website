@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_marketing/osteopathic")({
   head: () => ({
     meta: [
       { title: "Nevada Board of Osteopathic Medicine Defense | 702.893.4777" },
-      { name: "description", content: "Craig K. Perry defends osteopathic physicians (DOs) before the Nevada State Board of Osteopathic Medicine. 31+ years experience. Free consultation — 702.893.4777." },
+      { name: "description", content: "Craig K. Perry defends osteopathic physicians (DOs) before the Nevada State Board of Osteopathic Medicine. 37 years experience. Free consultation — 702.893.4777." },
       { property: "og:title", content: "Nevada Board of Osteopathic Medicine Defense | Craig K. Perry & Associates" },
       { property: "og:url", content: "https://nevadalicensedefense.com/osteopathic" },
     ],
@@ -36,7 +36,7 @@ function BoardPage() {
 
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <img src={IMAGES.doctorDiscussingWithNurses} alt="Osteopathic physician consulting with medical staff" className="w-full rounded-lg object-cover shadow-md max-h-96" />
+          <img src={IMAGES.smilingDoctorExaminingPatient} alt="Smiling physician in a white coat examining a patient" className="w-full h-96 rounded-lg object-cover object-[50%_30%] shadow-md" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">About This Practice Area</h2>
             <p className="text-lg">Osteopathic physicians (DOs) facing disciplinary actions, investigations, or license revocation before the Nevada State Board of Osteopathic Medicine.</p>
@@ -48,7 +48,7 @@ function BoardPage() {
 
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
-        <img src={IMAGES.osteopathElbow} alt="Osteopathic physician checking a patient's elbow movement" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-center shadow-md mb-10" />
+        <img src={IMAGES.doctorArmsCrossedStethoscope} alt="Physician in a white coat with arms crossed, holding a stethoscope" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-[50%_45%] shadow-md mb-10" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {[
             ["Board Investigations", "Representation from the moment you receive a notice — before you respond to the board."],
@@ -71,7 +71,7 @@ function BoardPage() {
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>
-          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has practiced law in Nevada for over 31 years and handled hundreds of licensing board cases — call today for a free consultation.</p>
+          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has practiced law in Nevada for 37 years and handled hundreds of licensing board cases — call today for a free consultation.</p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Schedule a Consultation</a>

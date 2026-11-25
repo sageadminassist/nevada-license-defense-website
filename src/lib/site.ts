@@ -33,7 +33,7 @@ export const NLD_LD = {
     name: "Craig K. Perry",
     jobTitle: "Attorney at Law",
     description:
-      "Las Vegas trial attorney who has practiced law in Nevada for more than 31 years and has defended nurses and medical professionals before Nevada licensing boards for over 14 years, handling hundreds of board cases.",
+      "Las Vegas trial attorney who has practiced law in Nevada for 37 years and has defended nurses and medical professionals before Nevada licensing boards for over 14 years, handling hundreds of board cases.",
     worksFor: { "@type": "LegalService", name: "Craig K. Perry & Associates", url: "https://craigperry.com" },
     url: "https://craigperry.com",
     telephone: "+1-702-893-4777",

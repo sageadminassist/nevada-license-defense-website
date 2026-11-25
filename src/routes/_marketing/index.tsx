@@ -32,7 +32,7 @@ export const Route = createFileRoute("/_marketing/")({
       {
         name: "description",
         content:
-          "Nevada License Defense — Craig K. Perry & Associates defends physicians, pharmacists, nurses, and allied health professionals before Nevada state licensing boards. 31+ years' experience. Free consultation.",
+          "Nevada License Defense — Craig K. Perry & Associates defends physicians, pharmacists, nurses, and allied health professionals before Nevada state licensing boards. 37 years' experience. Free consultation.",
       },
       {
         property: "og:title",
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/_marketing/")({
       {
         property: "og:description",
         content:
-          "Facing a Nevada licensing board complaint? Craig K. Perry has 31+ years of Nevada law practice and hundreds of board cases. Free consultation — 702.893.4777.",
+          "Facing a Nevada licensing board complaint? Craig K. Perry has 37 years of Nevada law practice and hundreds of board cases. Free consultation — 702.893.4777.",
       },
       { property: "og:url", content: "https://nevadalicensedefense.com" },
     ],

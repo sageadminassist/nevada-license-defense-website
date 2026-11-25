@@ -120,7 +120,7 @@ function PharmacyRoute() {
       {/* Real case types from live site */}
       <Section variant="muted">
         <SectionTitle>Cases We Handle Before the Board of Pharmacy</SectionTitle>
-        <img src={IMAGES.pharmacistStressed} alt="Pharmacist looking stressed in a pharmacy" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-center shadow-md mb-10" />
+        <img src={IMAGES.pharmacistsCheckingShelf} alt="Two pharmacists closely checking medication bottles on a pharmacy shelf" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-[50%_36%] shadow-md mb-10" />
         <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">With increasing frequency, attorney Craig Perry represents clients alleged to have violated laws enforced by the BOP. Recent examples include:</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
           {[
@@ -163,7 +163,7 @@ function PharmacyRoute() {
           </div>
         </div>
       </Section>
-      <CraigBlock src={IMAGES.craigMeetingPhysician} alt="Craig K. Perry meeting with a pharmacy professional client" />
+      <CraigBlock src={IMAGES.craigBlazerOffice} alt="Attorney Craig K. Perry in a navy blazer, smiling, standing by the windows of his office" />
 
       <BoardFaq slug="pharmacy" title="Nevada Board of Pharmacy Defense" />
     </>

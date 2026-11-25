@@ -54,7 +54,7 @@ function ContactRoute() {
               />
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold text-dark-blue">Craig K. Perry</h2>
-                <p className="text-gold-dark font-semibold text-sm uppercase tracking-wide">Attorney at Law · 31+ Years Experience</p>
+                <p className="text-gold-dark font-semibold text-sm uppercase tracking-wide">Attorney at Law · 37 Years Experience</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Craig personally handles every Nevada professional license defense case. When you call, you speak with him — not a paralegal or intake specialist.
                 </p>
@@ -147,7 +147,7 @@ function ContactRoute() {
               <h2 className="mb-3 text-xl font-bold">Part of Craig K. Perry &amp; Associates</h2>
               <p className="mb-5 text-white/75 text-sm leading-relaxed">
                 Nevada License Defense is a specialized practice of Craig K. Perry &amp; Associates
-                — a Las Vegas law firm founded by an attorney with over 31 years of Nevada legal practice.
+                — a Las Vegas law firm founded by an attorney with 37 years of Nevada legal practice.
               </p>
               <div className="flex flex-col gap-2">
                 <a href={SITE.firmUrl} target="_blank" rel="noopener" className="text-gold hover:text-white transition-colors text-sm font-semibold">

@@ -21,7 +21,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Nevada License Defense — Craig K. Perry & Associates defends physicians, pharmacists, nurses, and allied health professionals before Nevada state licensing boards. 31+ years' experience. Free consultation.",
+          "Nevada License Defense — Craig K. Perry & Associates defends physicians, pharmacists, nurses, and allied health professionals before Nevada state licensing boards. 37 years' experience. Free consultation.",
       },
       { name: "robots", content: "index, follow" },
       { name: "theme-color", content: "#1a2332" },

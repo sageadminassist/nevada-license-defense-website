@@ -132,7 +132,7 @@ function MedicalRoute() {
             restrictions on your ability to practice.
           </p>
           <p>
-            With over 31 years of legal experience, Craig K. Perry understands the Board's
+            With 37 years of legal experience, Craig K. Perry understands the Board's
             procedures, requirements, and the importance of protecting your professional
             reputation.
           </p>
@@ -168,7 +168,7 @@ function MedicalRoute() {
 
       <Section>
         <SectionTitle>Our Medical License Defense Services</SectionTitle>
-        <img src={IMAGES.doctorOnPhone} alt="Physician on the phone in a hospital hallway" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-center shadow-md mb-10" />
+        <img src={IMAGES.handsHoldingStethoscope} alt="Close-up of a physician in a white coat holding a stethoscope" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-[50%_48%] shadow-md mb-10" />
         <ServiceGrid>
           {SERVICES.map(([title, body]) => (
             <ServiceCard key={title} title={title}>{body}</ServiceCard>

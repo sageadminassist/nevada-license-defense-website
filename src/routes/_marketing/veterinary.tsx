@@ -46,7 +46,7 @@ function BoardPage() {
       </Section>
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
-        <img src={IMAGES.vetUltrasound} alt="Veterinarian performing an ultrasound" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-center shadow-md mb-10" />
+        <img src={IMAGES.vetHoldingDogPaw} alt="Veterinarian's gloved hands holding the paw of an older dog lying on an exam table" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-[50%_60%] shadow-md mb-10" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {[["Board Investigations","Representation from the moment you receive a notice — before you respond to the board."],["Disciplinary Hearings","Defense at formal and informal hearings before your licensing board."],["License Reinstatement","Guidance reinstating a suspended or revoked license."],["Probation & Monitoring","Negotiating monitoring agreements and defending probation violations."],["Criminal Matters","Defense when criminal charges impact your professional license."],["License Renewal Issues","Resolving continuing-education, disclosure, or renewal problems."]].map(([title, blurb]) => (
             <div key={title} className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
@@ -61,7 +61,7 @@ function BoardPage() {
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>
-          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has practiced law in Nevada for over 31 years and handled hundreds of licensing board cases.</p>
+          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has practiced law in Nevada for 37 years and handled hundreds of licensing board cases.</p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Schedule a Consultation</a>

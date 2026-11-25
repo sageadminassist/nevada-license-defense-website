@@ -55,14 +55,14 @@ function BoardPage() {
           ))}
         </div>
       </Section>
-      <CraigBlock src={IMAGES.craigMeetingClient2} alt="Craig K. Perry meeting with a psychologist client" />
+      <CraigBlock src={IMAGES.craigArgyleSweater} alt="Attorney Craig K. Perry in a navy argyle sweater, smiling, holding a leather portfolio in his law office" />
 
       <BoardFaq slug="psychology" title="Psychology Board Defense" />
 
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>
-          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has practiced law in Nevada for over 31 years and handled hundreds of licensing board cases.</p>
+          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has practiced law in Nevada for 37 years and handled hundreds of licensing board cases.</p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Schedule a Consultation</a>

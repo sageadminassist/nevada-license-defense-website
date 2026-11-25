@@ -55,7 +55,7 @@ function BoardPage() {
 
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <img src={IMAGES.ptHandFlex} alt="Occupational therapist working with a patient on hand mobility" className="w-full rounded-lg object-cover shadow-md max-h-96" />
+          <img src={IMAGES.therapistProstheticLeg} alt="Therapist helping a patient stretch a prosthetic leg during a rehabilitation session" className="w-full rounded-lg object-cover shadow-md max-h-96" />
           <div className="space-y-4 text-gray-700">
             <h2 className="text-2xl font-bold text-dark-blue">Nevada Board of Occupational Therapy</h2>
             <p className="text-lg">Occupational therapists (OTs) and occupational therapy assistants (OTAs) facing complaints, investigations, or disciplinary proceedings before the Nevada Board of Occupational Therapy.</p>
@@ -71,7 +71,7 @@ function BoardPage() {
 
       <Section variant="muted">
         <SectionTitle>How We Help</SectionTitle>
-        <img src={IMAGES.physicalTherapistExplanation} alt="Therapist explaining a treatment plan to a patient" loading="lazy" className="w-full max-w-5xl mx-auto h-64 md:h-80 rounded-lg object-cover object-center shadow-md mb-10" />
+        <img src={IMAGES.therapistMatExercise} alt="Therapist in scrubs supporting a patient through a balance exercise on a mat" loading="lazy" className="w-full max-w-5xl mx-auto h-72 md:h-[460px] rounded-lg object-cover object-[50%_35%] shadow-md mb-10" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {[
             ["Board Investigations", "Representation from the moment you receive a notice — before you respond to the board."],
@@ -94,7 +94,7 @@ function BoardPage() {
       <Section className="bg-dark-blue">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold text-white">Your License Is Worth Defending</h2>
-          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has practiced law in Nevada for over 31 years and handled hundreds of licensing board cases.</p>
+          <p className="text-white/80 max-w-xl mx-auto">Don't face your licensing board alone. Craig K. Perry has practiced law in Nevada for 37 years and handled hundreds of licensing board cases.</p>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <a href={SITE.phoneHref} className="btn-gold">Call {SITE.phoneDisplay}</a>
             <a href="/contact" className="btn-secondary">Free Consultation</a>

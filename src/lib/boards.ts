@@ -20,7 +20,7 @@ const generic = (b: { board: string; short: string }) =>
     ],
     [
       `Who defends ${b.short} licenses in Nevada?`,
-      `Craig K. Perry & Associates, based at 2300 W Sahara Ave #800 in Las Vegas, defends ${b.short} licensees before the ${b.board} statewide — including Las Vegas, Henderson, Reno, and Carson City. Craig K. Perry has practiced Nevada law for more than 31 years.`,
+      `Craig K. Perry & Associates, based at 2300 W Sahara Ave #800 in Las Vegas, defends ${b.short} licensees before the ${b.board} statewide — including Las Vegas, Henderson, Reno, and Carson City. Craig K. Perry has practiced Nevada law for 37 years.`,
     ],
   ] as const;
 
