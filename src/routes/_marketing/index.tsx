@@ -235,7 +235,7 @@ function HomePage() {
       {/* About section */}
       <Section>
         <SectionTitle>
-          For Over 14 Years, We Have Defended Medical Professionals in the State of Nevada
+          For 17 Years, We Have Defended Medical Professionals in the State of Nevada
         </SectionTitle>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="prose prose-lg max-w-none">

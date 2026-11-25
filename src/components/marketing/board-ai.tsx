@@ -122,7 +122,7 @@ export function CraigBlock({ src, alt }: { src: string; alt: string }) {
         <img src={src} alt={alt} loading="lazy" className="w-full h-[460px] rounded-lg object-cover object-[50%_25%] shadow-md" />
         <div className="space-y-4 text-gray-700">
           <h2 className="text-3xl font-bold text-dark-blue">Meet Craig K. Perry</h2>
-          <p className="text-lg">Craig is a career trial attorney — 37 years of practice, all of it in Nevada — and the founder of Craig K. Perry &amp; Associates in Las Vegas. For over 14 years he has defended nurses and medical professionals before Nevada licensing boards, handling hundreds of board cases, many resolved by dismissal of the complaint.</p>
+          <p className="text-lg">Craig is a career trial attorney — 37 years of practice, all of it in Nevada — and the founder of Craig K. Perry &amp; Associates in Las Vegas. For 17 years he has defended nurses and medical professionals before Nevada licensing boards, handling hundreds of board cases, many resolved by dismissal of the complaint.</p>
           <p>He and Office Manager Tyrin Kanemeier, with the firm for nearly 20 years, guide clients from the first letter of investigation to final resolution. Craig also teaches nurses and health professionals how to protect their licenses through CE sessions and keynotes as Craig Perry Speaks.</p>
           <p className="font-semibold text-dark-blue">{SITE.consultation}</p>
           <a href={SITE.phoneHref} className="btn-primary inline-block">Call {SITE.phoneDisplay}</a>

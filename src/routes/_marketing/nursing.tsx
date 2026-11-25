@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_marketing/nursing")({
       {
         name: "description",
         content:
-          "Defense before the Nevada State Board of Nursing (NSBN) for RNs, LPNs, NPs, and APRNs. Craig K. Perry has defended Nevada nurses for over 16 years. Free consultation.",
+          "Defense before the Nevada State Board of Nursing (NSBN) for RNs, LPNs, NPs, and APRNs. Craig K. Perry has defended Nevada nurses for 17 years. Free consultation.",
       },
       {
         property: "og:title",
@@ -81,13 +81,13 @@ function NursingRoute() {
           <p className="text-3xl font-bold text-dark-blue text-center">{SITE.phoneDisplay}</p>
           <p className="text-lg text-center">Serving Nevada Citizens &bull; {SITE.location}</p>
           <p className="text-lg">
-            For 100 years, the Nevada State Board of Nursing (NSBN) has regulated nursing to
+            For more than 100 years, the Nevada State Board of Nursing (NSBN) has regulated nursing to
             ensure safe practices and public safety. The NSBN regulates more than 70,000 nurses
             statewide and has broad authority to investigate, discipline, and revoke licenses.
           </p>
           <p>
             When your nursing license is threatened, you need experienced legal representation.
-            Craig K. Perry has defended nurses before the NSBN for over 16 years — from initial
+            Craig K. Perry has defended nurses before the NSBN for 17 years — from initial
             investigations through formal hearings and reinstatement proceedings.
           </p>
           <p className="text-sm text-gray-500">

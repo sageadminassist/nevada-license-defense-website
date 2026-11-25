@@ -56,7 +56,7 @@ function ContactRoute() {
                 <h2 className="text-2xl font-bold text-dark-blue">Craig K. Perry</h2>
                 <p className="text-gold-dark font-semibold text-sm uppercase tracking-wide">Attorney at Law · 37 Years Experience</p>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Craig personally handles every Nevada professional license defense case. When you call, you speak with him — not a paralegal or intake specialist.
+                  Craig personally handles every Nevada professional license defense case. Schedule a free consultation to meet with him, and once he takes your case you can reach him directly.
                 </p>
               </div>
             </div>

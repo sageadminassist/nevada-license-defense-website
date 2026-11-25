@@ -7,7 +7,7 @@ import { ALL_BOARDS, NLD_LD, SITE } from "@/lib/site";
 const BASE = "https://nevadalicensedefense.com";
 const URL = `${BASE}/about`;
 const DESC =
-  "About Nevada License Defense and attorney Craig K. Perry: 37 years of practice in Nevada, and 14+ years defending nurses and medical professionals before Nevada licensing boards.";
+  "About Nevada License Defense and attorney Craig K. Perry: 37 years of practice in Nevada, and 17 years defending nurses and medical professionals before Nevada licensing boards.";
 
 export const Route = createFileRoute("/_marketing/about")({
   head: () => ({
@@ -40,7 +40,7 @@ const lds = [
 
 const STATS = [
   ["37", "years of practice in Nevada"],
-  ["14+", "years of licensing board defense"],
+  ["17", "years of licensing board defense"],
   ["100s", "of board cases handled"],
 ] as const;
 
@@ -48,7 +48,7 @@ const VALUES = [
   ["Early, careful responses", "The first written response to a board often decides the case. We get involved before anything is sent, so your side is told accurately and completely."],
   ["A trial lawyer in your corner", "Board cases are won with preparation: records, witnesses, expert input, and the willingness to go to a formal hearing when settlement isn't fair."],
   ["Protecting your career, not just the case", "We look at what any outcome means for your employment, other states' licenses, insurance, and education, and negotiate with that in mind."],
-  ["Plain answers and a real person", "You'll talk with Craig and with Office Manager Tyrin Kanemeier, who has been with the firm for nearly 20 years, not a call center."],
+  ["Plain answers from your attorney", "Your free consultation is a meeting with Craig himself. Once he takes your case, you can reach him directly, with support from Office Manager Tyrin Kanemeier, who has been with the firm for nearly 20 years."],
 ] as const;
 
 function AboutPage() {
@@ -73,7 +73,7 @@ function AboutPage() {
           <div className="space-y-4 text-gray-700">
             <h2 className="text-3xl font-bold text-dark-blue">Craig K. Perry, Attorney at Law</h2>
             <p className="text-lg">Craig is a career trial attorney with 37 years of practice, all of it in Nevada, and the founder of Craig K. Perry &amp; Associates in Las Vegas.</p>
-            <p>For over 14 years he has defended nurses, physicians, pharmacists and other health professionals before Nevada's licensing boards, handling hundreds of board cases, many resolved by dismissal of the complaint. He represents clients from the first Notice of Investigation through settlement, formal hearing under NRS Chapter 233B, and judicial review.</p>
+            <p>For 17 years he has defended nurses, physicians, pharmacists and other health professionals before Nevada's licensing boards, handling hundreds of board cases, many resolved by dismissal of the complaint. He represents clients from the first Notice of Investigation through settlement, formal hearing under NRS Chapter 233B, and judicial review.</p>
             <p>Craig also teaches nurses and health professionals how to protect their licenses through continuing-education sessions and keynotes as Craig Perry Speaks, and explains common board issues on his <a href="/videos" className="font-semibold text-dark-blue underline">video library</a>.</p>
           </div>
         </div>
