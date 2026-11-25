@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { SITE } from "@/lib/site";
 
 export type ConsultKind = "consultation" | "appointment";
@@ -16,6 +16,7 @@ const LABEL = "mb-1 block text-sm font-semibold text-dark-blue";
 export function ConsultForm({ kind, onKind }: { kind: ConsultKind; onKind: (k: ConsultKind) => void }) {
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
+  const uid = useId();
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -87,35 +88,35 @@ export function ConsultForm({ kind, onKind }: { kind: ConsultKind; onKind: (k: C
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <label className={LABEL} htmlFor="cf-name">Name</label>
-          <input id="cf-name" name="name" required maxLength={120} autoComplete="name" className={INPUT} />
+          <label className={LABEL} htmlFor={`${uid}-name`}>Name</label>
+          <input id={`${uid}-name`} name="name" required maxLength={120} autoComplete="name" className={INPUT} />
         </div>
         <div>
-          <label className={LABEL} htmlFor="cf-phone">Phone</label>
-          <input id="cf-phone" name="phone" type="tel" maxLength={40} autoComplete="tel" className={INPUT} />
+          <label className={LABEL} htmlFor={`${uid}-phone`}>Phone</label>
+          <input id={`${uid}-phone`} name="phone" type="tel" maxLength={40} autoComplete="tel" className={INPUT} />
         </div>
         <div>
-          <label className={LABEL} htmlFor="cf-email">Email</label>
-          <input id="cf-email" name="email" type="email" maxLength={160} autoComplete="email" className={INPUT} />
+          <label className={LABEL} htmlFor={`${uid}-email`}>Email</label>
+          <input id={`${uid}-email`} name="email" type="email" maxLength={160} autoComplete="email" className={INPUT} />
         </div>
         <div className={kind === "appointment" ? "" : "sm:col-span-2"}>
-          <label className={LABEL} htmlFor="cf-license">License type or board <span className="font-normal text-gray-500">(optional)</span></label>
-          <input id="cf-license" name="license" maxLength={120} placeholder="e.g. RN, Board of Nursing" className={INPUT} />
+          <label className={LABEL} htmlFor={`${uid}-license`}>License type or board <span className="font-normal text-gray-500">(optional)</span></label>
+          <input id={`${uid}-license`} name="license" maxLength={120} placeholder="e.g. RN, Board of Nursing" className={INPUT} />
         </div>
         {kind === "appointment" && (
           <div>
-            <label className={LABEL} htmlFor="cf-when">Preferred day and time</label>
-            <input id="cf-when" name="when" maxLength={160} placeholder="e.g. weekday mornings" className={INPUT} />
+            <label className={LABEL} htmlFor={`${uid}-when`}>Preferred day and time</label>
+            <input id={`${uid}-when`} name="when" maxLength={160} placeholder="e.g. weekday mornings" className={INPUT} />
           </div>
         )}
         <div className="sm:col-span-2">
-          <label className={LABEL} htmlFor="cf-message">Message</label>
-          <textarea id="cf-message" name="message" required rows={4} maxLength={5000} placeholder="Briefly, what happened and any deadline you were given." className={INPUT} />
+          <label className={LABEL} htmlFor={`${uid}-message`}>Message</label>
+          <textarea id={`${uid}-message`} name="message" required rows={4} maxLength={5000} placeholder="Briefly, what happened and any deadline you were given." className={INPUT} />
         </div>
         {/* Honeypot: hidden from people, filled by bots. */}
         <div className="hidden" aria-hidden="true">
-          <label htmlFor="cf-website">Website</label>
-          <input id="cf-website" name="website" tabIndex={-1} autoComplete="off" />
+          <label htmlFor={`${uid}-website`}>Website</label>
+          <input id={`${uid}-website`} name="website" tabIndex={-1} autoComplete="off" />
         </div>
       </div>
 
@@ -219,6 +220,24 @@ export function ConsultModal() {
         <div className="px-6 py-5">
           <ConsultForm key={formKey} kind={kind} onKind={setKind} />
         </div>
+      </div>
+    </div>
+  );
+}
+
+/** Inline version of the form for the Contact page. */
+export function ConsultCard() {
+  const [kind, setKind] = useState<ConsultKind>("consultation");
+  return (
+    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
+      <div className="border-b-4 border-gold bg-dark-blue px-8 py-5 text-white">
+        <h2 className="text-2xl font-bold">
+          {kind === "appointment" ? "Request an Appointment" : "Request a Free Consultation"}
+        </h2>
+        <p className="mt-1 text-sm text-white/80">Send us a message and we will get back to you.</p>
+      </div>
+      <div className="px-8 py-6">
+        <ConsultForm kind={kind} onKind={setKind} />
       </div>
     </div>
   );
