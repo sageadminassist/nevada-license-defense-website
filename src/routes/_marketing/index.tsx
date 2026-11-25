@@ -165,16 +165,16 @@ function HomePage() {
                 and the American Registry of Radiologic Technologists (ARRT).
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in" style={{ animationDelay: "300ms" }}>
-                <a href={SITE.phoneHref} className="btn-gold flex w-full items-center justify-center gap-2 px-6 py-4 text-lg sm:w-64">
+                <a href={SITE.phoneHref} className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-white bg-white px-6 py-4 text-lg font-bold text-dark-blue shadow-md transition-all duration-300 hover:border-gold hover:bg-gold hover:shadow-lg sm:w-64">
                   <svg className="w-5 h-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   {SITE.phoneDisplay}
                 </a>
-                <a href="/contact" className="btn-gold flex w-full items-center justify-center gap-2 px-6 py-4 text-lg sm:w-64">
+                <a href="/contact" className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-white bg-white px-6 py-4 text-lg font-bold text-dark-blue shadow-md transition-all duration-300 hover:border-gold hover:bg-gold hover:shadow-lg sm:w-64">
                   Free Consultation
                 </a>
-                <a href="/contact" className="btn-gold flex w-full items-center justify-center gap-2 px-6 py-4 text-lg sm:w-64">
+                <a href="/contact" className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-white bg-white px-6 py-4 text-lg font-bold text-dark-blue shadow-md transition-all duration-300 hover:border-gold hover:bg-gold hover:shadow-lg sm:w-64">
                   Request Appointment
                 </a>
               </div>
