@@ -49,7 +49,7 @@ function rank(docs: Doc[], query: string): FaqItem[] {
 
 type Msg =
   | { from: "user"; text: string }
-  | { from: "bot"; text: string; item?: FaqItem; related?: FaqItem[]; miss?: boolean };
+  | { from: "bot"; text: string; item?: FaqItem; related?: FaqItem[]; miss?: boolean; ai?: boolean };
 
 const STARTERS = [
   "When should I contact an attorney?",
@@ -61,6 +61,7 @@ const STARTERS = [
 export function FaqChat() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
+  const [busy, setBusy] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([
     {
       from: "bot",
@@ -82,7 +83,7 @@ export function FaqChat() {
 
   useEffect(() => {
     scroller.current?.scrollTo({ top: scroller.current.scrollHeight });
-  }, [msgs, open]);
+  }, [msgs, open, busy]);
   useEffect(() => {
     if (open) {
       field.current?.focus();
@@ -90,20 +91,47 @@ export function FaqChat() {
     }
   }, [open]);
 
-  function ask(text: string) {
+  async function ask(text: string) {
     const q = text.trim();
-    if (!q) return;
-    const found = rank(docs, q);
-    track("faq_question", q, found.length ? `1|${found[0].q}` : "0");
-    const reply: Msg = found.length
-      ? { from: "bot", text: found[0].a, item: found[0], related: found.slice(1, 4) }
-      : {
-          from: "bot",
-          miss: true,
-          text: "I could not find that in our FAQ. Every case is different, so the best next step is a free consultation with Craig.",
-        };
-    setMsgs((m) => [...m, { from: "user", text: q }, reply]);
+    if (!q || busy) return;
+    const history = msgs
+      .slice(1)
+      .filter((m) => !(m.from === "bot" && m.miss))
+      .slice(-6)
+      .map((m) => ({ role: m.from === "user" ? "user" : "assistant", text: m.text }));
+    setMsgs((m) => [...m, { from: "user", text: q }]);
     setInput("");
+    setBusy(true);
+
+    // Try the AI assistant first; if it is not switched on or fails, answer from the FAQ list.
+    let reply: Msg | null = null;
+    try {
+      const res = await fetch("/api/ask.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: q, history }),
+      });
+      const json = (await res.json().catch(() => null)) as { ok?: boolean; answer?: string } | null;
+      if (res.ok && json?.ok && json.answer) reply = { from: "bot", text: json.answer, ai: true };
+    } catch {
+      // fall through to the built-in matcher
+    }
+    if (reply) {
+      track("faq_question", q, "1|AI answer");
+    } else {
+      const found = rank(docs, q);
+      track("faq_question", q, found.length ? `1|${found[0].q}` : "0");
+      reply = found.length
+        ? { from: "bot", text: found[0].a, item: found[0], related: found.slice(1, 4) }
+        : {
+            from: "bot",
+            miss: true,
+            text: "I could not find that in our FAQ. Every case is different, so the best next step is a free consultation with Craig.",
+          };
+    }
+    const r = reply;
+    setMsgs((m) => [...m, r]);
+    setBusy(false);
   }
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -121,7 +149,7 @@ export function FaqChat() {
           <div className="flex items-center justify-between gap-3 border-b-4 border-gold bg-dark-blue px-4 py-3 text-white">
             <div>
               <p className="text-lg font-bold leading-tight">Ask a Question</p>
-              <p className="text-xs text-white/75">Answers from our license defense FAQ</p>
+              <p className="text-xs text-white/75">General information, not legal advice</p>
             </div>
             <button type="button" onClick={() => setOpen(false)} aria-label="Close" className="cursor-pointer rounded-md p-1 text-2xl leading-none text-white/80 hover:text-white">
               ×
@@ -137,7 +165,7 @@ export function FaqChat() {
               ) : (
                 <div key={i} className="mr-6 rounded-2xl rounded-bl-sm border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-800">
                   {m.item && <p className="mb-1 font-bold text-dark-blue">{m.item.q}</p>}
-                  <p className="leading-relaxed">{m.text}</p>
+                  <p className="whitespace-pre-line leading-relaxed">{m.text}</p>
                   {m.item?.source && (
                     <a href={m.item.source.to} className="mt-2 inline-block text-xs font-semibold text-dark-blue underline">
                       Read more: {m.item.source.label}
@@ -155,7 +183,7 @@ export function FaqChat() {
                       </div>
                     </div>
                   )}
-                  {(m.miss || m.item) && (
+                  {(m.miss || m.item || m.ai) && (
                     <div className="mt-3 flex flex-wrap gap-2">
                       <button type="button" onClick={() => openConsult("consultation")} className="cursor-pointer rounded-md bg-gold px-3 py-1.5 text-xs font-bold text-dark-blue hover:bg-gold-dark">
                         Free Consultation
@@ -167,6 +195,11 @@ export function FaqChat() {
                   )}
                 </div>
               ),
+            )}
+            {busy && (
+              <div className="mr-6 inline-block rounded-2xl rounded-bl-sm border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-500">
+                Looking that up…
+              </div>
             )}
             {msgs.length === 1 && (
               <div className="flex flex-col items-start gap-1.5 pt-1">
@@ -189,7 +222,7 @@ export function FaqChat() {
               aria-label="Your question"
               className="min-w-0 flex-1 rounded-lg border border-gray-300 px-3 py-2 text-base focus:border-dark-blue focus:outline-none focus:ring-2 focus:ring-gold/60"
             />
-            <button type="submit" className="cursor-pointer rounded-lg bg-dark-blue px-4 py-2 text-sm font-bold text-white hover:opacity-90">
+            <button type="submit" disabled={busy} className="cursor-pointer rounded-lg bg-dark-blue disabled:opacity-60 px-4 py-2 text-sm font-bold text-white hover:opacity-90">
               Ask
             </button>
           </form>

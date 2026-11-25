@@ -30,6 +30,23 @@ The page tells you what is missing. Usually it is one of:
   go to the folder that *contains* `public_html`, create a new folder there named
   **`nld-private`**, then reload `/admin/`.
 
+## Switching on the AI assistant ("Ask a Question")
+
+Without a key, the Ask a Question box matches the question to the closest FAQ and shows
+that answer. With a key, it reads the question properly and writes a short reply based
+only on the site's FAQ text (general information, never legal advice).
+
+1. Create an Anthropic API account at https://console.anthropic.com, add a payment
+   method, and create an **API key**. Set a monthly spend limit there.
+2. hPanel → File Manager → open the **`nld-private`** folder (next to `public_html`).
+3. Create a file named **`anthropic-key.txt`** and paste the key into it. Nothing else
+   in the file. Save.
+4. Ask a question on the site. To switch the AI off again, delete that file.
+
+The key never goes in the website files or in GitHub. Built-in limits: 15 questions per
+visitor per hour and 400 per day for the whole site. The model is set in
+`public/api/ask.php` (`claude-opus-5-5`); a cheaper model can be named there.
+
 ## Resetting a forgotten password
 
 1. hPanel → File Manager → open the **`nld-private`** folder (next to `public_html`).
