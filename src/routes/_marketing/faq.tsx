@@ -5,6 +5,7 @@ import { Search, X } from "lucide-react";
 
 import { Section, SectionTitle } from "@/components/marketing/sections";
 import { CraigBlock } from "@/components/marketing/board-ai";
+import { NsbnRenewals } from "@/components/marketing/nsbn-graphics";
 import { IMAGES } from "@/lib/images";
 import { FAQ_COUNT, FAQ_GROUPS } from "@/lib/faqs";
 import { slugify } from "@/lib/search-index";
@@ -136,6 +137,11 @@ function FaqRoute() {
             </div>
           ) : null}
         </div>
+      </Section>
+
+      <Section variant="muted">
+        <SectionTitle>Nursing License Renewals and Applications</SectionTitle>
+        <NsbnRenewals />
       </Section>
 
       <CraigBlock src={IMAGES.craigPinstripe} alt="Attorney Craig K. Perry in a navy pinstripe suit, arms crossed, smiling" />

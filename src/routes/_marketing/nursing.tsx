@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
-
   Section,
   SectionTitle,
   ServiceCard,
@@ -9,6 +8,7 @@ import {
 } from "@/components/marketing/sections";
 import { BoardAnswer, BoardFaq } from "@/components/marketing/board-ai";
 import { NURSING_FAQS } from "@/lib/faqs";
+import { NsbnTabs } from "@/components/marketing/nsbn-graphics";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -131,6 +131,11 @@ function NursingRoute() {
         </div>
       </Section>
 
+      <Section variant="muted">
+        <SectionTitle>The Nursing Board by the Numbers</SectionTitle>
+        <NsbnTabs show={["numbers", "allegations", "sources", "aprn"]} />
+      </Section>
+
       {/* When should I contact you */}
       <Section variant="muted">
         <SectionTitle>When Should I Contact You?</SectionTitle>
@@ -188,12 +193,10 @@ function NursingRoute() {
       <Section>
         <div className="rounded-lg border-l-4 border-gold bg-gray-50 p-8 max-w-4xl mx-auto">
           <p className="text-2xl font-bold text-dark-blue">
-            The Nevada State Board of Nursing received{" "}
-            <span className="text-gold-dark">674 complaints</span> in fiscal year 2024–2025 — up 12% over the prior year.
+            Contacted by the Nursing Board? Talk to Craig before you respond.
           </p>
           <p className="mt-3 text-gray-600">
-            That included 399 against RNs and LPNs, 202 against APRNs (up from 171) and 73 against CNAs. The Board opened 422 of them to investigation.
-            Don't become a statistic — the initial consultation is free and confidential.
+            The initial consultation is free and confidential.
           </p>
           <div className="mt-6 flex flex-wrap gap-4">
             <a href={SITE.phoneHref} className="btn-primary">Call {SITE.phoneDisplay}</a>

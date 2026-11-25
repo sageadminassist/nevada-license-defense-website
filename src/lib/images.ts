@@ -1,4 +1,10 @@
 export const IMAGES = {
+  // NSBN FY2024/25 infographics (nursing-board pages only)
+  infoNsbnNumbers: "/images/infographics/nsbn-fy2025-by-the-numbers.webp",
+  infoNsbnOutcomes: "/images/infographics/nsbn-fy2025-discipline-outcomes.webp",
+  infoNsbnRenewals: "/images/infographics/nsbn-fy2025-renewals-applications.webp",
+  infoNsbnAprn: "/images/infographics/nsbn-fy2025-aprn-growth.webp",
+  infoNsbnRights: "/images/infographics/nsbn-your-rights.webp",
   // Logos
   logoWhite: "/images/NEVADA LICENSE DEFENSE LOGO-WHITE.png",
   logoDark: "/images/NEVADA LICENSE DEFENSE LOGO.png",

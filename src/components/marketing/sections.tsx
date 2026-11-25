@@ -121,3 +121,17 @@ export function FaqList({
     </div>
   );
 }
+
+/** A portrait data graphic with a source caption. Opens full size on click. */
+export function InfoGraphic({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+  return (
+    <figure className="mx-auto max-w-2xl">
+      <a href={src} target="_blank" rel="noopener" aria-label="Open graphic full size">
+        <img src={src} alt={alt} width={1600} height={2000} loading="lazy" className="w-full h-auto rounded-lg shadow-md border border-gray-200" />
+      </a>
+      <figcaption className="mt-3 text-center text-sm text-gray-500">
+        {caption ?? "Source: Nevada State Board of Nursing, Annual Report Fiscal Year 2024/2025."}
+      </figcaption>
+    </figure>
+  );
+}

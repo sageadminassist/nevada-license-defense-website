@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Section } from "@/components/marketing/sections";
+import { NsbnRights } from "@/components/marketing/nsbn-graphics";
 import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -173,6 +174,11 @@ function ContactRoute() {
             </div>
           </div>
         </div>
+      </Section>
+
+      <Section variant="muted">
+        <h2 className="mb-8 text-center text-3xl font-bold text-dark-blue">Nurses: Know Your Rights Before You Respond</h2>
+        <NsbnRights />
       </Section>
     </>
   );

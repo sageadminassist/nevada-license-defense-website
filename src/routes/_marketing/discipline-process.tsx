@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FaqList, Section, SectionTitle } from "@/components/marketing/sections";
 import { LAST_UPDATED } from "@/lib/boards";
 import { PROCESS_FAQS, PROCESS_STEPS } from "@/lib/faqs";
+import { NsbnTabs } from "@/components/marketing/nsbn-graphics";
 import { IMAGES } from "@/lib/images";
 import { MORE_BOARDS, SITE } from "@/lib/site";
 import { VideoEmbed } from "@/components/marketing/video-embed";
@@ -96,6 +97,11 @@ function GuidePage() {
           </div>
         </div>
       </section>
+
+      <Section variant="muted">
+        <SectionTitle>Nursing Board Investigations: Your Rights and the Numbers</SectionTitle>
+        <NsbnTabs show={["rights", "rising", "outcomes"]} />
+      </Section>
 
       <Section>
         <SectionTitle>Step by Step</SectionTitle>
