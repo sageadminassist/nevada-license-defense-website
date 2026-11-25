@@ -93,6 +93,9 @@ export function SiteHeader() {
                 <Phone className="w-5 h-5" />
                 <span>{SITE.phoneDisplay}</span>
               </a>
+              <a href="/contact" onClick={() => setMobileOpen(false)} className="flex items-center justify-center bg-gold text-dark-blue px-6 py-3 rounded-lg font-bold shadow-md mb-4 mx-4">
+                Free Consultation
+              </a>
               {MENUS.map((m) => (
                 <div key={m.id}>
                   <button

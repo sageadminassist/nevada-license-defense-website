@@ -165,20 +165,17 @@ function HomePage() {
                 and the American Registry of Radiologic Technologists (ARRT).
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in" style={{ animationDelay: "300ms" }}>
-                <a
-                  href={SITE.phoneHref}
-                  className="btn-gold text-lg px-8 py-4 flex items-center gap-2"
-                >
+                <a href={SITE.phoneHref} className="btn-gold flex w-full items-center justify-center gap-2 px-6 py-4 text-lg sm:w-64">
                   <svg className="w-5 h-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   {SITE.phoneDisplay}
                 </a>
-                <a
-                  href="/contact"
-                  className="bg-white text-dark-blue px-8 py-4 rounded-lg font-bold border-2 border-white hover:bg-gold hover:border-gold transition-all duration-300 shadow-md hover:shadow-lg text-lg"
-                >
+                <a href="/contact" className="btn-gold flex w-full items-center justify-center gap-2 px-6 py-4 text-lg sm:w-64">
                   Free Consultation
+                </a>
+                <a href="/contact" className="btn-gold flex w-full items-center justify-center gap-2 px-6 py-4 text-lg sm:w-64">
+                  Request Appointment
                 </a>
               </div>
               <p className="mt-8 text-white italic font-semibold animate-fade-in drop-shadow-lg" style={{ animationDelay: "400ms" }}>
