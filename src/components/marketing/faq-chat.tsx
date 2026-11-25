@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { openConsult } from "@/components/marketing/consult-modal";
+import { track } from "@/lib/analytics";
 import { FAQ_GROUPS, type FaqItem } from "@/lib/faqs";
 import { SITE } from "@/lib/site";
 
@@ -83,13 +84,17 @@ export function FaqChat() {
     scroller.current?.scrollTo({ top: scroller.current.scrollHeight });
   }, [msgs, open]);
   useEffect(() => {
-    if (open) field.current?.focus();
+    if (open) {
+      field.current?.focus();
+      track("faq_open");
+    }
   }, [open]);
 
   function ask(text: string) {
     const q = text.trim();
     if (!q) return;
     const found = rank(docs, q);
+    track("faq_question", q, found.length ? `1|${found[0].q}` : "0");
     const reply: Msg = found.length
       ? { from: "bot", text: found[0].a, item: found[0], related: found.slice(1, 4) }
       : {

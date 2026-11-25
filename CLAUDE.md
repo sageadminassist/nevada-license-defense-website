@@ -41,6 +41,10 @@ Read this before doing anything in this repo. These are the owner's standing rul
   listing as craigperry.com). The list only grows. `bun run reviews:sync`
   merges in new 5-star reviews; `bun run deploy` runs it automatically and
   commits the file. The Google key lives in `.env.local` (gitignored, never commit).
+- `public/admin/`, `public/api/` — plain PHP + SQLite admin, analytics and form
+  handler (run on Hostinger, not in `bun dev`). Read `docs/ADMIN-SETUP.md` first.
+  Data and secrets live in `nld-private/` ABOVE `public_html`; never put secrets in
+  `public/`. Test PHP with `bash scripts/php-preview.sh` (Docker).
 
 ## Adding a new licensing board page
 

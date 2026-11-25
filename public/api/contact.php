@@ -77,6 +77,37 @@ $headers = [
 ];
 if ($email !== '') $headers[] = 'Reply-To: ' . $email;
 
+// Save the request to the private database first, so it reaches the admin inbox even if email fails.
+$leadId = 0;
+try {
+  require_once __DIR__ . '/inc/lib.php';
+  $db = nld_db();
+  if ($db) {
+    // Where did this visitor come from? Look up the first page view of their browser session.
+    $src = ['source' => '', 'medium' => '', 'campaign' => '', 'path' => '', 'device' => ''];
+    $sid = preg_replace('/[^A-Za-z0-9]/', '', field($d, 'sid', 32));
+    if ($sid !== '') {
+      $st = $db->prepare('SELECT source, medium, campaign, path, device FROM events WHERE session = ? ORDER BY id ASC LIMIT 1');
+      $st->execute([$sid]);
+      $row = $st->fetch();
+      if ($row) $src = $row;
+    }
+    if ($src['device'] === '') $src['device'] = nld_parse_ua($_SERVER['HTTP_USER_AGENT'] ?? '')[0];
+    $db->prepare('INSERT INTO leads (ts, day, kind, name, email, phone, license, pref_when, message, page, source, medium, campaign, landing, device)
+                  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
+      ->execute([time(), date('Y-m-d'), field($d, 'kind', 20) === 'appointment' ? 'appointment' : 'consultation',
+        $name, $email, $phone, $license, $when, $message, $page,
+        $src['source'], $src['medium'], $src['campaign'], $src['path'], $src['device']]);
+    $leadId = (int) $db->lastInsertId();
+  }
+} catch (Throwable $e) {
+  error_log('nld lead save: ' . $e->getMessage());
+}
+
 $sent = @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, implode("\r\n", $headers), '-finfo@nevadalicensedefense.com');
-if (!$sent) done(500, false, 'We could not send your message. Please call 702.893.4777.');
+if ($leadId) {
+  try { $db->prepare('UPDATE leads SET mail_ok = ? WHERE id = ?')->execute([$sent ? 1 : 0, $leadId]); } catch (Throwable $e) {}
+}
+// The visitor only sees an error when the message was neither emailed nor saved.
+if (!$sent && !$leadId) done(500, false, 'We could not send your message. Please call 702.893.4777.');
 done(200, true);

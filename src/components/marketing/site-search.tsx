@@ -3,6 +3,7 @@
 import { Search, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { trackSearch } from "@/lib/analytics";
 import { searchSite } from "@/lib/search-index";
 
 const SUGGESTIONS = ["Notice of Investigation", "drug diversion", "DUI", "probation", "reinstatement", "self-report", "pharmacy", "marijuana"];
@@ -36,6 +37,7 @@ export function SiteSearch({ variant = "icon" }: { variant?: "icon" | "bar" }) {
   }, [open]);
 
   useEffect(() => setActive(0), [q]);
+  useEffect(() => trackSearch(q, results.length), [q, results.length]);
 
   const go = (url: string) => { window.location.href = url; };
 

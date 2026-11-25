@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import { Section, SectionTitle } from "@/components/marketing/sections";
+import { trackSearch } from "@/lib/analytics";
 import { searchSite } from "@/lib/search-index";
 import { SITE } from "@/lib/site";
 
@@ -24,6 +25,7 @@ function SearchPage() {
     setQ(new URLSearchParams(window.location.search).get("q") ?? "");
   }, []);
   const results = useMemo(() => searchSite(q, 50), [q]);
+  useEffect(() => trackSearch(q, results.length), [q, results.length]);
 
   return (
     <Section>

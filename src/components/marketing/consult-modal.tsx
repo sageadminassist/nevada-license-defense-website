@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import { analyticsSessionId, track } from "@/lib/analytics";
 import { SITE } from "@/lib/site";
 
 export type ConsultKind = "consultation" | "appointment";
@@ -33,11 +34,12 @@ export function ConsultForm({ kind, onKind }: { kind: ConsultKind; onKind: (k: C
       const res = await fetch("/api/contact.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, kind, page: window.location.href }),
+        body: JSON.stringify({ ...data, kind, page: window.location.href, sid: analyticsSessionId() }),
       });
       const json = (await res.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
       if (!res.ok || !json?.ok) throw new Error(json?.error || "");
       setState("sent");
+      track("consult_submit", kind);
     } catch (err) {
       setState("error");
       setError(
@@ -149,6 +151,7 @@ export function ConsultModal() {
       setKind(k);
       setFormKey((n) => n + 1);
       setOpen(true);
+      track("consult_open", k);
     };
     const onEvent = (e: Event) => show(((e as CustomEvent).detail as ConsultKind) || "consultation");
     // Any "Free Consultation" / "Schedule a Consultation" link that points at /contact opens the form instead.

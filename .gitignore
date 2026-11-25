@@ -49,3 +49,9 @@ public/images/filler images/african-american-osteopath*
 
 /dist
 image-crops-preview.jpg
+
+# Admin / analytics private data must never be committed
+nld-private/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm

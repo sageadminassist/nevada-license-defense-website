@@ -1,4 +1,5 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
+import { Analytics } from "@/components/marketing/analytics";
 import { ConsultModal } from "@/components/marketing/consult-modal";
 import { FaqChat } from "@/components/marketing/faq-chat";
 import { SiteFooter } from "@/components/marketing/site-footer";
@@ -18,6 +19,7 @@ function MarketingLayout() {
       <SiteFooter />
       <ConsultModal />
       <FaqChat />
+      <Analytics />
     </div>
   );
 }
