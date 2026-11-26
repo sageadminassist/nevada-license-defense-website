@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { analyticsSessionId, track } from "@/lib/analytics";
-import { SITE } from "@/lib/site";
+import { ALL_BOARDS, SITE } from "@/lib/site";
 
 export type ConsultKind = "consultation" | "appointment";
 const EVENT = "nld:consult";
@@ -14,7 +14,8 @@ const INPUT =
   "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-base text-gray-900 focus:border-dark-blue focus:outline-none focus:ring-2 focus:ring-gold/60";
 const LABEL = "mb-1 block text-sm font-semibold text-dark-blue";
 
-export function ConsultForm({ kind, onKind }: { kind: ConsultKind; onKind: (k: ConsultKind) => void }) {
+export function ConsultForm() {
+  const kind: ConsultKind = "appointment";
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
   const uid = useId();
@@ -66,27 +67,9 @@ export function ConsultForm({ kind, onKind }: { kind: ConsultKind; onKind: (k: C
 
   return (
     <form onSubmit={submit} className="space-y-4" noValidate={false}>
-      <div className="grid grid-cols-2 gap-2 rounded-lg bg-gray-100 p-1" role="tablist" aria-label="Request type">
-        {(
-          [
-            ["consultation", "Free Consultation"],
-            ["appointment", "Request Appointment"],
-          ] as const
-        ).map(([k, label]) => (
-          <button
-            key={k}
-            type="button"
-            role="tab"
-            aria-selected={kind === k}
-            onClick={() => onKind(k)}
-            className={`cursor-pointer rounded-md px-3 py-2 text-sm font-bold ${
-              kind === k ? "bg-dark-blue text-white shadow" : "text-dark-blue hover:bg-white"
-            }`}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      <p className="rounded-lg border-l-4 border-gold bg-amber-50 px-4 py-3 text-sm font-semibold text-dark-blue">
+        Your first consultation is free. We note that on every new appointment request.
+      </p>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -101,16 +84,22 @@ export function ConsultForm({ kind, onKind }: { kind: ConsultKind; onKind: (k: C
           <label className={LABEL} htmlFor={`${uid}-email`}>Email</label>
           <input id={`${uid}-email`} name="email" type="email" maxLength={160} autoComplete="email" className={INPUT} />
         </div>
-        <div className={kind === "appointment" ? "" : "sm:col-span-2"}>
-          <label className={LABEL} htmlFor={`${uid}-license`}>License type or board <span className="font-normal text-gray-500">(optional)</span></label>
-          <input id={`${uid}-license`} name="license" maxLength={120} placeholder="e.g. RN, Board of Nursing" className={INPUT} />
+        <div>
+          <label className={LABEL} htmlFor={`${uid}-license`}>License type or board</label>
+          <select id={`${uid}-license`} name="license" defaultValue="" className={INPUT}>
+            <option value="">Select one (optional)</option>
+            {ALL_BOARDS.map((b) => (
+              <option key={b.to} value={b.label}>
+                {b.label}
+              </option>
+            ))}
+            <option value="Other / not sure">Other / not sure</option>
+          </select>
         </div>
-        {kind === "appointment" && (
-          <div>
-            <label className={LABEL} htmlFor={`${uid}-when`}>Preferred day and time</label>
-            <input id={`${uid}-when`} name="when" maxLength={160} placeholder="e.g. weekday mornings" className={INPUT} />
-          </div>
-        )}
+        <div>
+          <label className={LABEL} htmlFor={`${uid}-when`}>Preferred day and time</label>
+          <input id={`${uid}-when`} name="when" maxLength={160} placeholder="e.g. weekday mornings" className={INPUT} />
+        </div>
         <div className="sm:col-span-2">
           <label className={LABEL} htmlFor={`${uid}-message`}>Message</label>
           <textarea id={`${uid}-message`} name="message" required rows={4} maxLength={5000} placeholder="Briefly, what happened and any deadline you were given." className={INPUT} />
@@ -129,7 +118,7 @@ export function ConsultForm({ kind, onKind }: { kind: ConsultKind; onKind: (k: C
       )}
 
       <button type="submit" disabled={state === "sending"} className="btn-gold w-full text-lg disabled:opacity-60">
-        {state === "sending" ? "Sending…" : kind === "appointment" ? "Request Appointment" : "Request Free Consultation"}
+        {state === "sending" ? "Sending…" : "Request Appointment"}
       </button>
       <p className="text-xs leading-relaxed text-gray-500">
         Sending this form does not create an attorney-client relationship. Please do not include
@@ -142,18 +131,16 @@ export function ConsultForm({ kind, onKind }: { kind: ConsultKind; onKind: (k: C
 /** Mounted once in the layout. Opens via openConsult() or any "consultation" link to /contact. */
 export function ConsultModal() {
   const [open, setOpen] = useState(false);
-  const [kind, setKind] = useState<ConsultKind>("consultation");
   const [formKey, setFormKey] = useState(0);
   const panel = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const show = (k: ConsultKind) => {
-      setKind(k);
+    const show = () => {
       setFormKey((n) => n + 1);
       setOpen(true);
-      track("consult_open", k);
+      track("consult_open", "appointment");
     };
-    const onEvent = (e: Event) => show(((e as CustomEvent).detail as ConsultKind) || "consultation");
+    const onEvent = () => show();
     // Any "Free Consultation" / "Schedule a Consultation" link that points at /contact opens the form instead.
     const onClick = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -162,7 +149,7 @@ export function ConsultModal() {
       const text = a.textContent || "";
       if (!/consult|appointment/i.test(text)) return;
       e.preventDefault();
-      show(/appointment/i.test(text) ? "appointment" : "consultation");
+      show();
     };
     window.addEventListener(EVENT, onEvent);
     document.addEventListener("click", onClick);
@@ -201,7 +188,7 @@ export function ConsultModal() {
         <div className="flex items-start justify-between gap-4 border-b-4 border-gold bg-dark-blue px-6 py-5 text-white">
           <div>
             <h2 id="consult-title" className="text-2xl font-bold">
-              {kind === "appointment" ? "Request an Appointment" : "Free Consultation"}
+              Request an Appointment
             </h2>
             <p className="mt-1 text-sm text-white/80">
               Send us a message, or call{" "}
@@ -221,7 +208,7 @@ export function ConsultModal() {
           </button>
         </div>
         <div className="px-6 py-5">
-          <ConsultForm key={formKey} kind={kind} onKind={setKind} />
+          <ConsultForm key={formKey} />
         </div>
       </div>
     </div>
@@ -230,17 +217,16 @@ export function ConsultModal() {
 
 /** Inline version of the form for the Contact page. */
 export function ConsultCard() {
-  const [kind, setKind] = useState<ConsultKind>("consultation");
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
       <div className="border-b-4 border-gold bg-dark-blue px-8 py-5 text-white">
         <h2 className="text-2xl font-bold">
-          {kind === "appointment" ? "Request an Appointment" : "Request a Free Consultation"}
+          Request an Appointment
         </h2>
-        <p className="mt-1 text-sm text-white/80">Send us a message and we will get back to you.</p>
+        <p className="mt-1 text-sm text-white/80">Your first consultation is free.</p>
       </div>
       <div className="px-8 py-6">
-        <ConsultForm kind={kind} onKind={setKind} />
+        <ConsultForm />
       </div>
     </div>
   );
