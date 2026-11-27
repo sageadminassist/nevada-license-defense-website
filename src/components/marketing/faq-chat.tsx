@@ -70,13 +70,11 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
         @keyframes nld-bot-bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-1.5px) } }
         @keyframes nld-bot-blink { 0%,92%,100% { transform: scaleY(1) } 95% { transform: scaleY(0.1) } }
         @keyframes nld-bot-glow { 0%,100% { opacity: .55; transform: scale(1) } 50% { opacity: 1; transform: scale(1.3) } }
-        @keyframes nld-bot-wave { 0%,60%,100% { transform: rotate(0deg) } 70% { transform: rotate(-28deg) } 80% { transform: rotate(8deg) } 90% { transform: rotate(-20deg) } }
         @keyframes nld-bot-talk { 0%,100% { transform: scaleY(.25) } 25% { transform: scaleY(1) } 50% { transform: scaleY(.45) } 75% { transform: scaleY(.9) } }
         .nld-bot svg { animation: nld-bot-bob 3.2s ease-in-out infinite; }
         .nld-bot .head { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .35s ease; }
         .nld-bot .eye { transform-box: fill-box; transform-origin: center; animation: nld-bot-blink 4.5s infinite; }
         .nld-bot .spark { transform-box: fill-box; transform-origin: center; animation: nld-bot-glow 2s ease-in-out infinite; }
-        .nld-bot .arm-wave { transform-box: fill-box; transform-origin: 0% 100%; animation: nld-bot-wave 5s ease-in-out infinite; }
         .nld-bot .talk { display: none; transform-box: fill-box; transform-origin: center; }
         /* listening: head tilts toward the typing box */
         .nld-bot.is-typing .head { transform: rotate(-11deg); }
@@ -87,7 +85,7 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
         .nld-bot.is-speaking .smile { display: none; }
         .nld-bot.is-speaking .talk { display: block; animation: nld-bot-talk .38s ease-in-out infinite; }
         @media (prefers-reduced-motion: reduce) {
-          .nld-bot svg, .nld-bot .eye, .nld-bot .spark, .nld-bot .arm-wave, .nld-bot.is-speaking .talk { animation: none; }
+          .nld-bot svg, .nld-bot .eye, .nld-bot .spark, .nld-bot.is-speaking .talk { animation: none; }
           .nld-bot .head { transition: none; }
         }
       `}</style>
@@ -96,14 +94,6 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
         <rect x="16" y="31" width="16" height="12" rx="5" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.8" />
         {/* two short bars on the chest, a nod to the column in the logo */}
         <path d="M21 35.5h6M21 38.8h6" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
-        {/* resting arm with a round hand */}
-        <path d="M16 34.5c-3.5.4-5.8 2.6-6.4 6" stroke="#f0c563" strokeWidth="2.6" strokeLinecap="round" />
-        <circle cx="9.4" cy="41.2" r="2.5" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.5" />
-        {/* waving arm with a round hand */}
-        <g className="arm-wave">
-          <path d="M32 34.5c4-.4 6.6-3.4 7.2-8.4" stroke="#f0c563" strokeWidth="2.6" strokeLinecap="round" />
-          <circle cx="39.4" cy="25" r="2.5" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.5" />
-        </g>
         <g className="head">
           {/* antenna */}
           <path d="M24 9V5.8" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
