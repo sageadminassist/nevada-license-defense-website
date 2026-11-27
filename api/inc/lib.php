@@ -44,6 +44,14 @@ function nld_db() {
 
 function nld_migrate(PDO $db) {
   $v = (int) $db->query('PRAGMA user_version')->fetchColumn();
+  if ($v < 2) {
+    // Replies sent to a lead from the admin inbox.
+    $db->exec('CREATE TABLE IF NOT EXISTS lead_replies (
+      id INTEGER PRIMARY KEY AUTOINCREMENT, lead_id INTEGER NOT NULL, ts INTEGER NOT NULL,
+      subject TEXT NOT NULL DEFAULT \'\', body TEXT NOT NULL DEFAULT \'\', ok INTEGER NOT NULL DEFAULT 0)');
+    $db->exec('CREATE INDEX IF NOT EXISTS lr_lead ON lead_replies(lead_id)');
+    if ($v >= 1) $db->exec('PRAGMA user_version = 2');
+  }
   if ($v >= 1) return;
   $db->exec('CREATE TABLE IF NOT EXISTS settings (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
   $db->exec('CREATE TABLE IF NOT EXISTS events (
@@ -236,5 +244,6 @@ function nld_purge() {
   if ($d > 0) $db->prepare('DELETE FROM events WHERE ts < ?')->execute([time() - $d * 86400]);
   $l = (int) nld_setting('retain_leads_days', 0);
   if ($l > 0) $db->prepare('DELETE FROM leads WHERE ts < ?')->execute([time() - $l * 86400]);
+  $db->exec('DELETE FROM lead_replies WHERE lead_id NOT IN (SELECT id FROM leads)');
   $db->prepare('DELETE FROM login_attempts WHERE ts < ?')->execute([time() - 30 * 86400]);
 }

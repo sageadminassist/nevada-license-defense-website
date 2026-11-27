@@ -280,7 +280,7 @@ function page_leads(array $r) {
       . ($l['email'] !== '' && $l['phone'] !== '' ? ' · ' : '') . ($l['phone'] !== '' ? '<a href="tel:' . h($tel) . '">' . h($l['phone']) . '</a>' : '') . '</p></div>'
       . '<time>' . h(when($l['ts'])) . ' Pacific</time></header>';
     echo '<div class="ractions">'
-      . ($l['email'] !== '' ? '<a class="btn small" href="' . h($mailto) . '">Reply by email</a>' : '')
+      . ($l['email'] !== '' ? '<a class="btn small" href="#reply">Reply by email</a>' : '')
       . ($l['phone'] !== '' ? '<a class="btn small ghost" href="tel:' . h($tel) . '">Call ' . h($l['phone']) . '</a>' : '')
       . '<form method="post" action="' . $act . '">' . csrf_field()
       . ($l['status'] === 'new' ? '<button class="btn small gold" name="do" value="done">Mark handled</button>' : '<button class="btn small ghost" name="do" value="reopen">Mark as new again</button>') . '</form></div>';
@@ -293,6 +293,24 @@ function page_leads(array $r) {
       . $kv('First page seen', h($l['landing'] ?: '–'))
       . $kv('Device', h($l['device'] ?: '–'))
       . ($l['handled_at'] ? $kv('Handled on', h(when($l['handled_at']))) : '') . '</dl>';
+    $replies = q_all('SELECT * FROM lead_replies WHERE lead_id = ? ORDER BY id', [$lid]);
+    foreach ($replies as $rp) {
+      echo '<div class="rsent' . ($rp['ok'] ? '' : ' failed') . '"><p class="rsent-h"><b>' . ($rp['ok'] ? 'Reply sent' : '✕ Reply could NOT be sent') . '</b> to ' . h($l['email']) . ' · ' . h(when($rp['ts'])) . '</p>'
+        . '<p class="rsent-s">' . h($rp['subject']) . '</p><div class="rsent-b">' . nl2br(h($rp['body'])) . '</div></div>';
+    }
+    if ($l['email'] !== '') {
+      $draft = (string) ($_SESSION['reply_draft'][$lid] ?? '');
+      unset($_SESSION['reply_draft'][$lid]);
+      if ($draft === '') $draft = 'Hello ' . $first . ",\n\n\n\nNevada License Defense\nCraig K. Perry & Associates\n702.893.4777";
+      echo '<form method="post" action="' . $act . '" class="rreply" id="reply">' . csrf_field()
+        . '<h3>' . ($replies ? 'Send another reply' : 'Reply by email') . '</h3>'
+        . '<p class="note">Sent from info@nevadalicensedefense.com to <b>' . h($l['email']) . '</b>. Their answer goes to the office mailbox, and the office mailbox gets a copy of what you send.</p>'
+        . '<label class="block">Subject<input type="text" name="subject" maxlength="150" required value="Your request to Nevada License Defense"></label>'
+        . '<label class="block">Message<textarea name="body" rows="9" maxlength="10000" required>' . h($draft) . '</textarea></label>'
+        . '<div class="row"><button class="btn" name="do" value="reply">Send reply</button>'
+        . ($l['status'] === 'new' ? '<label class="chk"><input type="checkbox" name="mark" value="1" checked> Mark handled after sending</label>' : '')
+        . '<a class="small" href="' . h($mailto) . '">Use my own mail program instead</a></div></form>';
+    }
     echo '<form method="post" action="' . $act . '" class="rnotes">' . csrf_field()
       . '<label class="block">Private notes (only visible here)<textarea name="notes" rows="4" maxlength="5000">' . h($l['notes']) . '</textarea></label>'
       . '<div class="row"><button class="btn small" name="do" value="notes">Save notes</button>'
@@ -365,8 +383,26 @@ function handle_post($p) {
     $id = (int) ($_GET['id'] ?? 0);
     if ($do === 'delete' && !empty($_POST['sure'])) {
       $db->prepare('DELETE FROM leads WHERE id = ?')->execute([$id]);
+      $db->prepare('DELETE FROM lead_replies WHERE lead_id = ?')->execute([$id]);
       $_SESSION['flash'] = 'Lead deleted.';
       redirect(qs(['p' => 'leads']));
+    }
+    if ($do === 'reply') {
+      $rows = q_all('SELECT * FROM leads WHERE id = ?', [$id]);
+      if (!$rows) redirect(qs(['p' => 'leads']));
+      $to = trim((string) $rows[0]['email']);
+      $subject = trim(preg_replace('/[\r\n]+/', ' ', mb_substr((string) ($_POST['subject'] ?? ''), 0, 150)));
+      $body = trim(str_replace(["\r\n", "\r"], "\n", mb_substr((string) ($_POST['body'] ?? ''), 0, 10000)));
+      if (!filter_var($to, FILTER_VALIDATE_EMAIL) || preg_match('/[\r\n,;]/', $to)) { $_SESSION['flash'] = 'Not sent: this lead has no valid email address.'; redirect(lead_url($id)); }
+      if ($subject === '' || $body === '') { $_SESSION['reply_draft'][$id] = $body; $_SESSION['flash'] = 'Not sent: the subject and the message are both needed.'; redirect(lead_url($id)); }
+      $from = 'info@nevadalicensedefense.com';
+      $headers = ['From: Nevada License Defense <' . $from . '>', 'Reply-To: ' . $from, 'Bcc: ' . $from, 'MIME-Version: 1.0', 'Content-Type: text/plain; charset=UTF-8', 'Content-Transfer-Encoding: 8bit'];
+      $ok = @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', str_replace("\n", "\r\n", $body), implode("\r\n", $headers), '-f' . $from);
+      $db->prepare('INSERT INTO lead_replies (lead_id, ts, subject, body, ok) VALUES (?,?,?,?,?)')->execute([$id, time(), $subject, $body, $ok ? 1 : 0]);
+      if ($ok && !empty($_POST['mark'])) $db->prepare("UPDATE leads SET status = 'handled', handled_at = ? WHERE id = ? AND status = 'new'")->execute([time(), $id]);
+      if (!$ok) $_SESSION['reply_draft'][$id] = $body;
+      $_SESSION['flash'] = $ok ? 'Reply sent to ' . $to . '.' : 'The reply could NOT be sent. Your text is kept below; try again or use your own mail program.';
+      redirect(lead_url($id));
     }
     if (in_array($do, ['notes', 'handled'], true)) $db->prepare('UPDATE leads SET notes = ? WHERE id = ?')->execute([mb_substr((string) ($_POST['notes'] ?? ''), 0, 5000), $id]);
     if ($do === 'handled' || $do === 'done') $db->prepare("UPDATE leads SET status = 'handled', handled_at = ? WHERE id = ?")->execute([time(), $id]);
