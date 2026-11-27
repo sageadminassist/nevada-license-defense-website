@@ -125,18 +125,9 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
         <path className="sparkle s2" d="M43.500 4l.8 1.800 1.800.8-1.800.8-.8 1.800-.8-1.800-1.800-.8 1.800-.8z" fill="#fdf6e3" />
         <path className="sparkle s3" d="M44.500 25l.7 1.600 1.600.7-1.600.7-.7 1.600-.7-1.600-1.600-.7 1.600-.7z" fill="#f0c563" />
 
-        {/* arms: chunky capsules hanging from the shoulders */}
-        <rect x="6.6" y="31" width="6.4" height="12.500" rx="3.200" fill="#fdf6e3" transform="rotate(8 9.8 31)" />
-        <rect x="35" y="31" width="6.4" height="12.500" rx="3.200" fill="#fdf6e3" transform="rotate(-8 38.200 31)" />
-        {/* body: a rounded teardrop */}
-        <path d="M13.500 31.500c0-3 4.700-4.500 10.500-4.500s10.500 1.500 10.500 4.500c0 7.500-4.300 16-10.500 16s-10.500-8.500-10.500-16z" fill="#fdf6e3" />
-        <path d="M13.900 34.500c.9 6.700 4.800 13 10.100 13 1.200 0 2.300-.3 3.300-.9-5.600-.6-9.600-6-11.100-12.100z" fill="#e7dcc0" />
-        {/* shoulder caps */}
-        <circle cx="12.300" cy="31" r="4.300" fill="#f0c563" />
-        <circle cx="35.700" cy="31" r="4.300" fill="#f0c563" />
-        {/* chest light, with a gold arc like the top of the column in the logo */}
-        <path d="M17 35.500c1.600 3.300 4 5 7 5s5.400-1.700 7-5" stroke="#12203b" strokeWidth="1.100" strokeLinecap="round" />
-        <circle className="spark" cx="24" cy="35.800" r="3.100" fill="#f0c563" />
+        {/* small rounded body with a chest light */}
+        <path d="M15.500 32c0-2.700 3.800-4 8.500-4s8.500 1.300 8.500 4c0 6.500-3.500 13.500-8.500 13.500S15.500 38.500 15.500 32z" fill="#fdf6e3" />
+        <circle className="spark" cx="24" cy="35" r="2.800" fill="#f0c563" />
 
         <g className="head">
           {/* antennae curving up from the sides */}
@@ -147,9 +138,8 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
           {/* ear pieces */}
           <rect x="7.300" y="12.500" width="4.200" height="8.500" rx="2.100" fill="#f0c563" />
           <rect x="36.500" y="12.500" width="4.200" height="8.500" rx="2.100" fill="#f0c563" />
-          {/* head with a gold crown patch and a navy visor */}
+          {/* head with a navy visor */}
           <ellipse cx="24" cy="16.500" rx="14" ry="12" fill="#fdf6e3" />
-          <path d="M19.300 5.400c3-.9 6.400-.9 9.400 0l-1.300 2.700c-2.200-.5-4.600-.5-6.800 0z" fill="#f0c563" />
           <path d="M13.300 16.200c0-4.200 3.400-6.200 6.700-6.200 1.600 0 2.700.8 4 .8s2.400-.8 4-.8c3.300 0 6.700 2 6.700 6.200 0 4.600-4.300 7.600-10.700 7.600s-10.700-3-10.700-7.600z" fill="#12203b" />
           <rect className="eye" x="17.700" y="13.300" width="3.200" height="5.400" rx="1.600" fill="#f0c563" />
           <rect className="eye" x="27.100" y="13.300" width="3.200" height="5.400" rx="1.600" fill="#f0c563" />
