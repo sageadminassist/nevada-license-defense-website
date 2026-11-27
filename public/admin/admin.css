@@ -21,7 +21,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 1.2rem 0; }
 .shell { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
 .side { background: var(--blue); color: #fff; display: flex; flex-direction: column; border-right: 4px solid var(--gold); position: sticky; top: 0; height: 100vh; overflow-y: auto; }
 .brand { display: block; padding: 1.4rem 1.25rem 1.1rem; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.12); }
-.brand b { display: block; font-size: 1.15rem; line-height: 1.2; }
+.brand img { display: block; width: 100%; max-width: 180px; height: auto; margin-bottom: .6rem; }
 .brand span { color: var(--gold); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
 .side nav { padding: .75rem .6rem; flex: 1; }
 .side nav a { display: flex; justify-content: space-between; align-items: center; gap: .5rem; padding: .55rem .7rem; margin-bottom: 2px; color: rgba(255,255,255,.86); text-decoration: none; border-radius: 6px; font-weight: 600; border-left: 3px solid transparent; }
