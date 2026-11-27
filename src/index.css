@@ -112,11 +112,22 @@
     font-family: "Tw Cen MT", ui-sans-serif, system-ui, sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    /* Tw Cen MT has short lowercase letters (x-height 0.40em vs about 0.51em for system fonts),
+       so 16px looks closer to 12.5px. This enlarges the letterforms about 20% without changing
+       any layout spacing, so body text reads at a normal size. */
+    font-size-adjust: 0.48;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: "Tw Cen MT", ui-sans-serif, system-ui, sans-serif;
     font-weight: 700;
+    /* headings are already large; give them a smaller lift */
+    font-size-adjust: 0.43;
+  }
+
+  /* tight spots where larger letters would wrap or overflow */
+  header a, header button, header span, button, .btn-primary, .btn-secondary, .btn-gold {
+    font-size-adjust: 0.44;
   }
 }
 
