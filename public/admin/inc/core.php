@@ -282,7 +282,7 @@ function page_foot() { echo '</body></html>'; }
 function layout_start($p, array $r, $showRange = true) {
   page_head(ADMIN_NAV[$p] ?? 'Admin');
   $new = (int) q_val("SELECT COUNT(*) FROM leads WHERE status = 'new'");
-  echo '<div class="shell"><aside class="side"><a class="brand" href="?p=dashboard"><img src="/images/NEVADA%20LICENSE%20DEFENSE%20LOGO-WHITE-SVG.svg" alt="Nevada License Defense" width="180" height="90"><span>Admin</span></a><nav>';
+  echo '<div class="shell"><aside class="side"><a class="brand" href="?p=dashboard"><img src="/images/NEVADA%20LICENSE%20DEFENSE%20LOGO-WHITE-SVG.svg" alt="Nevada License Defense" width="180" height="88"><span>Admin</span></a><nav>';
   foreach (ADMIN_NAV as $k => $label) {
     $keep = ['p' => $k, 'status' => null, 'q' => null, 'ev' => null, 'id' => null];
     echo '<a href="' . h(qs($keep)) . '"' . ($k === $p ? ' class="on" aria-current="page"' : '') . '>' . h($label)

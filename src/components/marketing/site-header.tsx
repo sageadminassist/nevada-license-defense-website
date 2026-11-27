@@ -75,8 +75,8 @@ export function SiteHeader() {
         <div className="section-container">
           <div className="flex items-center justify-between py-4">
             <div className="flex-1" />
-            <Link to="/" className="flex items-center justify-center flex-1">
-              <img src={IMAGES.logoDark} alt="Nevada License Defense Logo" className="h-20 md:h-24 lg:h-28 w-auto" />
+            <Link to="/" className="flex shrink-0 items-center justify-center">
+              <img src={IMAGES.logoDark} alt="Nevada License Defense Logo" className="h-20 w-auto max-w-none md:h-24 lg:h-28" />
             </Link>
             <div className="flex-1 flex justify-end">
               <button className="lg:hidden p-2 text-gray-700" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
