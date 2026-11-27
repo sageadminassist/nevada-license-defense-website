@@ -236,18 +236,25 @@ function sig_text() {
 function sig_html() {
   $n = sig_name();
   $f = 'font-family:Arial,Helvetica,sans-serif;';
-  return '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;border-top:3px solid #f0c563;"><tr>'
-    . '<td style="padding:16px 18px 0 0;vertical-align:top;"><a href="' . SIG_SITE . '"><img src="' . SIG_SITE . '/images/NEVADA%20LICENSE%20DEFENSE%20LOGO.png" width="150" alt="Nevada License Defense" style="display:block;border:0;width:150px;height:auto;"></a></td>'
-    . '<td style="padding:16px 0 0 18px;vertical-align:top;border-left:1px solid #e5e7eb;' . $f . 'font-size:13px;line-height:1.55;color:#4b5563;">'
-    . ($n !== '' ? '<div style="font-size:16px;font-weight:bold;color:#12203b;">' . h($n) . '</div>' : '')
-    . '<div style="font-weight:bold;color:#12203b;' . ($n !== '' ? '' : 'font-size:16px;') . '">Nevada License Defense</div>'
-    . '<div>Craig K. Perry &amp; Associates</div>'
-    . '<div style="margin-top:6px;"><a href="tel:7028934777" style="color:#12203b;font-weight:bold;text-decoration:none;">702.893.4777</a></div>'
-    . '<div><a href="mailto:info@nevadalicensedefense.com" style="color:#1f4e9c;text-decoration:none;">info@nevadalicensedefense.com</a></div>'
-    . '<div>2300 W Sahara Ave #800, Las Vegas, NV 89102</div>'
-    . '<div><a href="' . SIG_SITE . '" style="color:#b27e4f;font-weight:bold;text-decoration:none;">nevadalicensedefense.com</a></div>'
-    . '</td></tr></table>'
-    . '<p style="' . $f . 'font-size:11px;line-height:1.5;color:#9ca3af;margin:16px 0 0;max-width:520px;">' . h(SIG_NOTICE) . '</p>';
+  $map = 'https://www.google.com/maps/search/?api=1&amp;query=2300+W+Sahara+Ave+%23800+Las+Vegas+NV+89102';
+  $lk = 'color:#12203b;text-decoration:none;';
+  $row = function ($label, $value) use ($f) {
+    return '<tr><td style="' . $f . 'font-size:10px;font-weight:bold;letter-spacing:1.2px;text-transform:uppercase;color:#b27e4f;padding:3px 12px 3px 0;vertical-align:top;white-space:nowrap;line-height:18px;">' . $label . '</td>'
+      . '<td style="' . $f . 'font-size:13px;line-height:18px;color:#12203b;padding:3px 0;vertical-align:top;">' . $value . '</td></tr>';
+  };
+  return '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:32px;border-top:1px solid #e5e7eb;"><tr>'
+    . '<td style="padding:20px 22px 4px 0;vertical-align:middle;"><a href="' . SIG_SITE . '" style="text-decoration:none;"><img src="' . SIG_SITE . '/images/NEVADA%20LICENSE%20DEFENSE%20LOGO.png" width="132" alt="Nevada License Defense" style="display:block;border:0;width:132px;height:auto;"></a></td>'
+    . '<td style="padding:20px 0 4px 0;vertical-align:middle;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-left:3px solid #f0c563;padding:2px 0 2px 22px;">'
+    . '<div style="' . $f . 'font-size:18px;line-height:22px;font-weight:bold;color:#12203b;">' . ($n !== '' ? h($n) : 'Nevada License Defense') . '</div>'
+    . ($n !== '' ? '<div style="' . $f . 'font-size:11px;line-height:18px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;color:#b27e4f;padding-top:2px;">Nevada License Defense</div>' : '')
+    . '<div style="' . $f . 'font-size:13px;line-height:18px;color:#6b7280;">Craig K. Perry &amp; Associates</div>'
+    . '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:10px;">'
+    . $row('Phone', '<a href="tel:7028934777" style="' . $lk . 'font-weight:bold;">702.893.4777</a>')
+    . $row('Email', '<a href="mailto:info@nevadalicensedefense.com" style="' . $lk . '">info@nevadalicensedefense.com</a>')
+    . $row('Office', '<a href="' . $map . '" style="' . $lk . '">2300 W Sahara Ave #800<br>Las Vegas, NV 89102</a>')
+    . $row('Web', '<a href="' . SIG_SITE . '" style="' . $lk . '">nevadalicensedefense.com</a>')
+    . '</table></td></tr></table></td></tr></table>'
+    . '<p style="' . $f . 'font-size:11px;line-height:1.5;color:#9ca3af;margin:18px 0 0;max-width:520px;">' . h(SIG_NOTICE) . '</p>';
 }
 /** Sends a reply as plain text plus a formatted version with the signature. */
 function send_reply($to, $subject, $body) {
