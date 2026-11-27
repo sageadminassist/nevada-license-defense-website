@@ -125,6 +125,9 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
         <path className="sparkle s2" d="M43.500 4l.8 1.800 1.800.8-1.800.8-.8 1.800-.8-1.800-1.800-.8 1.800-.8z" fill="#fdf6e3" />
         <path className="sparkle s3" d="M44.500 25l.7 1.600 1.600.7-1.600.7-.7 1.600-.7-1.600-1.600-.7 1.600-.7z" fill="#f0c563" />
 
+        {/* small arms, one rounded shape each, tucked at the sides of the body */}
+        <rect x="11" y="30.500" width="4.200" height="9" rx="2.100" fill="#f0c563" transform="rotate(14 13.100 30.500)" />
+        <rect x="32.800" y="30.500" width="4.200" height="9" rx="2.100" fill="#f0c563" transform="rotate(-14 34.900 30.500)" />
         {/* small rounded body with a chest light */}
         <path d="M15.500 32c0-2.700 3.800-4 8.500-4s8.500 1.300 8.500 4c0 6.500-3.500 13.500-8.500 13.500S15.500 38.500 15.500 32z" fill="#fdf6e3" />
         <circle className="spark" cx="24" cy="35" r="2.800" fill="#f0c563" />
