@@ -198,7 +198,7 @@ function leads_table(array $rows) {
   $o = '<div class="scroll"><table class="t leads"><thead><tr><th>Received</th><th>Name</th><th>Type</th><th>Contact</th><th>License / board</th><th>Came from</th><th>Status</th></tr></thead><tbody>';
   foreach ($rows as $l) {
     $o .= '<tr class="' . ($l['status'] === 'new' ? 'isnew' : '') . '"><td class="nowrap">' . h(when($l['ts'])) . '</td>'
-      . '<td><a class="strong" href="?p=lead&amp;id=' . (int) $l['id'] . '">' . h($l['name']) . '</a></td>'
+      . '<td><a class="strong" href="?p=leads&amp;id=' . (int) $l['id'] . '">' . h($l['name']) . '</a></td>'
       . '<td>' . ($l['kind'] === 'appointment' ? 'Appointment' : 'Consultation') . '</td>'
       . '<td>' . h($l['phone']) . ($l['phone'] && $l['email'] ? '<br>' : '') . h($l['email']) . '</td>'
       . '<td>' . h($l['license']) . '</td><td>' . h($l['source'] ?: 'Unknown') . '</td>'
@@ -219,6 +219,13 @@ function leads_filter() {
   }
   return [$where, $args, $status, $q];
 }
+function lead_kind(array $l) { return $l['kind'] === 'appointment' ? 'Appointment request' : 'Free consultation request'; }
+function lead_short_when($ts) { return date('Y-m-d', (int) $ts) === date('Y-m-d') ? date('g:i a', (int) $ts) : date(date('Y', (int) $ts) === date('Y') ? 'M j' : 'M j, Y', (int) $ts); }
+function lead_url($id, $p = 'leads') {
+  $pg = max(1, (int) ($_GET['pg'] ?? 1));
+  return qs(['p' => $p]) . ($pg > 1 ? '&pg=' . $pg : '') . '&id=' . (int) $id;
+}
+/** Mail-style inbox: message list on the left, the open message on the right. */
 function page_leads(array $r) {
   layout_start('leads', $r, false);
   [$where, $args, $status, $q] = leads_filter();
@@ -227,56 +234,77 @@ function page_leads(array $r) {
   $total = (int) q_val("SELECT COUNT(*) FROM leads WHERE $where", $args);
   $rows = q_all("SELECT * FROM leads WHERE $where ORDER BY id DESC LIMIT $per OFFSET " . (($pg - 1) * $per), $args);
   $cnt = ['' => (int) q_val('SELECT COUNT(*) FROM leads'), 'new' => (int) q_val("SELECT COUNT(*) FROM leads WHERE status='new'"), 'handled' => (int) q_val("SELECT COUNT(*) FROM leads WHERE status='handled'")];
-  echo '<section class="card"><div class="toolbar"><div class="pills">';
+
+  // Which message is open: the one asked for, otherwise the first in the list (desktop only).
+  $id = (int) ($_GET['id'] ?? 0);
+  $open = null; $picked = false;
+  if ($id) { $one = q_all('SELECT * FROM leads WHERE id = ?', [$id]); if ($one) { $open = $one[0]; $picked = true; } }
+  if (!$open && $rows) $open = $rows[0];
+
+  echo '<div class="mail' . ($picked ? ' reading' : '') . '"><div class="mlist"><div class="mbar"><div class="pills">';
   foreach (['' => 'All', 'new' => 'New', 'handled' => 'Handled'] as $k => $label) {
-    echo '<a href="' . h(qs(['status' => $k ?: null])) . '"' . ($status === $k ? ' class="on"' : '') . '>' . $label . ' (' . $cnt[$k] . ')</a>';
+    echo '<a href="' . h(qs(['status' => $k ?: null])) . '"' . ($status === $k ? ' class="on"' : '') . '>' . $label . ' <span>' . $cnt[$k] . '</span></a>';
   }
   echo '</div><form method="get" class="searchform"><input type="hidden" name="p" value="leads">' . ($status ? '<input type="hidden" name="status" value="' . h($status) . '">' : '')
-    . '<input type="search" name="q" value="' . h($q) . '" placeholder="Search name, phone, email, message" aria-label="Search leads"><button class="btn small">Search</button></form>'
-    . '<a class="btn small ghost" href="' . h(qs(['export' => '1'])) . '">Download spreadsheet (CSV)</a></div>';
-  echo leads_table($rows);
-  if ($total > $per) {
-    echo '<p class="pager">';
-    if ($pg > 1) echo '<a href="' . h(qs() . '&pg=' . ($pg - 1)) . '">← Newer</a> ';
-    echo 'Page ' . $pg . ' of ' . ceil($total / $per);
-    if ($pg * $per < $total) echo ' <a href="' . h(qs() . '&pg=' . ($pg + 1)) . '">Older →</a>';
-    echo '</p>';
+    . '<input type="search" name="q" value="' . h($q) . '" placeholder="Search name, phone, email, message" aria-label="Search leads"><button class="btn small">Search</button></form></div><div class="mitems">';
+  if (!$rows) echo '<p class="empty">' . ($q !== '' || $status ? 'Nothing matches.' : 'No leads yet. Every request sent from the website appears here.') . '</p>';
+  foreach ($rows as $l) {
+    $snip = trim(preg_replace('/\s+/', ' ', (string) $l['message']));
+    echo '<a class="mi' . ($l['status'] === 'new' ? ' unread' : '') . ($open && (int) $open['id'] === (int) $l['id'] ? ' sel' : '') . '" href="' . h(lead_url($l['id'])) . '">'
+      . '<span class="mi-top"><b>' . h($l['name']) . '</b><time>' . h(lead_short_when($l['ts'])) . '</time></span>'
+      . '<span class="mi-sub">' . h(lead_kind($l) . ($l['license'] !== '' ? ' · ' . $l['license'] : '')) . '</span>'
+      . '<span class="mi-snip">' . h($snip !== '' ? mb_substr($snip, 0, 140) : 'No message written') . '</span>'
+      . ($l['mail_ok'] ? '' : '<span class="tag bad">✕ Not emailed to office</span>') . '</a>';
   }
-  echo '</section>';
+  echo '</div><div class="mfoot">';
+  if ($total > $per) {
+    if ($pg > 1) echo '<a href="' . h(qs() . '&pg=' . ($pg - 1)) . '">← Newer</a> ';
+    echo '<span>Page ' . $pg . ' of ' . ceil($total / $per) . '</span>';
+    if ($pg * $per < $total) echo ' <a href="' . h(qs() . '&pg=' . ($pg + 1)) . '">Older →</a>';
+  } else echo '<span>' . $total . ' message' . ($total === 1 ? '' : 's') . '</span>';
+  echo '<a href="' . h(qs(['export' => '1'])) . '">Download spreadsheet (CSV)</a></div></div>';
+
+  echo '<article class="reader">';
+  if (!$open) echo '<p class="empty">Select a message to read it.</p>';
+  else {
+    $l = $open; $lid = (int) $l['id'];
+    $tel = preg_replace('/[^0-9+]/', '', $l['phone']);
+    $first = trim((string) strtok(trim($l['name']), ' '));
+    $mailto = 'mailto:' . rawurlencode($l['email']) . '?subject=' . rawurlencode('Your request to Nevada License Defense') . '&body=' . rawurlencode('Hello ' . $first . ",\n\n");
+    $act = h(lead_url($lid, 'lead'));
+    $kv = function ($k, $v) { return '<div><dt>' . h($k) . '</dt><dd>' . $v . '</dd></div>'; };
+    echo '<p class="back"><a href="' . h(qs(['p' => 'leads']) . ($pg > 1 ? '&pg=' . $pg : '')) . '">← Back to the inbox</a></p>'
+      . '<header class="rhead"><div><h2>' . h($l['name']) . ' <span class="tag ' . ($l['status'] === 'new' ? 'new' : 'ok') . '">' . ($l['status'] === 'new' ? '● New' : '✓ Handled') . '</span></h2>'
+      . '<p class="rmeta">' . h(lead_kind($l)) . ($l['license'] !== '' ? ' · ' . h($l['license']) : '') . '</p>'
+      . '<p class="rmeta">' . ($l['email'] !== '' ? '<a href="mailto:' . h($l['email']) . '">' . h($l['email']) . '</a>' : '')
+      . ($l['email'] !== '' && $l['phone'] !== '' ? ' · ' : '') . ($l['phone'] !== '' ? '<a href="tel:' . h($tel) . '">' . h($l['phone']) . '</a>' : '') . '</p></div>'
+      . '<time>' . h(when($l['ts'])) . ' Pacific</time></header>';
+    echo '<div class="ractions">'
+      . ($l['email'] !== '' ? '<a class="btn small" href="' . h($mailto) . '">Reply by email</a>' : '')
+      . ($l['phone'] !== '' ? '<a class="btn small ghost" href="tel:' . h($tel) . '">Call ' . h($l['phone']) . '</a>' : '')
+      . '<form method="post" action="' . $act . '">' . csrf_field()
+      . ($l['status'] === 'new' ? '<button class="btn small gold" name="do" value="done">Mark handled</button>' : '<button class="btn small ghost" name="do" value="reopen">Mark as new again</button>') . '</form></div>';
+    if (!$l['mail_ok']) echo '<p class="warn">The notification email for this request could not be sent to the office. This copy is the only one.</p>';
+    echo '<div class="rbody">' . ($l['message'] !== '' ? nl2br(h($l['message'])) : '<em>No message written.</em>') . '</div>';
+    echo '<dl class="rkv">'
+      . ($l['kind'] === 'appointment' ? $kv('Preferred time', h($l['pref_when'] ?: '–')) : '')
+      . $kv('Sent from page', h($l['page'] ?: '–'))
+      . $kv('Came from', h(($l['source'] ?: 'Unknown') . ($l['medium'] ? ' (' . $l['medium'] . ')' : '') . ($l['campaign'] ? ', campaign: ' . $l['campaign'] : '')))
+      . $kv('First page seen', h($l['landing'] ?: '–'))
+      . $kv('Device', h($l['device'] ?: '–'))
+      . ($l['handled_at'] ? $kv('Handled on', h(when($l['handled_at']))) : '') . '</dl>';
+    echo '<form method="post" action="' . $act . '" class="rnotes">' . csrf_field()
+      . '<label class="block">Private notes (only visible here)<textarea name="notes" rows="4" maxlength="5000">' . h($l['notes']) . '</textarea></label>'
+      . '<div class="row"><button class="btn small" name="do" value="notes">Save notes</button>'
+      . ($l['status'] === 'new' ? '<button class="btn small gold" name="do" value="handled">Save and mark handled</button>' : '') . '</div></form>'
+      . '<details class="rdel"><summary>Delete this message</summary><form method="post" action="' . $act . '" class="danger">' . csrf_field()
+      . '<label><input type="checkbox" name="sure" value="1" required> Permanently delete this lead</label> <button class="btn small ghost" name="do" value="delete">Delete</button></form></details>';
+  }
+  echo '</article></div>';
   layout_end();
 }
-function page_lead(array $r) {
-  $id = (int) ($_GET['id'] ?? 0);
-  $rows = q_all('SELECT * FROM leads WHERE id = ?', [$id]);
-  if (!$rows) redirect('?p=leads');
-  $l = $rows[0];
-  layout_start('leads', $r, false);
-  $row = function ($k, $v) { return '<tr><th>' . h($k) . '</th><td>' . $v . '</td></tr>'; };
-  $tel = preg_replace('/[^0-9+]/', '', $l['phone']);
-  echo '<p class="back"><a href="?p=leads">← Back to the inbox</a></p><div class="grid2 lead"><section class="card"><h2>' . h($l['name'])
-    . ' <span class="tag ' . ($l['status'] === 'new' ? 'new' : 'ok') . '">' . ($l['status'] === 'new' ? '● New' : '✓ Handled') . '</span></h2><table class="kv">'
-    . $row('Received', h(when($l['ts'])) . ' Pacific')
-    . $row('Type', $l['kind'] === 'appointment' ? 'Appointment request' : 'Free consultation request')
-    . $row('Phone', $l['phone'] !== '' ? '<a href="tel:' . h($tel) . '">' . h($l['phone']) . '</a>' : '–')
-    . $row('Email', $l['email'] !== '' ? '<a href="mailto:' . h($l['email']) . '">' . h($l['email']) . '</a>' : '–')
-    . $row('License / board', h($l['license'] ?: '–'))
-    . ($l['kind'] === 'appointment' ? $row('Preferred time', h($l['pref_when'] ?: '–')) : '')
-    . $row('Message', '<div class="msg">' . nl2br(h($l['message'])) . '</div>')
-    . $row('Sent from page', h($l['page'] ?: '–'))
-    . $row('Came from', h(($l['source'] ?: 'Unknown') . ($l['medium'] ? ' (' . $l['medium'] . ')' : '') . ($l['campaign'] ? ', campaign: ' . $l['campaign'] : '')))
-    . $row('First page seen', h($l['landing'] ?: '–'))
-    . $row('Device', h($l['device'] ?: '–'))
-    . $row('Email to office', $l['mail_ok'] ? 'Sent' : '<span class="tag bad">✕ Could not be sent</span>')
-    . ($l['handled_at'] ? $row('Handled on', h(when($l['handled_at']))) : '')
-    . '</table></section><section class="card"><h2>Follow-up</h2>'
-    . '<form method="post" action="?p=lead&amp;id=' . $id . '">' . csrf_field()
-    . '<label class="block">Private notes (only visible here)<textarea name="notes" rows="8" maxlength="5000">' . h($l['notes']) . '</textarea></label>'
-    . '<div class="row"><button class="btn" name="do" value="notes">Save notes</button>'
-    . ($l['status'] === 'new' ? '<button class="btn gold" name="do" value="handled">Save and mark handled</button>' : '<button class="btn ghost" name="do" value="reopen">Mark as new again</button>')
-    . '</div></form><hr><form method="post" action="?p=lead&amp;id=' . $id . '" class="danger">' . csrf_field()
-    . '<label><input type="checkbox" name="sure" value="1" required> Permanently delete this lead</label> <button class="btn small ghost" name="do" value="delete">Delete</button></form></section></div>';
-  layout_end();
-}
+/** Old single-lead address: now opens inside the inbox. */
+function page_lead(array $r) { redirect(lead_url((int) ($_GET['id'] ?? 0))); }
 function csv_cell($v) {
   $v = (string) $v;
   // Stop spreadsheet programs from running a cell that starts like a formula.
@@ -338,13 +366,13 @@ function handle_post($p) {
     if ($do === 'delete' && !empty($_POST['sure'])) {
       $db->prepare('DELETE FROM leads WHERE id = ?')->execute([$id]);
       $_SESSION['flash'] = 'Lead deleted.';
-      redirect('?p=leads');
+      redirect(qs(['p' => 'leads']));
     }
     if (in_array($do, ['notes', 'handled'], true)) $db->prepare('UPDATE leads SET notes = ? WHERE id = ?')->execute([mb_substr((string) ($_POST['notes'] ?? ''), 0, 5000), $id]);
-    if ($do === 'handled') $db->prepare("UPDATE leads SET status = 'handled', handled_at = ? WHERE id = ?")->execute([time(), $id]);
+    if ($do === 'handled' || $do === 'done') $db->prepare("UPDATE leads SET status = 'handled', handled_at = ? WHERE id = ?")->execute([time(), $id]);
     if ($do === 'reopen') $db->prepare("UPDATE leads SET status = 'new', handled_at = NULL WHERE id = ?")->execute([$id]);
-    $_SESSION['flash'] = $do === 'handled' ? 'Marked as handled.' : ($do === 'reopen' ? 'Marked as new.' : 'Notes saved.');
-    redirect('?p=lead&id=' . $id);
+    $_SESSION['flash'] = in_array($do, ['handled', 'done'], true) ? 'Marked as handled.' : ($do === 'reopen' ? 'Marked as new.' : 'Notes saved.');
+    redirect(lead_url($id));
   }
   if ($p === 'settings') {
     if ($do === 'password') {
