@@ -55,7 +55,7 @@ function ReviewCard({ review, onOpen }: { review: Review; onOpen: () => void }) 
   }, [review.text]);
 
   return (
-    <figure className="flex h-full flex-col rounded-lg bg-white p-8 shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
+    <figure className="flex h-full flex-col rounded-lg bg-white p-6 shadow-[0_2px_10px_rgba(0,0,0,0.1)] sm:p-8">
       <Stars rating={review.rating} className="mb-3" />
       <div className="flex-1">
         {/* Preview height. Change `line-clamp-4` to show more/fewer lines. */}
@@ -113,15 +113,21 @@ function ReviewModal({ review, onClose }: { review: Review; onClose: () => void 
   );
 }
 
+const FIRST_PHONE = 3;
+const FIRST_DESKTOP = 6;
+
 /** Google rating summary plus every saved review. Wrap in a <Section> at the call site. */
 export function Reviews() {
   const { reviews, rating, total, googleUrl } = REVIEWS;
   const [open, setOpen] = useState<Review | null>(null);
   const close = useRef(() => setOpen(null)).current;
+  const [showAll, setShowAll] = useState(false);
+  const listTop = useRef<HTMLDivElement>(null);
   return (
     <>
+      <div ref={listTop} className="scroll-mt-32" />
       {rating ? (
-        <div className="mb-10 flex flex-col items-center gap-2 rounded-lg bg-white p-8 text-center shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
+        <div className="mb-8 flex flex-col items-center gap-2 rounded-lg bg-white p-6 text-center sm:mb-10 sm:p-8 shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
           <div className="flex items-baseline gap-2">
             <span className="text-5xl font-bold text-dark-blue">{rating.toFixed(1)}</span>
             <span className="text-lg text-gray-500">/ 5</span>
@@ -135,11 +141,33 @@ export function Reviews() {
           ) : null}
         </div>
       ) : null}
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {/* Three reviews on phones, six on larger screens; the rest stay in the page (for search
+          engines) but are hidden until "Read more reviews" is pressed. */}
+      <div className="grid grid-cols-1 gap-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
         {reviews.map((r, i) => (
-          <ReviewCard key={`${r.author}-${i}`} review={r} onOpen={() => setOpen(r)} />
+          <div
+            key={`${r.author}-${i}`}
+            className={showAll || i < FIRST_PHONE ? "h-full" : i < FIRST_DESKTOP ? "hidden h-full md:block" : "hidden"}
+          >
+            <ReviewCard review={r} onOpen={() => setOpen(r)} />
+          </div>
         ))}
       </div>
+      {reviews.length > FIRST_PHONE && (
+        <div className={`mt-8 text-center ${reviews.length > FIRST_DESKTOP ? "" : "md:hidden"}`}>
+          <button
+            type="button"
+            onClick={() => {
+              if (showAll) listTop.current?.scrollIntoView({ block: "start" });
+              setShowAll((v) => !v);
+            }}
+            aria-expanded={showAll}
+            className="btn-primary"
+          >
+            {showAll ? "Show fewer reviews" : `Read more reviews (${reviews.length} total)`}
+          </button>
+        </div>
+      )}
       {open ? <ReviewModal review={open} onClose={close} /> : null}
     </>
   );
