@@ -64,8 +64,25 @@ type BotMood = "idle" | "typing" | "thinking" | "speaking";
 
 /** Small friendly helper for the chat header, drawn in the site's navy and gold. */
 function ChatBotIcon({ mood }: { mood: BotMood }) {
+  // Clicking the helper makes it do a happy little hop.
+  const [happy, setHappy] = useState(false);
+  const happyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  function cheer() {
+    setHappy(false);
+    if (happyTimer.current) clearTimeout(happyTimer.current);
+    // Restart the animation even on quick repeat clicks.
+    happyTimer.current = setTimeout(() => {
+      setHappy(true);
+      happyTimer.current = setTimeout(() => setHappy(false), 1400);
+    }, 30);
+  }
   return (
-    <span className={`nld-bot is-${mood} relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-gold/60`} aria-hidden="true">
+    <button
+      type="button"
+      onClick={cheer}
+      aria-label="Say hello to the helper"
+      className={`nld-bot is-${mood} ${happy ? "is-happy" : ""} relative flex h-14 w-14 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white/10 ring-1 ring-gold/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold`}
+    >
       <style>{`
         @keyframes nld-bot-bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-1.5px) } }
         @keyframes nld-bot-blink { 0%,92%,100% { transform: scaleY(1) } 95% { transform: scaleY(0.1) } }
@@ -84,14 +101,31 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
         /* answering: the mouth moves */
         .nld-bot.is-speaking .smile { display: none; }
         .nld-bot.is-speaking .talk { display: block; animation: nld-bot-talk .38s ease-in-out infinite; }
+        /* clicked: a happy hop, smiling eyes and a few sparkles */
+        @keyframes nld-bot-hop { 0%,100% { transform: translateY(0) scale(1) } 15% { transform: translateY(2px) scale(1.06,.92) } 40% { transform: translateY(-7px) scale(.96,1.05) rotate(-6deg) } 60% { transform: translateY(0) scale(1.05,.94) } 78% { transform: translateY(-4px) rotate(5deg) } }
+        @keyframes nld-bot-pop { 0% { opacity: 0; transform: scale(0) } 35% { opacity: 1; transform: scale(1.2) } 100% { opacity: 0; transform: scale(.6) translateY(-4px) } }
+        .nld-bot .happy-eye, .nld-bot .sparkle { display: none; }
+        .nld-bot.is-happy svg { animation: nld-bot-hop 1.3s ease-in-out; }
+        .nld-bot.is-happy .head { transform: none; }
+        .nld-bot.is-happy .eye { display: none; }
+        .nld-bot.is-happy .happy-eye { display: block; }
+        .nld-bot.is-happy .smile { display: block; stroke-width: 1.8; }
+        .nld-bot.is-happy .talk { display: none; }
+        .nld-bot.is-happy .sparkle { display: block; transform-box: fill-box; transform-origin: center; animation: nld-bot-pop 1.1s ease-out both; }
+        .nld-bot.is-happy .sparkle.s2 { animation-delay: .15s; }
+        .nld-bot.is-happy .sparkle.s3 { animation-delay: .3s; }
         @media (prefers-reduced-motion: reduce) {
-          .nld-bot svg, .nld-bot .eye, .nld-bot .spark, .nld-bot.is-speaking .talk { animation: none; }
+          .nld-bot svg, .nld-bot.is-happy svg, .nld-bot .eye, .nld-bot .spark, .nld-bot.is-speaking .talk { animation: none; }
           .nld-bot .head { transition: none; }
         }
       `}</style>
       <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none">
         {/* stepped gold lines under the head, echoing the column capital in the logo */}
         <path d="M14 35.5h20M17.5 39.5h13M21 43.5h6" stroke="#f0c563" strokeWidth="2" strokeLinecap="round" />
+        {/* sparkles that pop when clicked */}
+        <path className="sparkle" d="M6 8l.9 2.1L9 11l-2.1.9L6 14l-.9-2.1L3 11l2.1-.9z" fill="#f0c563" />
+        <path className="sparkle s2" d="M42 6l.8 1.8 1.8.8-1.8.8L42 11.200l-.8-1.800-1.800-.8 1.800-.8z" fill="#fdf6e3" />
+        <path className="sparkle s3" d="M43 28l.7 1.600 1.600.7-1.600.7L43 32.600l-.7-1.600-1.600-.7 1.600-.7z" fill="#f0c563" />
         <g className="head">
           {/* antenna */}
           <path d="M24 9V5.8" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
@@ -104,11 +138,13 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
           <rect x="14.5" y="13" width="19" height="13" rx="6" fill="#12203b" />
           <circle className="eye" cx="20" cy="18.2" r="2" fill="#f0c563" />
           <circle className="eye" cx="28" cy="18.2" r="2" fill="#f0c563" />
+          {/* smiling eyes, shown only during the happy hop */}
+          <path className="happy-eye" d="M17.8 19.2c1.1-2 3.3-2 4.4 0M25.8 19.2c1.1-2 3.3-2 4.4 0" stroke="#f0c563" strokeWidth="1.5" strokeLinecap="round" />
           <path className="smile" d="M21.2 22c1.7 1.3 3.9 1.3 5.6 0" stroke="#f0c563" strokeWidth="1.3" strokeLinecap="round" />
           <ellipse className="talk" cx="24" cy="22.4" rx="2.4" ry="1.7" fill="#f0c563" />
         </g>
       </svg>
-    </span>
+    </button>
   );
 }
 
