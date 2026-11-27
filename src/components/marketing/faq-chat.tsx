@@ -60,39 +60,62 @@ const STARTERS = [
   "What does it cost?",
 ];
 
+type BotMood = "idle" | "typing" | "thinking" | "speaking";
+
 /** Small friendly helper for the chat header, drawn in the site's navy and gold. */
-function ChatBotIcon({ thinking }: { thinking: boolean }) {
+function ChatBotIcon({ mood }: { mood: BotMood }) {
   return (
-    <span className={`nld-bot ${thinking ? "is-thinking" : ""} relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-gold/60`} aria-hidden="true">
+    <span className={`nld-bot is-${mood} relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-gold/60`} aria-hidden="true">
       <style>{`
         @keyframes nld-bot-bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-1.5px) } }
         @keyframes nld-bot-blink { 0%,92%,100% { transform: scaleY(1) } 95% { transform: scaleY(0.1) } }
-        @keyframes nld-bot-glow { 0%,100% { opacity: .55; transform: scale(1) } 50% { opacity: 1; transform: scale(1.25) } }
-        @keyframes nld-bot-wave { 0%,70%,100% { transform: rotate(0deg) } 80% { transform: rotate(-18deg) } 90% { transform: rotate(10deg) } }
+        @keyframes nld-bot-glow { 0%,100% { opacity: .55; transform: scale(1) } 50% { opacity: 1; transform: scale(1.3) } }
+        @keyframes nld-bot-wave { 0%,60%,100% { transform: rotate(0deg) } 70% { transform: rotate(-28deg) } 80% { transform: rotate(8deg) } 90% { transform: rotate(-20deg) } }
+        @keyframes nld-bot-talk { 0%,100% { transform: scaleY(.25) } 25% { transform: scaleY(1) } 50% { transform: scaleY(.45) } 75% { transform: scaleY(.9) } }
         .nld-bot svg { animation: nld-bot-bob 3.2s ease-in-out infinite; }
+        .nld-bot .head { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .35s ease; }
         .nld-bot .eye { transform-box: fill-box; transform-origin: center; animation: nld-bot-blink 4.5s infinite; }
         .nld-bot .spark { transform-box: fill-box; transform-origin: center; animation: nld-bot-glow 2s ease-in-out infinite; }
-        .nld-bot .arm { transform-box: fill-box; transform-origin: 0% 100%; animation: nld-bot-wave 5s ease-in-out infinite; }
-        .nld-bot.is-thinking .spark { animation-duration: .6s; }
+        .nld-bot .arm-wave { transform-box: fill-box; transform-origin: 0% 100%; animation: nld-bot-wave 5s ease-in-out infinite; }
+        .nld-bot .talk { display: none; transform-box: fill-box; transform-origin: center; }
+        /* listening: head tilts toward the typing box */
+        .nld-bot.is-typing .head { transform: rotate(-11deg); }
+        /* working on an answer: quicker bob and antenna */
         .nld-bot.is-thinking svg { animation-duration: 1s; }
-        @media (prefers-reduced-motion: reduce) { .nld-bot svg, .nld-bot .eye, .nld-bot .spark, .nld-bot .arm { animation: none; } }
+        .nld-bot.is-thinking .spark { animation-duration: .6s; }
+        /* answering: the mouth moves */
+        .nld-bot.is-speaking .smile { display: none; }
+        .nld-bot.is-speaking .talk { display: block; animation: nld-bot-talk .38s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) {
+          .nld-bot svg, .nld-bot .eye, .nld-bot .spark, .nld-bot .arm-wave, .nld-bot.is-speaking .talk { animation: none; }
+          .nld-bot .head { transition: none; }
+        }
       `}</style>
-      <svg viewBox="0 0 40 40" className="h-8 w-8" fill="none">
-        {/* antenna */}
-        <path d="M20 9V5.5" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
-        <circle className="spark" cx="20" cy="4" r="2" fill="#f0c563" />
-        {/* waving arm */}
-        <path className="arm" d="M31 24c2.2-.6 3.4-2.4 3.6-4.6" stroke="#f0c563" strokeWidth="1.8" strokeLinecap="round" />
-        <path d="M9 24c-2.2-.6-3.4-2-3.6-3.6" stroke="#f0c563" strokeWidth="1.8" strokeLinecap="round" />
-        {/* head */}
-        <rect x="8" y="9" width="24" height="19" rx="7" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.8" />
-        {/* face plate */}
-        <rect x="11.5" y="13" width="17" height="11" rx="5" fill="#12203b" />
-        <circle className="eye" cx="16.5" cy="18" r="1.9" fill="#f0c563" />
-        <circle className="eye" cx="23.5" cy="18" r="1.9" fill="#f0c563" />
-        <path d="M17.6 21.2c1.5 1.1 3.3 1.1 4.8 0" stroke="#f0c563" strokeWidth="1.2" strokeLinecap="round" />
-        {/* collar, a nod to the column capital in the logo */}
-        <path d="M13 31.5h14M15 34.5h10" stroke="#f0c563" strokeWidth="1.8" strokeLinecap="round" />
+      <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none">
+        {/* body */}
+        <rect x="16" y="31" width="16" height="12" rx="5" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.8" />
+        {/* two short bars on the chest, a nod to the column in the logo */}
+        <path d="M21 35.5h6M21 38.8h6" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
+        {/* resting arm with a round hand */}
+        <path d="M16 34.5c-3.5.4-5.8 2.6-6.4 6" stroke="#f0c563" strokeWidth="2.6" strokeLinecap="round" />
+        <circle cx="9.4" cy="41.2" r="2.5" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.5" />
+        {/* waving arm with a round hand */}
+        <g className="arm-wave">
+          <path d="M32 34.5c4-.4 6.6-3.4 7.2-8.4" stroke="#f0c563" strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="39.4" cy="25" r="2.5" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.5" />
+        </g>
+        <g className="head">
+          {/* antenna */}
+          <path d="M24 9V5.8" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
+          <circle className="spark" cx="24" cy="4.2" r="2.1" fill="#f0c563" />
+          {/* head and face plate */}
+          <rect x="11" y="9" width="26" height="21" rx="8" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.8" />
+          <rect x="14.5" y="13" width="19" height="13" rx="6" fill="#12203b" />
+          <circle className="eye" cx="20" cy="18.2" r="2" fill="#f0c563" />
+          <circle className="eye" cx="28" cy="18.2" r="2" fill="#f0c563" />
+          <path className="smile" d="M21.2 22c1.7 1.3 3.9 1.3 5.6 0" stroke="#f0c563" strokeWidth="1.3" strokeLinecap="round" />
+          <ellipse className="talk" cx="24" cy="22.4" rx="2.4" ry="1.7" fill="#f0c563" />
+        </g>
       </svg>
     </span>
   );
@@ -102,6 +125,10 @@ export function FaqChat() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
+  const [typing, setTyping] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
+  const typingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const speakTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [msgs, setMsgs] = useState<Msg[]>([
     {
       from: "bot",
@@ -141,6 +168,7 @@ export function FaqChat() {
       .map((m) => ({ role: m.from === "user" ? "user" : "assistant", text: m.text }));
     setMsgs((m) => [...m, { from: "user", text: q }]);
     setInput("");
+    setTyping(false);
     setBusy(true);
 
     // Try the AI assistant first; if it is not switched on or fails, answer from the FAQ list.
@@ -172,6 +200,10 @@ export function FaqChat() {
     const r = reply;
     setMsgs((m) => [...m, r]);
     setBusy(false);
+    // The helper "speaks" for a moment, longer for longer answers.
+    setSpeaking(true);
+    if (speakTimer.current) clearTimeout(speakTimer.current);
+    speakTimer.current = setTimeout(() => setSpeaking(false), Math.min(6000, 1500 + r.text.length * 12));
   }
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -188,7 +220,7 @@ export function FaqChat() {
         >
           <div className="flex items-center justify-between gap-3 border-b-4 border-gold bg-dark-blue px-4 py-3 text-white">
             <div className="flex items-center gap-3">
-              <ChatBotIcon thinking={busy} />
+              <ChatBotIcon mood={busy ? "thinking" : speaking ? "speaking" : typing ? "typing" : "idle"} />
               <div>
               <p className="text-lg font-bold leading-tight">Ask a Question</p>
               <p className="text-xs text-white/75">General information, not legal advice</p>
@@ -281,7 +313,13 @@ export function FaqChat() {
             <input
               ref={field}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => {
+                setInput(e.target.value);
+                // Head tilts while the visitor is typing, and straightens a moment after they stop.
+                setTyping(true);
+                if (typingTimer.current) clearTimeout(typingTimer.current);
+                typingTimer.current = setTimeout(() => setTyping(false), 1200);
+              }}
               maxLength={300}
               placeholder="Type your question"
               aria-label="Your question"
