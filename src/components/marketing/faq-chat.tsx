@@ -49,7 +49,9 @@ function rank(docs: Doc[], query: string): FaqItem[] {
 
 type Msg =
   | { from: "user"; text: string }
-  | { from: "bot"; text: string; item?: FaqItem; related?: FaqItem[]; miss?: boolean; ai?: boolean };
+  | { from: "bot"; text: string; item?: FaqItem; related?: FaqItem[]; miss?: boolean; ai?: boolean; sources?: Source[] };
+
+type Source = { question: string; faqUrl: string; page: string; pageLabel: string };
 
 const STARTERS = [
   "When should I contact an attorney?",
@@ -111,8 +113,8 @@ export function FaqChat() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q, history }),
       });
-      const json = (await res.json().catch(() => null)) as { ok?: boolean; answer?: string } | null;
-      if (res.ok && json?.ok && json.answer) reply = { from: "bot", text: json.answer, ai: true };
+      const json = (await res.json().catch(() => null)) as { ok?: boolean; answer?: string; sources?: Source[] } | null;
+      if (res.ok && json?.ok && json.answer) reply = { from: "bot", text: json.answer, ai: true, sources: json.sources ?? [] };
     } catch {
       // fall through to the built-in matcher
     }
@@ -170,6 +172,28 @@ export function FaqChat() {
                     <a href={m.item.source.to} className="mt-2 inline-block text-xs font-semibold text-dark-blue underline">
                       Read more: {m.item.source.label}
                     </a>
+                  )}
+                  {m.sources && m.sources.length > 0 && (
+                    <div className="mt-3 border-t border-gray-100 pt-2">
+                      <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500">Sources on this site</p>
+                      <ul className="space-y-1.5">
+                        {m.sources.map((src) => (
+                          <li key={src.faqUrl} className="text-xs leading-snug">
+                            <a href={src.faqUrl} className="font-semibold text-dark-blue underline">
+                              {src.question}
+                            </a>
+                            {src.page !== "/faq" && (
+                              <>
+                                {" · "}
+                                <a href={src.page} className="text-dark-blue underline">
+                                  {src.pageLabel}
+                                </a>
+                              </>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                   {m.related && m.related.length > 0 && (
                     <div className="mt-3 border-t border-gray-100 pt-2">

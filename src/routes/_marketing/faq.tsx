@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search, X } from "lucide-react";
 
 import { Section, SectionTitle } from "@/components/marketing/sections";
@@ -58,6 +58,22 @@ function Highlight({ text, terms }: { text: string; terms: string[] }) {
 function FaqRoute() {
   const [query, setQuery] = useState("");
   const terms = useMemo(() => query.toLowerCase().split(/\s+/).filter((t) => t.length > 1), [query]);
+
+  // A link like /faq#some-question opens that question and scrolls to it.
+  useEffect(() => {
+    const openFromHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el instanceof HTMLDetailsElement) {
+        el.open = true;
+        el.scrollIntoView({ block: "start" });
+      }
+    };
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
   const groups = useMemo(() => {
     if (!terms.length) return FAQ_GROUPS;
     return FAQ_GROUPS.map((g) => ({
