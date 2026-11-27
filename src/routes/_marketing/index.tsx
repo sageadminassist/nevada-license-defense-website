@@ -94,6 +94,14 @@ const MedicalIcon = ({ className }: { className?: string }) => (
 
 const BOARDS = [
   {
+    title: "Medical Nevada State Board of Medical Examiners (NSBME)",
+    body: "We specialize in protecting the licenses of medical professionals in Nevada.",
+    href: "/medical",
+    icon: <MedicalIcon className="w-14 h-14 text-dark-blue" />,
+    image: IMAGES.doctorStethoscope,
+    imageAlt: "Doctor with stethoscope",
+  },
+  {
     title: "Nevada State Board of Nursing (NSBN)",
     body: "We provide legal representation and guidance for nurses facing license issues.",
     href: "/nursing",
@@ -108,14 +116,6 @@ const BOARDS = [
     icon: <PharmacyIcon className="w-16 h-16 text-dark-blue" />,
     image: IMAGES.medications,
     imageAlt: "Pharmacy medications and pill pouches",
-  },
-  {
-    title: "Medical Nevada State Board of Medical Examiners (NSBME)",
-    body: "We specialize in protecting the licenses of medical professionals in Nevada.",
-    href: "/medical",
-    icon: <MedicalIcon className="w-14 h-14 text-dark-blue" />,
-    image: IMAGES.doctorStethoscope,
-    imageAlt: "Doctor with stethoscope",
   },
 ] as const;
 
