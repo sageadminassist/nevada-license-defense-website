@@ -119,29 +119,44 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
           .nld-bot .head { transition: none; }
         }
       `}</style>
-      <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none">
-        {/* stepped gold lines under the head, echoing the column capital in the logo */}
-        <path d="M14 35.5h20M17.5 39.5h13M21 43.5h6" stroke="#f0c563" strokeWidth="2" strokeLinecap="round" />
+      <svg viewBox="0 0 48 50" className="h-[3.1rem] w-12" fill="none">
         {/* sparkles that pop when clicked */}
-        <path className="sparkle" d="M6 8l.9 2.1L9 11l-2.1.9L6 14l-.9-2.1L3 11l2.1-.9z" fill="#f0c563" />
-        <path className="sparkle s2" d="M42 6l.8 1.8 1.8.8-1.8.8L42 11.200l-.8-1.800-1.800-.8 1.800-.8z" fill="#fdf6e3" />
-        <path className="sparkle s3" d="M43 28l.7 1.600 1.600.7-1.600.7L43 32.600l-.7-1.600-1.600-.7 1.600-.7z" fill="#f0c563" />
+        <path className="sparkle" d="M5 6l.9 2.1L8 9l-2.1.9L5 12l-.9-2.1L2 9l2.1-.9z" fill="#f0c563" />
+        <path className="sparkle s2" d="M43.500 4l.8 1.800 1.800.8-1.800.8-.8 1.800-.8-1.800-1.800-.8 1.800-.8z" fill="#fdf6e3" />
+        <path className="sparkle s3" d="M44.500 25l.7 1.600 1.600.7-1.600.7-.7 1.600-.7-1.600-1.600-.7 1.600-.7z" fill="#f0c563" />
+
+        {/* arms: chunky capsules hanging from the shoulders */}
+        <rect x="6.6" y="31" width="6.4" height="12.500" rx="3.200" fill="#fdf6e3" transform="rotate(8 9.8 31)" />
+        <rect x="35" y="31" width="6.4" height="12.500" rx="3.200" fill="#fdf6e3" transform="rotate(-8 38.200 31)" />
+        {/* body: a rounded teardrop */}
+        <path d="M13.500 31.500c0-3 4.700-4.500 10.500-4.500s10.500 1.500 10.500 4.500c0 7.500-4.300 16-10.500 16s-10.500-8.500-10.500-16z" fill="#fdf6e3" />
+        <path d="M13.900 34.500c.9 6.700 4.800 13 10.100 13 1.200 0 2.300-.3 3.300-.9-5.600-.6-9.600-6-11.100-12.100z" fill="#e7dcc0" />
+        {/* shoulder caps */}
+        <circle cx="12.300" cy="31" r="4.300" fill="#f0c563" />
+        <circle cx="35.700" cy="31" r="4.300" fill="#f0c563" />
+        {/* chest light, with a gold arc like the top of the column in the logo */}
+        <path d="M17 35.500c1.600 3.300 4 5 7 5s5.400-1.700 7-5" stroke="#12203b" strokeWidth="1.100" strokeLinecap="round" />
+        <circle className="spark" cx="24" cy="35.800" r="3.100" fill="#f0c563" />
+
         <g className="head">
-          {/* antenna */}
-          <path d="M24 9V5.8" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
-          <circle className="spark" cx="24" cy="4.2" r="2.1" fill="#f0c563" />
-          {/* head and face plate */}
-          {/* little ear caps */}
-          <rect x="7.6" y="16" width="3.4" height="7" rx="1.7" fill="#f0c563" />
-          <rect x="37" y="16" width="3.4" height="7" rx="1.7" fill="#f0c563" />
-          <rect x="11" y="9" width="26" height="21" rx="8" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.8" />
-          <rect x="14.5" y="13" width="19" height="13" rx="6" fill="#12203b" />
-          <circle className="eye" cx="20" cy="18.2" r="2" fill="#f0c563" />
-          <circle className="eye" cx="28" cy="18.2" r="2" fill="#f0c563" />
+          {/* antennae curving up from the sides */}
+          <path d="M12.500 12c-2.200-3.400-1.700-7 1.400-9.200" stroke="#f0c563" strokeWidth="1.900" strokeLinecap="round" />
+          <path d="M35.500 12c2.200-3.400 1.700-7-1.400-9.200" stroke="#f0c563" strokeWidth="1.900" strokeLinecap="round" />
+          <circle cx="14.300" cy="2.700" r="1.700" fill="#f0c563" />
+          <circle cx="33.700" cy="2.700" r="1.700" fill="#f0c563" />
+          {/* ear pieces */}
+          <rect x="7.300" y="12.500" width="4.200" height="8.500" rx="2.100" fill="#f0c563" />
+          <rect x="36.500" y="12.500" width="4.200" height="8.500" rx="2.100" fill="#f0c563" />
+          {/* head with a gold crown patch and a navy visor */}
+          <ellipse cx="24" cy="16.500" rx="14" ry="12" fill="#fdf6e3" />
+          <path d="M19.300 5.400c3-.9 6.400-.9 9.400 0l-1.300 2.700c-2.200-.5-4.600-.5-6.800 0z" fill="#f0c563" />
+          <path d="M13.300 16.200c0-4.200 3.400-6.200 6.700-6.200 1.600 0 2.700.8 4 .8s2.400-.8 4-.8c3.300 0 6.700 2 6.700 6.200 0 4.600-4.300 7.600-10.700 7.600s-10.700-3-10.700-7.600z" fill="#12203b" />
+          <rect className="eye" x="17.700" y="13.300" width="3.200" height="5.400" rx="1.600" fill="#f0c563" />
+          <rect className="eye" x="27.100" y="13.300" width="3.200" height="5.400" rx="1.600" fill="#f0c563" />
           {/* smiling eyes, shown only during the happy hop */}
-          <path className="happy-eye" d="M17.8 19.2c1.1-2 3.3-2 4.4 0M25.8 19.2c1.1-2 3.3-2 4.4 0" stroke="#f0c563" strokeWidth="1.5" strokeLinecap="round" />
-          <path className="smile" d="M21.2 22c1.7 1.3 3.9 1.3 5.6 0" stroke="#f0c563" strokeWidth="1.3" strokeLinecap="round" />
-          <ellipse className="talk" cx="24" cy="22.4" rx="2.4" ry="1.7" fill="#f0c563" />
+          <path className="happy-eye" d="M17.200 17.200c1.100-2.400 3.100-2.400 4.200 0M26.600 17.200c1.100-2.400 3.100-2.400 4.200 0" stroke="#f0c563" strokeWidth="1.600" strokeLinecap="round" />
+          <path className="smile" d="M21.700 20.300c1.400 1 3.200 1 4.600 0" stroke="#f0c563" strokeWidth="1.200" strokeLinecap="round" />
+          <ellipse className="talk" cx="24" cy="20.600" rx="2" ry="1.400" fill="#f0c563" />
         </g>
       </svg>
     </button>
