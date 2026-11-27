@@ -123,7 +123,7 @@ function HomePage() {
   return (
     <>
       {/* Full-screen hero with layered mountains */}
-      <section className="relative h-screen overflow-hidden">
+      <section className="relative min-h-[80svh] overflow-hidden lg:h-screen lg:min-h-0">
         {/* Cloud background */}
         <div className="absolute inset-0 z-0">
           <img
@@ -146,25 +146,25 @@ function HomePage() {
           style={{ background: "linear-gradient(to bottom, rgba(18,32,59,0.5) 0%, rgba(18,32,59,0.3) 40%, transparent 70%)" }}
         />
         {/* Content */}
-        <div className="relative z-30 h-full flex items-center">
+        <div className="relative z-30 flex min-h-[80svh] items-center py-12 lg:h-full lg:min-h-0 lg:py-0">
           <div className="section-container w-full">
             <div className="max-w-4xl mx-auto text-center text-white">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-slide-up drop-shadow-lg">
+              <h1 className="text-[2rem] leading-tight sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 sm:mb-6 animate-slide-up drop-shadow-lg">
                 Nevada License Defense
-                <span className="block text-2xl md:text-3xl lg:text-4xl font-bold mt-2 drop-shadow-lg">
+                <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mt-2 drop-shadow-lg">
                   of Medical Professionals
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 animate-slide-up drop-shadow-lg" style={{ animationDelay: "100ms" }}>
+              <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 animate-slide-up drop-shadow-lg" style={{ animationDelay: "100ms" }}>
                 Licensed Nevada Attorney Craig K. Perry will defend your professional license
                 with expertise and dedication before various Nevada State Boards.
               </p>
-              <p className="text-lg mb-12 text-white/90 animate-slide-up drop-shadow-lg" style={{ animationDelay: "200ms" }}>
+              <p className="text-base sm:text-lg mb-8 sm:mb-12 text-white/90 animate-slide-up drop-shadow-lg" style={{ animationDelay: "200ms" }}>
                 To date, he has handled cases before the State Board of Nursing, the State Board
                 of Pharmacy, the Board of Medical Examiners, the Board of Veterinary Examiners,
                 and the American Registry of Radiologic Technologists (ARRT).
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in" style={{ animationDelay: "300ms" }}>
+              <div className="mx-auto flex max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:gap-4 justify-center items-center animate-scale-in" style={{ animationDelay: "300ms" }}>
                 <a href={SITE.phoneHref} className="group flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-gold-dark bg-[#0b1630]/70 px-5 py-3.5 text-xl font-bold leading-none tracking-wide text-white shadow-[0_16px_34px_-10px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.22)] [text-shadow:0_1px_2px_rgba(0,0,0,0.6)] backdrop-blur-md backdrop-saturate-150 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-dark-blue hover:shadow-xl whitespace-nowrap sm:w-72">
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path fillRule="evenodd" clipRule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" />
@@ -178,7 +178,7 @@ function HomePage() {
                   Request Appointment
                 </a>
               </div>
-              <p className="mt-8 text-white italic font-semibold animate-fade-in drop-shadow-lg" style={{ animationDelay: "400ms" }}>
+              <p className="mt-6 sm:mt-8 text-sm sm:text-base text-white italic font-semibold animate-fade-in drop-shadow-lg" style={{ animationDelay: "400ms" }}>
                 Defending the Licenses of Nurses, Doctors, Therapists, Technologists, and more
               </p>
             </div>
@@ -282,12 +282,12 @@ function HomePage() {
 
       {/* CTA section */}
       <section className="bg-dark-blue text-white relative overflow-hidden">
-        <div className="section-container section-padding">
+        <div className="section-container pb-10 pt-14 md:py-24">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
               Don't Delay. Give Us a Call!
             </h2>
-            <p className="text-xl mb-8 text-white/90 animate-slide-up" style={{ animationDelay: "100ms" }}>
+            <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-white/90 animate-slide-up" style={{ animationDelay: "100ms" }}>
               Our law office staff is standing by, ready to assist.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -298,7 +298,7 @@ function HomePage() {
                 {SITE.phoneDisplay}
               </a>
             </div>
-            <p className="mt-8 text-gold font-semibold animate-fade-in" style={{ animationDelay: "300ms" }}>
+            <p className="mt-5 sm:mt-8 text-gold font-semibold animate-fade-in" style={{ animationDelay: "300ms" }}>
               Free Consultations Via Zoom
             </p>
           </div>

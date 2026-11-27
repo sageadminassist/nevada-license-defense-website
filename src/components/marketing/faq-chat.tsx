@@ -262,7 +262,7 @@ export function FaqChat() {
         <div
           role="dialog"
           aria-label="FAQ assistant"
-          className="fixed inset-x-3 bottom-24 z-[150] flex max-h-[min(70svh,600px)] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl sm:inset-x-auto sm:right-6 sm:w-[390px]"
+          className="fixed inset-x-3 bottom-20 z-[150] flex max-h-[min(72svh,600px)] sm:bottom-24 flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl sm:inset-x-auto sm:right-6 sm:w-[390px]"
         >
           <div className="flex items-center justify-between gap-3 border-b-4 border-gold bg-dark-blue px-4 py-3 text-white">
             <div className="flex items-center gap-3">
@@ -383,12 +383,13 @@ export function FaqChat() {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-label={open ? "Close the FAQ assistant" : "Ask a question"}
-        className="fixed bottom-6 right-4 z-[150] flex cursor-pointer items-center gap-2 rounded-full bg-dark-blue px-5 py-3.5 font-bold text-white shadow-xl ring-2 ring-gold hover:opacity-95 sm:right-6"
+        className="fixed bottom-4 right-4 z-[150] flex cursor-pointer items-center gap-2 rounded-full bg-dark-blue p-3.5 font-bold text-white shadow-xl ring-2 ring-gold hover:opacity-95 sm:bottom-6 sm:right-6 sm:px-5"
       >
-        <svg className="h-5 w-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg className="h-6 w-6 text-gold sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
         </svg>
-        {open ? "Close" : "Ask a Question"}
+        {/* phones show just the icon so it does not cover page buttons */}
+        <span className="hidden sm:inline">{open ? "Close" : "Ask a Question"}</span>
       </button>
     </>
   );

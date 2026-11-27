@@ -5,8 +5,8 @@ import { NAV_ITEMS, SITE } from "@/lib/site";
 export function SiteFooter() {
   return (
     <footer className="bg-dark-blue text-gray-300">
-      <div className="section-container section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="section-container pb-28 pt-10 sm:pb-16 md:py-24">
+        <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-3 md:gap-8 md:text-left">
           {/* Logo + about */}
           <div>
             <div className="mb-4">
@@ -14,11 +14,11 @@ export function SiteFooter() {
                 <img
                   src={IMAGES.logoWhite}
                   alt="Nevada License Defense Logo"
-                  className="h-auto w-full max-w-[260px]"
+                  className="mx-auto h-auto w-full max-w-[190px] md:mx-0 md:max-w-[260px]"
                 />
               </Link>
             </div>
-            <p className="text-sm leading-relaxed">
+            <p className="mx-auto max-w-sm text-sm leading-relaxed md:mx-0 md:max-w-none">
               A dedicated license defense practice protecting professional licenses in Nevada.
               Experienced representation before all Nevada state licensing boards.
             </p>
@@ -38,7 +38,7 @@ export function SiteFooter() {
           {/* Quick links */}
           <div>
             <h3 className="text-white text-lg font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm md:block md:space-y-2">
               {NAV_ITEMS.map((item) => (
                 <li key={item.to}>
                   <Link
@@ -61,7 +61,7 @@ export function SiteFooter() {
               <p>
                 <a
                   href={SITE.phoneHref}
-                  className="hover:text-gold transition-colors duration-300 font-semibold"
+                  className="text-xl font-bold text-gold hover:text-white transition-colors duration-300 md:text-sm md:font-semibold md:text-inherit md:hover:text-gold"
                 >
                   {SITE.phoneDisplay}
                 </a>
@@ -82,14 +82,14 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-700">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm">
+        <div className="mt-10 border-t border-gray-700 pt-6 md:mt-12 md:pt-8">
+          <div className="flex flex-col items-center justify-between gap-3 text-center text-sm md:flex-row md:gap-0">
             <p>&copy; {new Date().getFullYear()} Nevada License Defense. All rights reserved.</p>
             <a
               href={SITE.firmUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 md:mt-0 hover:text-gold transition-colors duration-300 font-semibold"
+              className="hover:text-gold transition-colors duration-300 font-semibold"
             >
               Craig K. Perry &amp; Associates
             </a>
