@@ -225,6 +225,42 @@ function lead_url($id, $p = 'leads') {
   $pg = max(1, (int) ($_GET['pg'] ?? 1));
   return qs(['p' => $p]) . ($pg > 1 ? '&pg=' . $pg : '') . '&id=' . (int) $id;
 }
+/* ---------- signature added to every reply sent from the inbox ---------- */
+const SIG_SITE = 'https://nevadalicensedefense.com';
+const SIG_NOTICE = 'This email may contain confidential or privileged information. If you received it by mistake, please tell us and delete it.';
+function sig_name() { return trim((string) nld_setting('sig_name', '')); }
+function sig_text() {
+  $n = sig_name();
+  return ($n !== '' ? $n . "\n" : '') . "Nevada License Defense\nCraig K. Perry & Associates\n702.893.4777 | info@nevadalicensedefense.com\n2300 W Sahara Ave #800, Las Vegas, NV 89102\nnevadalicensedefense.com\n\n" . SIG_NOTICE;
+}
+function sig_html() {
+  $n = sig_name();
+  $f = 'font-family:Arial,Helvetica,sans-serif;';
+  return '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;border-top:3px solid #f0c563;"><tr>'
+    . '<td style="padding:16px 18px 0 0;vertical-align:top;"><a href="' . SIG_SITE . '"><img src="' . SIG_SITE . '/images/NEVADA%20LICENSE%20DEFENSE%20LOGO.png" width="150" alt="Nevada License Defense" style="display:block;border:0;width:150px;height:auto;"></a></td>'
+    . '<td style="padding:16px 0 0 18px;vertical-align:top;border-left:1px solid #e5e7eb;' . $f . 'font-size:13px;line-height:1.55;color:#4b5563;">'
+    . ($n !== '' ? '<div style="font-size:16px;font-weight:bold;color:#12203b;">' . h($n) . '</div>' : '')
+    . '<div style="font-weight:bold;color:#12203b;' . ($n !== '' ? '' : 'font-size:16px;') . '">Nevada License Defense</div>'
+    . '<div>Craig K. Perry &amp; Associates</div>'
+    . '<div style="margin-top:6px;"><a href="tel:7028934777" style="color:#12203b;font-weight:bold;text-decoration:none;">702.893.4777</a></div>'
+    . '<div><a href="mailto:info@nevadalicensedefense.com" style="color:#1f4e9c;text-decoration:none;">info@nevadalicensedefense.com</a></div>'
+    . '<div>2300 W Sahara Ave #800, Las Vegas, NV 89102</div>'
+    . '<div><a href="' . SIG_SITE . '" style="color:#b27e4f;font-weight:bold;text-decoration:none;">nevadalicensedefense.com</a></div>'
+    . '</td></tr></table>'
+    . '<p style="' . $f . 'font-size:11px;line-height:1.5;color:#9ca3af;margin:16px 0 0;max-width:520px;">' . h(SIG_NOTICE) . '</p>';
+}
+/** Sends a reply as plain text plus a formatted version with the signature. */
+function send_reply($to, $subject, $body) {
+  $from = 'info@nevadalicensedefense.com';
+  $b = 'nld' . bin2hex(random_bytes(12));
+  $plain = $body . "\n\n-- \n" . sig_text();
+  $html = '<!doctype html><html><body style="margin:0;padding:0;"><div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#111827;">' . nl2br(h($body)) . '</div>' . sig_html() . '</body></html>';
+  $part = function ($type, $content) use ($b) { return "--$b\r\nContent-Type: $type; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($content)); };
+  $msg = $part('text/plain', str_replace("\n", "\r\n", $plain)) . $part('text/html', $html) . "--$b--\r\n";
+  $headers = ['From: Nevada License Defense <' . $from . '>', 'Reply-To: ' . $from, 'Bcc: ' . $from, 'MIME-Version: 1.0', 'Content-Type: multipart/alternative; boundary="' . $b . '"'];
+  return @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $msg, implode("\r\n", $headers), '-f' . $from);
+}
+
 /** Mail-style inbox: message list on the left, the open message on the right. */
 function page_leads(array $r) {
   layout_start('leads', $r, false);
@@ -301,12 +337,13 @@ function page_leads(array $r) {
     if ($l['email'] !== '') {
       $draft = (string) ($_SESSION['reply_draft'][$lid] ?? '');
       unset($_SESSION['reply_draft'][$lid]);
-      if ($draft === '') $draft = 'Hello ' . $first . ",\n\n\n\nNevada License Defense\nCraig K. Perry & Associates\n702.893.4777";
+      if ($draft === '') $draft = 'Hello ' . $first . ",\n\n";
       echo '<form method="post" action="' . $act . '" class="rreply" id="reply">' . csrf_field()
         . '<h3>' . ($replies ? 'Send another reply' : 'Reply by email') . '</h3>'
         . '<p class="note">Sent from info@nevadalicensedefense.com to <b>' . h($l['email']) . '</b>. Their answer goes to the office mailbox, and the office mailbox gets a copy of what you send.</p>'
         . '<label class="block">Subject<input type="text" name="subject" maxlength="150" required value="Your request to Nevada License Defense"></label>'
         . '<label class="block">Message<textarea name="body" rows="9" maxlength="10000" required>' . h($draft) . '</textarea></label>'
+        . '<div class="sigprev"><p class="note">This signature is added under your message automatically. <a href="?p=settings#signature">Change the name on it</a></p><div class="sigbox">' . sig_html() . '</div></div>'
         . '<div class="row"><button class="btn" name="do" value="reply">Send reply</button>'
         . ($l['status'] === 'new' ? '<label class="chk"><input type="checkbox" name="mark" value="1" checked> Mark handled after sending</label>' : '')
         . '<a class="small" href="' . h($mailto) . '">Use my own mail program instead</a></div></form>';
@@ -361,6 +398,10 @@ function page_settings(array $r) {
     . '<label class="block">Leads (form messages)<select name="leads">' . $opt([0 => 'Keep until I delete them (recommended)', 365 => '1 year', 730 => '2 years', 1825 => '5 years'], $ld) . '</select></label>'
     . '<button class="btn" name="do" value="retention">Save</button><p class="note">Older records are deleted automatically.</p></form></section>';
 
+  echo '<section class="card" id="signature"><h2>Email signature</h2><p>Added under every reply sent from the Leads inbox.</p><form method="post" action="?p=settings">' . csrf_field()
+    . '<label class="block">Name on the first line (leave empty for the firm only)<input type="text" name="sig_name" maxlength="80" value="' . h(sig_name()) . '" placeholder="Example: Craig K. Perry, Esq."></label>'
+    . '<button class="btn" name="do" value="signature">Save</button></form><div class="sigbox">' . sig_html() . '</div></section>';
+
   echo '<section class="card"><h2>Do not count my own visits</h2><p>Open one of these links once in each browser you use (office computer, phone). That browser is then left out of the statistics.</p>'
     . '<p><a class="btn small" href="/?nld_notrack=1" target="_blank" rel="noopener">Stop counting this browser</a> <a class="btn small ghost" href="/?nld_notrack=0" target="_blank" rel="noopener">Count this browser again</a></p></section>';
 
@@ -395,9 +436,7 @@ function handle_post($p) {
       $body = trim(str_replace(["\r\n", "\r"], "\n", mb_substr((string) ($_POST['body'] ?? ''), 0, 10000)));
       if (!filter_var($to, FILTER_VALIDATE_EMAIL) || preg_match('/[\r\n,;]/', $to)) { $_SESSION['flash'] = 'Not sent: this lead has no valid email address.'; redirect(lead_url($id)); }
       if ($subject === '' || $body === '') { $_SESSION['reply_draft'][$id] = $body; $_SESSION['flash'] = 'Not sent: the subject and the message are both needed.'; redirect(lead_url($id)); }
-      $from = 'info@nevadalicensedefense.com';
-      $headers = ['From: Nevada License Defense <' . $from . '>', 'Reply-To: ' . $from, 'Bcc: ' . $from, 'MIME-Version: 1.0', 'Content-Type: text/plain; charset=UTF-8', 'Content-Transfer-Encoding: 8bit'];
-      $ok = @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', str_replace("\n", "\r\n", $body), implode("\r\n", $headers), '-f' . $from);
+      $ok = send_reply($to, $subject, $body);
       $db->prepare('INSERT INTO lead_replies (lead_id, ts, subject, body, ok) VALUES (?,?,?,?,?)')->execute([$id, time(), $subject, $body, $ok ? 1 : 0]);
       if ($ok && !empty($_POST['mark'])) $db->prepare("UPDATE leads SET status = 'handled', handled_at = ? WHERE id = ? AND status = 'new'")->execute([time(), $id]);
       if (!$ok) $_SESSION['reply_draft'][$id] = $body;
@@ -421,6 +460,10 @@ function handle_post($p) {
       $flash = 'Password changed.';
       admin_sign_in();
       $_SESSION['flash'] = $flash;
+    } elseif ($do === 'signature') {
+      nld_set_setting('sig_name', trim(preg_replace('/\s+/', ' ', mb_substr((string) ($_POST['sig_name'] ?? ''), 0, 80))));
+      $_SESSION['flash'] = 'Signature saved.';
+      redirect('?p=settings#signature');
     } elseif ($do === 'retention') {
       $e = (int) ($_POST['events'] ?? 400); $l = (int) ($_POST['leads'] ?? 0);
       if (in_array($e, [0, 90, 180, 400, 730], true)) nld_set_setting('retain_events_days', $e);

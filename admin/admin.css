@@ -169,6 +169,10 @@ label.block input, label.block select, label.block textarea { display: block; wi
 .rreply .row { align-items: center; gap: .6rem 1.1rem; }
 .rreply .row a.small { margin: 0 0 0 auto; }
 .chk { font-size: .95rem; color: var(--ink2); }
+.sigprev { margin: 0 0 1rem; }
+.sigbox { border: 1px dashed #d1d5db; border-radius: 8px; padding: 0 1rem 1rem; background: #fff; overflow-x: auto; }
+.sigbox table { margin-top: 12px !important; }
+.card .sigbox { margin-top: 1rem; }
 .rdel { margin-top: 1.4rem; }
 .rdel form { margin-top: .5rem; }
 
