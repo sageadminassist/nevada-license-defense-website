@@ -60,6 +60,44 @@ const STARTERS = [
   "What does it cost?",
 ];
 
+/** Small friendly helper for the chat header, drawn in the site's navy and gold. */
+function ChatBotIcon({ thinking }: { thinking: boolean }) {
+  return (
+    <span className={`nld-bot ${thinking ? "is-thinking" : ""} relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-gold/60`} aria-hidden="true">
+      <style>{`
+        @keyframes nld-bot-bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-1.5px) } }
+        @keyframes nld-bot-blink { 0%,92%,100% { transform: scaleY(1) } 95% { transform: scaleY(0.1) } }
+        @keyframes nld-bot-glow { 0%,100% { opacity: .55; transform: scale(1) } 50% { opacity: 1; transform: scale(1.25) } }
+        @keyframes nld-bot-wave { 0%,70%,100% { transform: rotate(0deg) } 80% { transform: rotate(-18deg) } 90% { transform: rotate(10deg) } }
+        .nld-bot svg { animation: nld-bot-bob 3.2s ease-in-out infinite; }
+        .nld-bot .eye { transform-box: fill-box; transform-origin: center; animation: nld-bot-blink 4.5s infinite; }
+        .nld-bot .spark { transform-box: fill-box; transform-origin: center; animation: nld-bot-glow 2s ease-in-out infinite; }
+        .nld-bot .arm { transform-box: fill-box; transform-origin: 0% 100%; animation: nld-bot-wave 5s ease-in-out infinite; }
+        .nld-bot.is-thinking .spark { animation-duration: .6s; }
+        .nld-bot.is-thinking svg { animation-duration: 1s; }
+        @media (prefers-reduced-motion: reduce) { .nld-bot svg, .nld-bot .eye, .nld-bot .spark, .nld-bot .arm { animation: none; } }
+      `}</style>
+      <svg viewBox="0 0 40 40" className="h-8 w-8" fill="none">
+        {/* antenna */}
+        <path d="M20 9V5.5" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
+        <circle className="spark" cx="20" cy="4" r="2" fill="#f0c563" />
+        {/* waving arm */}
+        <path className="arm" d="M31 24c2.2-.6 3.4-2.4 3.6-4.6" stroke="#f0c563" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M9 24c-2.2-.6-3.4-2-3.6-3.6" stroke="#f0c563" strokeWidth="1.8" strokeLinecap="round" />
+        {/* head */}
+        <rect x="8" y="9" width="24" height="19" rx="7" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.8" />
+        {/* face plate */}
+        <rect x="11.5" y="13" width="17" height="11" rx="5" fill="#12203b" />
+        <circle className="eye" cx="16.5" cy="18" r="1.9" fill="#f0c563" />
+        <circle className="eye" cx="23.5" cy="18" r="1.9" fill="#f0c563" />
+        <path d="M17.6 21.2c1.5 1.1 3.3 1.1 4.8 0" stroke="#f0c563" strokeWidth="1.2" strokeLinecap="round" />
+        {/* collar, a nod to the column capital in the logo */}
+        <path d="M13 31.5h14M15 34.5h10" stroke="#f0c563" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    </span>
+  );
+}
+
 export function FaqChat() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -149,9 +187,12 @@ export function FaqChat() {
           className="fixed inset-x-3 bottom-24 z-[150] flex max-h-[min(70svh,600px)] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl sm:inset-x-auto sm:right-6 sm:w-[390px]"
         >
           <div className="flex items-center justify-between gap-3 border-b-4 border-gold bg-dark-blue px-4 py-3 text-white">
-            <div>
+            <div className="flex items-center gap-3">
+              <ChatBotIcon thinking={busy} />
+              <div>
               <p className="text-lg font-bold leading-tight">Ask a Question</p>
               <p className="text-xs text-white/75">General information, not legal advice</p>
+              </div>
             </div>
             <button type="button" onClick={() => setOpen(false)} aria-label="Close" className="cursor-pointer rounded-md p-1 text-2xl leading-none text-white/80 hover:text-white">
               ×
