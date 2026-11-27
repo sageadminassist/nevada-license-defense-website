@@ -158,6 +158,17 @@ label.block input, label.block select, label.block textarea { display: block; wi
 .rkv dt { font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink3); font-weight: 600; }
 .rkv dd { margin: 0; word-break: break-word; }
 .rnotes { max-width: 46rem; }
+.rsent { max-width: 46rem; margin: 0 0 1rem; padding: .8rem 1rem; background: #eef4fb; border-left: 4px solid var(--s1); border-radius: 6px; }
+.rsent.failed { background: #fdecea; border-left-color: var(--bad); }
+.rsent p { margin: 0; }
+.rsent-h { font-size: .88rem; color: var(--ink2); }
+.rsent-s { font-weight: 700; color: var(--blue); margin: .2rem 0 .4rem !important; }
+.rsent-b { word-break: break-word; }
+.rreply { max-width: 46rem; margin: 0 0 1.6rem; padding: 1rem 1.1rem 1.1rem; border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: 10px; scroll-margin-top: 1rem; }
+.rreply h3 { margin: 0 0 .2rem; color: var(--blue); font-size: 1.15rem; }
+.rreply .row { align-items: center; gap: .6rem 1.1rem; }
+.rreply .row a.small { margin: 0 0 0 auto; }
+.chk { font-size: .95rem; color: var(--ink2); }
 .rdel { margin-top: 1.4rem; }
 .rdel form { margin-top: .5rem; }
 
