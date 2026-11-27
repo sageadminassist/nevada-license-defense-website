@@ -113,12 +113,18 @@ function ReviewModal({ review, onClose }: { review: Review; onClose: () => void 
   );
 }
 
+/** Public Google Business listings where the firm's reviews can be read. */
+const GOOGLE_LISTINGS = [
+  { label: "Craig K. Perry & Associates", href: "https://maps.google.com/?cid=14395115840337887358" },
+  { label: "LV Nurse Attorney", href: "https://maps.google.com/?cid=235096524719636307" },
+] as const;
+
 const FIRST_PHONE = 3;
 const FIRST_DESKTOP = 6;
 
 /** Google rating summary plus every saved review. Wrap in a <Section> at the call site. */
 export function Reviews() {
-  const { reviews, rating, total, googleUrl } = REVIEWS;
+  const { reviews, rating, total } = REVIEWS;
   const [open, setOpen] = useState<Review | null>(null);
   const close = useRef(() => setOpen(null)).current;
   const [showAll, setShowAll] = useState(false);
@@ -134,11 +140,20 @@ export function Reviews() {
           </div>
           <Stars rating={rating} className="text-2xl" />
           <p className="text-gray-600">{total ? `Based on ${total.toLocaleString()} Google reviews` : "Rated on Google"}</p>
-          {googleUrl ? (
-            <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-1 font-bold uppercase tracking-[0.1em] text-gold-dark hover:text-dark-blue">
-              Read them on Google →
-            </a>
-          ) : null}
+          <p className="mt-3 text-xs font-bold uppercase tracking-[0.15em] text-gray-500">Read them on Google</p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            {GOOGLE_LISTINGS.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-lg border-2 border-gold px-5 py-2.5 text-center text-sm font-bold text-dark-blue transition-colors duration-300 hover:bg-gold"
+              >
+                {l.label} →
+              </a>
+            ))}
+          </div>
         </div>
       ) : null}
       {/* Three reviews on phones, six on larger screens; the rest stay in the page (for search
