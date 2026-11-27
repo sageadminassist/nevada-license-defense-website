@@ -90,15 +90,16 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
         }
       `}</style>
       <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none">
-        {/* body */}
-        <rect x="16" y="31" width="16" height="12" rx="5" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.8" />
-        {/* two short bars on the chest, a nod to the column in the logo */}
-        <path d="M21 35.5h6M21 38.8h6" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
+        {/* stepped gold lines under the head, echoing the column capital in the logo */}
+        <path d="M14 35.5h20M17.5 39.5h13M21 43.5h6" stroke="#f0c563" strokeWidth="2" strokeLinecap="round" />
         <g className="head">
           {/* antenna */}
           <path d="M24 9V5.8" stroke="#f0c563" strokeWidth="1.6" strokeLinecap="round" />
           <circle className="spark" cx="24" cy="4.2" r="2.1" fill="#f0c563" />
           {/* head and face plate */}
+          {/* little ear caps */}
+          <rect x="7.6" y="16" width="3.4" height="7" rx="1.7" fill="#f0c563" />
+          <rect x="37" y="16" width="3.4" height="7" rx="1.7" fill="#f0c563" />
           <rect x="11" y="9" width="26" height="21" rx="8" fill="#fdf6e3" stroke="#f0c563" strokeWidth="1.8" />
           <rect x="14.5" y="13" width="19" height="13" rx="6" fill="#12203b" />
           <circle className="eye" cx="20" cy="18.2" r="2" fill="#f0c563" />
