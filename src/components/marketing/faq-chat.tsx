@@ -112,10 +112,18 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
         .nld-bot.is-happy .smile { display: block; stroke-width: 1.8; }
         .nld-bot.is-happy .talk { display: none; }
         .nld-bot.is-happy .sparkle { display: block; transform-box: fill-box; transform-origin: center; animation: nld-bot-pop 1.1s ease-out both; }
+        /* both arms swing up and wave during the happy hop */
+        @keyframes nld-bot-cheer-l { 0%,100% { transform: rotate(0deg) } 18% { transform: rotate(108deg) } 34% { transform: rotate(72deg) } 50% { transform: rotate(108deg) } 66% { transform: rotate(72deg) } 82% { transform: rotate(104deg) } }
+        @keyframes nld-bot-cheer-r { 0%,100% { transform: rotate(0deg) } 18% { transform: rotate(-108deg) } 34% { transform: rotate(-72deg) } 50% { transform: rotate(-108deg) } 66% { transform: rotate(-72deg) } 82% { transform: rotate(-104deg) } }
+        .nld-bot .arm { transform-box: fill-box; }
+        .nld-bot .arm-l { transform-origin: 85% 8%; }
+        .nld-bot .arm-r { transform-origin: 15% 8%; }
+        .nld-bot.is-happy .arm-l { animation: nld-bot-cheer-l 1.3s ease-in-out; }
+        .nld-bot.is-happy .arm-r { animation: nld-bot-cheer-r 1.3s ease-in-out; }
         .nld-bot.is-happy .sparkle.s2 { animation-delay: .15s; }
         .nld-bot.is-happy .sparkle.s3 { animation-delay: .3s; }
         @media (prefers-reduced-motion: reduce) {
-          .nld-bot svg, .nld-bot.is-happy svg, .nld-bot .eye, .nld-bot .spark, .nld-bot.is-speaking .talk { animation: none; }
+          .nld-bot svg, .nld-bot.is-happy svg, .nld-bot.is-happy .arm, .nld-bot .eye, .nld-bot .spark, .nld-bot.is-speaking .talk { animation: none; }
           .nld-bot .head { transition: none; }
         }
       `}</style>
@@ -128,8 +136,8 @@ function ChatBotIcon({ mood }: { mood: BotMood }) {
         {/* body and arms sit tucked up under the head */}
         <g transform="translate(0 -4)">
           {/* small arms, one rounded shape each, tucked at the sides of the body */}
-          <rect x="11" y="30.500" width="4.200" height="9" rx="2.100" fill="#f0c563" transform="rotate(14 13.100 30.500)" />
-          <rect x="32.800" y="30.500" width="4.200" height="9" rx="2.100" fill="#f0c563" transform="rotate(-14 34.900 30.500)" />
+          <g className="arm arm-l"><rect x="11" y="30.500" width="4.200" height="9" rx="2.100" fill="#f0c563" transform="rotate(14 13.100 30.500)" /></g>
+          <g className="arm arm-r"><rect x="32.800" y="30.500" width="4.200" height="9" rx="2.100" fill="#f0c563" transform="rotate(-14 34.900 30.500)" /></g>
           {/* small rounded body with a chest light */}
           <path d="M15.500 32c0-2.700 3.800-4 8.500-4s8.500 1.300 8.500 4c0 6.500-3.500 13.500-8.500 13.500S15.500 38.500 15.500 32z" fill="#fdf6e3" />
           <circle className="spark" cx="24" cy="35" r="2.800" fill="#f0c563" />
