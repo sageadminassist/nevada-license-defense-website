@@ -136,7 +136,7 @@ export function SiteHeader() {
       </header>
 
       {/* Sticky nav bar */}
-      <div className="hidden lg:block bg-white border-t border-gray-200 sticky top-0 z-[99] shadow-sm">
+      <div className="site-nav hidden lg:block bg-white border-t border-gray-200 sticky top-0 z-[99] shadow-sm">
         <div className="section-container">
           <div ref={navRef} className="flex items-center justify-center flex-nowrap gap-x-5 xl:gap-x-8 py-4">
             {MENUS.map((m) => (

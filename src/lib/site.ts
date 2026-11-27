@@ -81,9 +81,9 @@ export const NLD_LD = {
 } as const;
 
 export const NAV_ITEMS = [
+  { to: "/medical", label: "Board of Medical Examiners" },
   { to: "/nursing", label: "Board of Nursing" },
   { to: "/pharmacy", label: "Board of Pharmacy" },
-  { to: "/medical", label: "Board of Medical Examiners" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -102,9 +102,9 @@ export const MORE_BOARDS = [
 ] as const;
 
 export const ALL_BOARDS = [
+  { to: "/medical", label: "Board of Medical Examiners", nrs: "NRS 630" },
   { to: "/nursing", label: "Board of Nursing", nrs: "NRS 632" },
   { to: "/pharmacy", label: "Board of Pharmacy", nrs: "NRS 639" },
-  { to: "/medical", label: "Board of Medical Examiners", nrs: "NRS 630" },
   ...MORE_BOARDS,
 ] as const;
 

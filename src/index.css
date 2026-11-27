@@ -131,7 +131,7 @@
       font-size-adjust: 0.43; /* headings are already large: about +8% */
     }
     /* tight spots where larger letters would wrap or overflow */
-    header a, header button, header span, button, .btn-primary, .btn-secondary, .btn-gold {
+    header a, header button, header span, .site-nav, .site-nav a, button, .btn-primary, .btn-secondary, .btn-gold {
       font-size-adjust: 0.44;
     }
   }
