@@ -4,8 +4,8 @@ export const SITE = {
   firmUrl: "https://craigperry.com",
   phoneDisplay: "702.893.4777",
   phoneHref: "tel:7028934777",
-  email: "info@craigperry.com",
-  emailHref: "mailto:info@craigperry.com",
+  email: "info@nevadalicensedefense.com",
+  emailHref: "mailto:info@nevadalicensedefense.com",
   location: "Las Vegas, Nevada",
   serviceArea: "Serving Las Vegas, Reno, Carson City, and all of Nevada",
   consultation:

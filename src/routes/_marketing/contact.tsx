@@ -13,7 +13,7 @@ export const Route = createFileRoute("/_marketing/contact")({
       {
         name: "description",
         content:
-          "Contact Craig K. Perry & Associates for a free Nevada professional license defense consultation. Call 702.893.4777 or email info@craigperry.com.",
+          "Contact Craig K. Perry & Associates for a free Nevada professional license defense consultation. Call 702.893.4777 or email info@nevadalicensedefense.com.",
       },
       { property: "og:title", content: "Contact Nevada License Defense | 702.893.4777" },
       {
